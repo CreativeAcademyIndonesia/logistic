@@ -1,0 +1,45 @@
+"use client"
+import { NextPage } from 'next'
+import { signIn } from 'next-auth/react'
+import { useState } from 'react'
+
+export default function Home() {
+  // const [userInfo, setUserInfo] = useState({ username : "", password : "" })
+  const [username, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+  const handleSubmit = async (e)=>{
+    e.preventDefault()
+    const res = await signIn('credentials', {
+      username : username,
+      password : password,
+      redirect : false
+    })
+    console.log(res)
+  }
+  return (
+    <div>
+        <form onSubmit={handleSubmit}>
+            <h1>Silahkan Login</h1>
+            <input 
+            className='text-slate-700'
+            value={username}
+            onChange={(e)=>{
+              setUserName(e.target.value)
+            }}
+            type='text' 
+            name='username' 
+            placeholder='username' />
+            <input 
+            className='text-slate-700'
+            value={password}
+            onChange={(e)=>{
+              setPassword(e.target.value)
+            }}
+            type='password' 
+            name='password' 
+            placeholder='Password' />
+            <button>Login</button>
+        </form>
+    </div>
+  )
+}
