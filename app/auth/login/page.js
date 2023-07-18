@@ -4,7 +4,6 @@ import { signIn } from 'next-auth/react'
 import { useState } from 'react'
 
 export default function Home() {
-  // const [userInfo, setUserInfo] = useState({ username : "", password : "" })
   const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const handleSubmit = async (e)=>{
@@ -17,7 +16,7 @@ export default function Home() {
     console.log(res)
   }
   return (
-    <div>
+    <div className='flex min-h-screen flex-col items-center justify-between p-24 bg-blue-400'>
         <form onSubmit={handleSubmit}>
             <h1>Silahkan Login</h1>
             <input 
