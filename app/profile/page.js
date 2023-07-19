@@ -1,9 +1,13 @@
-import Image from 'next/image'
+import About from '../component/About'
+import VisiMisi from '../component/VisiMisi'
+import NilaiPerusahaan from '../component/NilaiPerusahaan'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-blue-400">
-      Profile page
+    <main>
+      <About />
+      <VisiMisi />
+      <NilaiPerusahaan/>
     </main>
   )
 }

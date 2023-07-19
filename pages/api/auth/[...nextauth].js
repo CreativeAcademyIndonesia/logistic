@@ -19,7 +19,6 @@ export const authOptions = {
           },
           async authorize(credentials, req) {
             const {username, password} = credentials
-            console.log(username, password)
             if(username != 'agus@gmail.com' || password != '1234'){
                 throw new Error('Username tidak terdaftar')
             }

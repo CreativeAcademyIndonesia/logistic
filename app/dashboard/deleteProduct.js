@@ -7,9 +7,12 @@ const DeleteProduct = (prodcut) => {
     const router = useRouter()
 
     async function handleDelete(id) {
-        await fetch(`http://localhost:5000/products/${id}`, {
+        const res = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}:3000/api/products/${id}`, {
             method : "DELETE"
         })
+        const response = await res.json()
+        console.log(response)
+        if(response.message == "success") return; 
         router.refresh()
     }
 

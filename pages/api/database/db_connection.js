@@ -6,15 +6,17 @@ export async function query({query, values = [] }){
     const dbconnection = await mysql.createConnection({
         host: process.env.MYSQL_HOST,
         user: process.env.MYSQL_USER,
-        password: process.env.MYSQL_PASSWORD,
+        // password: process.env.MYSQL_PASSWORD,
         database: process.env.MYSQL_DATABASE,
     });
 
     try{
         const [results] = await dbconnection.execute(query, values);
         dbconnection.end()
+        console.log('ok')
         return results
     }catch(error){
+        console.log('err')
         throw Error(error.message)
         return {error}
 

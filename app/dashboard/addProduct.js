@@ -16,7 +16,7 @@ const AddProduct = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        await fetch('http://localhost:5000/products', {
+        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}:3000/api/products`, {
             method : "POST", 
             headers : {
                 'Content-Type' : 'application/json'
@@ -26,6 +26,9 @@ const AddProduct = () => {
                 price
             })
         })
+
+        const response = await res.json()
+        console.log(response)
 
         setTitle('')
         setPrice('')
