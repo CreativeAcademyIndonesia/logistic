@@ -1,11 +1,13 @@
 import { faArrowUp, faArrowUpFromBracket, faBarsStaggered, faCalendarCheck, faCalendarDay, faChartSimple, faRepeat, faShip, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import logovertical from "../../public/logovertical.png"
+import Image from "next/image";
 
 const Sidebar = () => {
     return (
         <div className="bg-white">
-            <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+            <button data-hs-overlay="#hs-overlay-basic" aria-controls="hs-overlay-basic" aria-label="Toggle navigation" type="button" className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span className="sr-only">Open sidebar</span>
                 <FontAwesomeIcon 
                 icon={faBarsStaggered}
@@ -13,11 +15,21 @@ const Sidebar = () => {
                 />
             </button>
 
-            <aside id="sidebar-multi-level-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-                <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 pt-28">
+            <div id="hs-overlay-basic" className="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 left-0 bottom-0 z-50 w-64 bg-white border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y md:block md:translate-x-0 md:right-auto md:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700">
+                <div className="flex justify-between items-center px-6">
+                    <div className="w-full">
+                        <Image 
+                            src={logovertical}
+                            className="w-full"
+                            alt="logo"
+                        />
+                    </div>
+                </div>
+
+                <nav className="p-6 w-full flex flex-col flex-wrap">
                     <ul className="space-y-2 font-medium">
                         <li>
-                            <Link href="/dashboard" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/dashboard" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FontAwesomeIcon 
                                     icon={faChartSimple}
                                     className="text-slate-400 text-xl"
@@ -26,7 +38,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/pengiriman" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/dashboard/pengiriman" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FontAwesomeIcon 
                                     icon={faArrowUpFromBracket}
                                     className="text-slate-400 text-xl"
@@ -35,7 +47,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/penerimaan" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/dashboard/penerimaan" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FontAwesomeIcon 
                                     icon={faArrowUpFromBracket}
                                     className="text-slate-400 text-xl rotate-180"
@@ -44,7 +56,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/mitra" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/dashboard/mitra" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FontAwesomeIcon 
                                     icon={faUser}
                                     className="text-slate-400 text-xl"
@@ -53,7 +65,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/armada" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/dashboard/armada" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FontAwesomeIcon 
                                     icon={faShip}
                                     className="text-slate-400 text-xl"
@@ -62,7 +74,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/status" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/dashboard/status" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FontAwesomeIcon 
                                     icon={faCalendarCheck}
                                     className="text-slate-400 text-xl"
@@ -71,7 +83,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/status" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/dashboard/status" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FontAwesomeIcon 
                                     icon={faCalendarDay}
                                     className="text-slate-400 text-xl"
@@ -80,7 +92,7 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/status" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/dashboard/status" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FontAwesomeIcon 
                                     icon={faRepeat}
                                     className="text-slate-400 text-xl"
@@ -89,8 +101,8 @@ const Sidebar = () => {
                             </Link>
                         </li>
                     </ul>
-                </div>
-            </aside>            
+                </nav>
+            </div>
         </div>
     );
 }
