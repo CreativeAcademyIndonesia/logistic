@@ -3,7 +3,7 @@ import logovertical from '../../public/logovertical.png'
 import Link from 'next/link'
 export default function Footer(){        
     return (
-        <section className="py-10 bg-gray-50 sm:pt-16 lg:pt-24 relative">
+        <section className="py-10 bg-gray-50 sm:pt-16 lg:pt-24 relative z-40" >
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="grid grid-cols-2 md:col-span-3 lg:grid-cols-6 gap-y-8 gap-x-10">
                     <div className="col-span-2 md:col-span-3 lg:pr-8">

@@ -11,9 +11,6 @@ export default async function Home() {
   const products = await getProducts()
   return (
     <main className=" min-h-screen p-24 bg-white">
-      {/* <button type="button" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
-        Add New
-      </button> */}
       <AddProduct />
       <div className="flex flex-col">
         <div className="-m-1.5 overflow-x-auto">
