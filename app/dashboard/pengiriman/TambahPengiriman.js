@@ -3,6 +3,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faXmark } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
+import { useRef } from 'react';
+import { useRouter } from 'next/navigation';
+
 export default function tambahPengiriman (){
     const [namaPengirim, setNamaPengirim] = useState('')
     const [noHpPengirim, setNoHpPengirim] = useState('')
@@ -21,6 +24,64 @@ export default function tambahPengiriman (){
     const [namaKapal, setNamaKapal] = useState('')
     const [noContainer, setNoContainer] = useState('')
     const [noBl, setNoBl] = useState('')
+    const buttonRef = useRef()
+    const router = useRouter()
+
+    async function handleSubmit(e) {
+        
+        let data = {
+            namaPengirim,
+            noHpPengirim,
+            noKtpPengirim,
+            noNpwpPengirim,
+            jenisBarang,
+            layanan,
+            alamatPengirim,
+            from,
+            to,
+            alamatTujuan,
+            namaPenerima,
+            noHpPenerima,
+            noKtpPenerima,
+            shipingLine,
+            namaKapal,
+            noContainer,
+            noBl
+        }
+        e.preventDefault()
+        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}:3000/api/pengiriman`, {
+            method : "POST", 
+            headers : {
+                'Content-Type' : 'application/json'
+            }, 
+            body : JSON.stringify(data)
+        })
+
+        const response = await res.json()
+
+        // setNamaPengirim('')
+        // setNoHpPengirim('')
+        // setNoKtpPengirim('')
+        // setNoNpwpPengirim('')
+        // setJenisBarang('')
+        // setLayanan('')
+        // setalAmatPengirim('')
+        // setFrom('')
+        // setTo('')
+        // setAlamatTujuan('')
+        // setNamaPenerima('')
+        // setNoHpPenerima('')
+        // setNoKtpPenerima('')
+        // setShipingLine('')
+        // setNamaKapal('')
+        // setNoContainer('')
+        // setNoBl('')
+
+        buttonRef.current.click();
+        router.refresh()
+    }
+
+
     return (
         <>
             <button type="button" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800" data-hs-overlay="#modalpengiriman">
@@ -42,7 +103,7 @@ export default function tambahPengiriman (){
                             />
                         </button>
                         </div>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className="p-4 overflow-y-auto">
                                     <div className="grid gap-4 mb-4 md:grid-cols-2">
                                         <div>
@@ -255,7 +316,7 @@ export default function tambahPengiriman (){
                                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                                                 placeholder="No Container" 
                                                 value={noContainer}
-                                                onChange={(e)=>setnoContainer(e.target.value)}
+                                                onChange={(e)=>setNoContainer(e.target.value)}
                                                 required />
                                         </div>
                                         <div>
@@ -275,10 +336,10 @@ export default function tambahPengiriman (){
                                         
                             </div>
                             <div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-gray-700">
-                                <button type="button" className="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-overlay="#modalpengiriman">
+                                <button ref={buttonRef} type="button" className="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-overlay="#modalpengiriman">
                                     Close
                                 </button>
-                                <button type="button" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
+                                <button type="submit" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
                                 Save changes
                                 </button>
                             </div>

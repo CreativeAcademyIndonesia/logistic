@@ -1,4 +1,3 @@
-
 import { getData } from "../lib/getdata"
 import TambahPengiriman from "./TambahPengiriman"
 
@@ -52,31 +51,31 @@ export default async function Home() {
                   data.map((d)=>(
                     <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {d['ID Pengiriman']}
+                            {d['ID_Pengiriman']}
                         </th>
                         <td className="px-6 py-4">
-                          {d['Nama Pengirim']}
+                          {d['Nama_Pengirim']}
                         </td>
                         <td className="px-6 py-4">
-                          {d['No Bl']}
+                          {d['No_Bl']}
                         </td>
                         <td className="px-6 py-4">
-                          {d['No Container']}
+                          {d['No_Container']}
                         </td>
                         <td className="px-6 py-4">
-                            {d['From_']}
+                            {d['dari']}
                         </td>
                         <td className="px-6 py-4">
-                            {d['To_']}
+                            {d['ke']}
                         </td>
                         <td className="px-6 py-4">
-                            {d['Nama Penerima']}
+                            {d['Nama_Penerima']}
                         </td>
                         <td className="px-6 py-4">
-                            {d['Shipping Line']}
+                            {d['Shipping_Line']}
                         </td>
                         <td className="px-6 py-4">
-                            {d['Nama Kapal']}
+                            {d['Nama_Kapal']}
                         </td>
                         <td className="px-6 py-4 text-right">
                             <a href="#" className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
