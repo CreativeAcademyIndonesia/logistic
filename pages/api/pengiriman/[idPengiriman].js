@@ -48,6 +48,6 @@ export default async function handler(req,
         }else{
             message = 'ERROR'
         }
-      res.status(200).json({message: 'ok'})
+      res.status(200).json({message})
     }
   }
