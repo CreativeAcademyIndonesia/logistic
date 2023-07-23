@@ -31,7 +31,6 @@ export default function Home() {
             console.error('Error fetching data:', error)
         }
     };
-
     useEffect(() => {
         fetchData()
         fetchitem('Rute_dan_Tujuan')
