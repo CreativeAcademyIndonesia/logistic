@@ -9,11 +9,11 @@ export default async function handler(req, res) {
       })
       res.status(200).json(data)
     }else if(req.method == "POST"){
-      const {namaPengirim, noHPPengirim, nomorKTPPengirim, nomorNPWPPengirim, jenisBarang, layanan, alamatPengirim, dooringFrom, dooringTo, alamatDoorng, namaPenerima, noHPPenerima, noKTPPenerima, shippingLine, namaKapal, noContainer, noBL} = req.body
+      const {namaPengirim, noHpPengirim, noKtpPengirim, noNpwpPengirim, jenisBarang, layanan, alamatPengirim, from, to, alamatTujuan, namaPenerima, noHpPenerima, noKtpPenerima, shipingLine, namaKapal, noContainer, noBl} = req.body
 
       const result = await query({
-        query : `INSERT INTO penerimaan (Nama_Pengirim, No_HP_Pengirim, Nomor_KTP_Pengirim, Nomor_NPWP_Pengirim, Jenis_Barang, Layanan, Alamat_Pengirim, Dooring_From, Dooring_To, Alamat_Doorng, Nama_Penerima, No_HP_Penerima, No_KTP_Penerima, Shipping_Line, Nama_Kapal, No_Container, No_BL) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, 
-        values : [namaPengirim, noHPPengirim, nomorKTPPengirim, nomorNPWPPengirim, jenisBarang, layanan, alamatPengirim, dooringFrom, dooringTo, alamatDoorng, namaPenerima, noHPPenerima, noKTPPenerima, shippingLine, namaKapal, noContainer, noBL]
+        query : `INSERT INTO penerimaan (Nama_Pengirim, No_Hp_Pengirim, No_Ktp_Pengirim, No_Npwp_Pengirim, Jenis_Barang, Layanan, Alamat_Pengirim, dari, ke, Alamat_Tujuan, Nama_Penerima, No_Hp_Penerima, No_Ktp_Penerima, Shipping_Line, Nama_Kapal, No_Container, No_Bl) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, 
+        values : [namaPengirim, noHpPengirim, noKtpPengirim, noNpwpPengirim, jenisBarang, layanan, alamatPengirim, from, to, alamatTujuan, namaPenerima, noHpPenerima, noKtpPenerima, shipingLine, namaKapal, noContainer, noBl]
       })
 
       let message =''
@@ -22,6 +22,6 @@ export default async function handler(req, res) {
       }else{
         message = 'ERROR'
       }
-      res.status(200).json({message : 'message'})
+      res.status(200).json({message})
     }
   }

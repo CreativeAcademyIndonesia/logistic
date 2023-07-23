@@ -18,7 +18,8 @@ export default async function handler(req, res) {
         noHPSopirTruck,
         masaBerlakuSTNK,
         tanggalPASMasuk,
-        tanggalPASAkhir} = req.body
+        tanggalPASAkhir, 
+        status} = req.body
 
       const result = await query({
         query : `INSERT INTO armada (
@@ -31,7 +32,8 @@ export default async function handler(req, res) {
           No_HP_Sopir_Truck,
           Masa_Berlaku_STNK,
           Tanggal_PAS_Masuk,
-          Tanggal_PAS_Akhir) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, 
+          Tanggal_PAS_Akhir,
+          Status) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, 
         values : [
           namaPemilikTruck,
           sopirTruck,
@@ -42,7 +44,8 @@ export default async function handler(req, res) {
           noHPSopirTruck,
           masaBerlakuSTNK,
           tanggalPASMasuk,
-          tanggalPASAkhir]
+          tanggalPASAkhir, 
+          status]
       })
 
       let message =''
@@ -51,7 +54,7 @@ export default async function handler(req, res) {
       }else{
         message = 'ERROR'
       }
-      res.status(200).json({message : 'message'})
+      res.status(200).json({message})
     }
   }
 

@@ -39,7 +39,7 @@ export default async function handler(req, res) {
         FROM pengiriman
         LEFT JOIN history
         ON pengiriman.ID_Pengiriman=history.ID_Pengiriman
-        WHERE pengiriman.No_Container = ${idHistory}
+        WHERE pengiriman.No_Container = "${idHistory}"
         ORDER BY pengiriman.No_Container;
         `,
         values : []

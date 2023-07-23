@@ -1,17 +1,71 @@
-
-// import AddProduct from "./addProduct";
-// import DeleteProduct from "./deleteProduct";
-// import UpdateProduct from "./updateProduct";
-// async function getProducts(){
-//   const res = await fetch(`http://${process.env.MYSQL_HOST}:3000/api/products`, { cache : "no-store" })
-//   return res.json();
-// }
+import { LineChart } from "./chart/linechart";
+import Mitradonut from "./chart/mitradout";
+import { Yearlychart } from "./chart/yearlycart";
+import { getData } from "./lib/getdata";
 
 export default async function Home() {
-  // const products = await getProducts()
+  // Yearly
+  const pengiriman = await getData(`/api/chart/recap?t=pengiriman`)
+  const penerimaan = await getData(`/api/chart/recap?t=penerimaan`)
+  const armada = await getData(`/api/chart/recap?t=armada`)
+  
+  // Recap Pengiriman
+  const mitrapengiriman = await getData(`/api/chart/transaksi?t=pengiriman&count=Shipping_Line`)
+  const kapalpengiriman = await getData(`/api/chart/transaksi?t=pengiriman&count=Nama_Kapal`)
+  const namapengiriman = await getData(`/api/chart/transaksi?t=pengiriman&count=Nama_Pengirim`)
+
+  // Recap Penerimaan 
+  const mitrapenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Shipping_Line`)
+  const kapalpenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Nama_Kapal`)
+  const namapenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Nama_Penerima`)
+
   return (
-    <main className="min-h-screen bg-white border text-black">
-      Cart
+    <main className="min-h-screen bg-white text-black">
+      <div className='grid md:grid-cols-6 gap-4'>
+        <div className='col-span-6 md:col-span-4'>
+          <div className="border rounded-2xl overflow-hidden p-4">
+            <Yearlychart datapengiriman={pengiriman} datapenerimaan={penerimaan} armada={armada} />
+          </div>
+        </div>
+        <div className='col-span-6 md:col-span-2'>
+          <div className="border rounded-2xl overflow-hidden p-4">
+            <Mitradonut mitrapengiriman={mitrapengiriman}/>
+          </div>
+        </div>
+        
+        <div className='col-span-6 md:col-span-3'>
+          <div className="border rounded-2xl overflow-hidden p-4">
+            <LineChart rawdata={mitrapengiriman} countby="Shipping_Line" headername="Transaksi Mitra (Pengiriman)"/>
+          </div>
+        </div>
+        <div className='col-span-6 md:col-span-3'>
+          <div className="border rounded-2xl overflow-hidden p-4">
+            <LineChart rawdata={kapalpengiriman} countby="Nama_Kapal" headername="Analytics Nama Kapal (Pengiriman)"/>
+          </div>
+        </div>
+        <div className='col-span-6 md:col-span-3'>
+          <div className="border rounded-2xl overflow-hidden p-4">
+            <LineChart rawdata={namapengiriman} countby="Nama_Pengirim" headername="Analytics Nama Pengirim (Pengiriman)"/>
+          </div>
+        </div>
+
+        <div className='col-span-6 md:col-span-3'>
+          <div className="border rounded-2xl overflow-hidden p-4">
+            <LineChart rawdata={mitrapenerimaan} countby="Shipping_Line" headername="Transaksi Mitra (Penerimaan)"/>
+          </div>
+        </div>
+        <div className='col-span-6 md:col-span-3'>
+          <div className="border rounded-2xl overflow-hidden p-4">
+            <LineChart rawdata={kapalpenerimaan} countby="Nama_Kapal" headername="Analytics Nama Kapal (Penerimaan)"/>
+          </div>
+        </div>
+        <div className='col-span-6 md:col-span-3'>
+          <div className="border rounded-2xl overflow-hidden p-4">
+            <LineChart rawdata={namapenerimaan} countby="Nama_Penerima" headername="Analytics Nama Penerima (Penerimaan)"/>
+          </div>
+        </div>
+
+      </div>
     </main>
   )
 }

@@ -1,15 +1,16 @@
 import { query } from "../database/db_connection"
 
-export default async function handler(req, res) {
+export default async function handler(req, 
+  res) {
     const { idPenerimaan } = req.query
     if(req.method == 'DELETE'){
-        const result = await query({
-          query : `DELETE FROM penerimaan WHERE Id='${idPenerimaan}'`, 
+        const deletePenerimaan = await query({
+          query : `DELETE FROM penerimaan WHERE ID_Penerimaan='${idPenerimaan}'`, 
           values : []
         })
 
         let message = ''
-        if(result.affectedRows > 0 ) {
+        if(deletePenerimaan.affectedRows > 0 ) {
             message = 'SUCCESS'
         }else{
             message = 'ERROR'
@@ -17,32 +18,32 @@ export default async function handler(req, res) {
         res.status(200).json({message})
 
     }else if(req.method == 'PATCH') {
-      const {namaPengirim, noHPPengirim, nomorKTPPengirim, nomorNPWPPengirim, jenisBarang, layanan, alamatPengirim, dooringFrom, dooringTo, alamatDoorng, namaPenerima, noHPPenerima, noKTPPenerima, shippingLine, namaKapal, noContainer, noBL} = req.body
-      const result = await query({
+      const {namaPengirim, noHpPengirim, noKtpPengirim, noNpwpPengirim, jenisBarang, layanan, alamatPengirim, from, to, alamatTujuan, namaPenerima, noHpPenerima, noKtpPenerima, shipingLine, namaKapal, noContainer, noBl} = req.body
+      const updatePenerimaan = await query({
           query : `UPDATE penerimaan SET 
           Nama_Pengirim = '${namaPengirim}',
-          No_HP_Pengirim = '${noHPPengirim}',
-          Nomor_KTP_Pengirim = '${nomorKTPPengirim}',
-          Nomor_NPWP_Pengirim = '${nomorNPWPPengirim}',
+          No_Hp_Pengirim = '${noHpPengirim}',
+          No_Ktp_Pengirim = '${noKtpPengirim}',
+          No_Npwp_Pengirim = '${noNpwpPengirim}',
           Jenis_Barang = '${jenisBarang}',
           Layanan = '${layanan}',
           Alamat_Pengirim = '${alamatPengirim}',
-          Dooring_From = '${dooringFrom}',
-          Dooring_To = '${dooringTo}',
-          Alamat_Doorng = '${alamatDoorng}',
+          dari = '${from}',
+          ke = '${to}',
+          Alamat_Tujuan = '${alamatTujuan}',
           Nama_Penerima = '${namaPenerima}',
-          No_HP_Penerima = '${noHPPenerima}',
-          No_KTP_Penerima = '${noKTPPenerima}',
-          Shipping_Line = '${shippingLine}',
+          No_Hp_Penerima = '${noHpPenerima}',
+          No_Ktp_Penerima = '${noKtpPenerima}',
+          Shipping_Line = '${shipingLine}',
           Nama_Kapal = '${namaKapal}',
           No_Container = '${noContainer}',
-          No_BL = '${noBL}' 
-          WHERE Id = ${idPenerimaan}`,
+          No_Bl = '${noBl}'
+          WHERE ID_Penerimaan = ${idPenerimaan}`,
           values : []
         })
 
         let message = ''
-        if(result.affectedRows > 0 ) {
+        if(updatePenerimaan.affectedRows > 0 ) {
             message = 'SUCCESS'
         }else{
             message = 'ERROR'

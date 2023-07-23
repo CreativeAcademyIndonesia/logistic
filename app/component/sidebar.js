@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import logovertical from "../../public/logovertical.png"
 import Image from "next/image";
+import { signOut } from "next-auth/react";
 
 const Sidebar = () => {
     return (
@@ -15,7 +16,7 @@ const Sidebar = () => {
                 />
             </button>
 
-            <div id="hs-overlay-basic" className="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 left-0 bottom-0 z-50 w-64 bg-white border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y md:block md:translate-x-0 md:right-auto md:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700">
+            <div id="hs-overlay-basic" className="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 left-0 bottom-0 z-[51] w-64 bg-white border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y md:block md:translate-x-0 md:right-auto md:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700">
                 <div className="flex justify-between items-center px-6">
                     <div className="w-full">
                         <Image 
@@ -73,7 +74,7 @@ const Sidebar = () => {
                                 <span className="ml-3">Kelola Armada</span>
                             </Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link href="/dashboard/status" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FontAwesomeIcon 
                                     icon={faCalendarCheck}
@@ -81,9 +82,9 @@ const Sidebar = () => {
                                 />
                                 <span className="ml-3">Update Status</span>
                             </Link>
-                        </li>
+                        </li> */}
                         <li>
-                            <Link href="/dashboard/status" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/dashboard/jadwal" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FontAwesomeIcon 
                                     icon={faCalendarDay}
                                     className="text-slate-400 text-xl"
@@ -92,13 +93,18 @@ const Sidebar = () => {
                             </Link>
                         </li>
                         <li>
-                            <Link href="/dashboard/status" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                            <Link href="/dashboard/simulasi" className="flex items-center p-2 text-slate-900 font-normal rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <FontAwesomeIcon 
                                     icon={faRepeat}
                                     className="text-slate-400 text-xl"
                                 />
                                 <span className="ml-3">Simulasi Pengiriman</span>
                             </Link>
+                        </li>
+                        <li>
+                            <button onClick={()=>signOut()} type="button" className="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
+                            Logout
+                            </button>
                         </li>
                     </ul>
                 </nav>

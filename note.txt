@@ -1,9 +1,9 @@
 Note :
-1. API Jadwal single Belum dibuat
-2. API Simulasi Pengiriman
-3. API GET Mitra Pengiriman & Penerimaan terbanyak perbulan
-4. API GET Kapal Pengiriman & Penerimaan terbanyak perbulan
-5. API GET TOP 10 Nama Transaksi Pengiriman & Penerimaan terbanyak perbulan
-6. API Jumlah Pengiriman Tahunan
-7. API Jumlah Penerimaan Tahunan
-8. API Jumlah Armada Tahunan
+1. API Jadwal single (x)
+2. API Simulasi Pengiriman (✔)
+3. API GET Mitra Pengiriman & Penerimaan terbanyak perbulan (✔)
+4. API GET Kapal Pengiriman & Penerimaan terbanyak perbulan (✔)
+5. API Nama Transaksi Pengiriman & Penerimaan terbanyak perbulan (✔)
+6. API Jumlah Pengiriman Tahunan (✔)
+7. API Jumlah Penerimaan Tahunan (✔)
+8. API Jumlah Armada Tahunan (✔)

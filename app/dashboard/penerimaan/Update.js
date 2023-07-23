@@ -1,34 +1,36 @@
 'use client'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faXmark } from "@fortawesome/free-solid-svg-icons"
+import { faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import Toast from "@/app/component/Toast"
 
-export default function tambahPengiriman (){
-    const [namaPengirim, setNamaPengirim] = useState('')
-    const [noHpPengirim, setNoHpPengirim] = useState('')
-    const [noKtpPengirim, setNoKtpPengirim] = useState('')
-    const [noNpwpPengirim, setNoNpwpPengirim] = useState('')
-    const [jenisBarang, setJenisBarang] = useState('')
-    const [layanan, setLayanan] = useState('')
-    const [alamatPengirim, setalAmatPengirim] = useState('')
-    const [from, setFrom] = useState('')
-    const [to, setTo] = useState('')
-    const [alamatTujuan, setAlamatTujuan] = useState('')
-    const [namaPenerima, setNamaPenerima] = useState('')
-    const [noHpPenerima, setNoHpPenerima] = useState('')
-    const [noKtpPenerima, setNoKtpPenerima] = useState('')
-    const [shipingLine, setShipingLine] = useState('')
-    const [namaKapal, setNamaKapal] = useState('')
-    const [noContainer, setNoContainer] = useState('')
-    const [noBl, setNoBl] = useState('')
+export default function Update ({currentData}){
+    const [namaPengirim, setNamaPengirim] = useState(currentData.Nama_Pengirim)
+    const [noHpPengirim, setNoHpPengirim] = useState(currentData.No_Hp_Pengirim)
+    const [noKtpPengirim, setNoKtpPengirim] = useState(currentData.No_Ktp_Pengirim)
+    const [noNpwpPengirim, setNoNpwpPengirim] = useState(currentData.No_Npwp_Pengirim)
+    const [jenisBarang, setJenisBarang] = useState(currentData.Jenis_Barang)
+    const [layanan, setLayanan] = useState(currentData.Layanan)
+    const [alamatPengirim, setalAmatPengirim] = useState(currentData.Alamat_Pengirim)
+    const [from, setFrom] = useState(currentData.dari)
+    const [to, setTo] = useState(currentData.ke)
+    const [alamatTujuan, setAlamatTujuan] = useState(currentData.Alamat_Tujuan)
+    const [namaPenerima, setNamaPenerima] = useState(currentData.Nama_Penerima)
+    const [noHpPenerima, setNoHpPenerima] = useState(currentData.No_Hp_Penerima)
+    const [noKtpPenerima, setNoKtpPenerima] = useState(currentData.No_Ktp_Penerima)
+    const [shipingLine, setShipingLine] = useState(currentData.Shipping_Line)
+    const [namaKapal, setNamaKapal] = useState(currentData.Nama_Kapal)
+    const [noContainer, setNoContainer] = useState(currentData.No_Container)
+    const [noBl, setNoBl] = useState(currentData.No_Bl)
+    const [toastStatus, setToastStatus] = useState(false)
+    const [toastMassage, setToastMessage] = useState('')
     const buttonRef = useRef()
     const router = useRouter()
 
     async function handleSubmit(e) {
-        
         let data = {
             namaPengirim,
             noHpPengirim,
@@ -48,9 +50,10 @@ export default function tambahPengiriman (){
             noContainer,
             noBl
         }
+
         e.preventDefault()
-        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}:3000/api/pengiriman`, {
-            method : "POST", 
+        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/penerimaan/${currentData.ID_Penerimaan}`, {
+            method : "PATCH", 
             headers : {
                 'Content-Type' : 'application/json'
             }, 
@@ -58,24 +61,17 @@ export default function tambahPengiriman (){
         })
 
         const response = await res.json()
+        if(response.message == 'SUCCESS'){
+            setToastMessage('Data Berhasil Diupdate')
+            setToastStatus(true)
+        }else{
+            setToastMessage('Data Gagal Diupdate')
+            setToastStatus(true)
+        }
 
-        // setNamaPengirim('')
-        // setNoHpPengirim('')
-        // setNoKtpPengirim('')
-        // setNoNpwpPengirim('')
-        // setJenisBarang('')
-        // setLayanan('')
-        // setalAmatPengirim('')
-        // setFrom('')
-        // setTo('')
-        // setAlamatTujuan('')
-        // setNamaPenerima('')
-        // setNoHpPenerima('')
-        // setNoKtpPenerima('')
-        // setShipingLine('')
-        // setNamaKapal('')
-        // setNoContainer('')
-        // setNoBl('')
+        setTimeout(()=>{
+            setToastStatus(false)
+        }, 4000)
 
         buttonRef.current.click();
         router.refresh()
@@ -84,18 +80,24 @@ export default function tambahPengiriman (){
 
     return (
         <>
-            <button type="button" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800" data-hs-overlay="#modalpengiriman">
-                Tambah Pengiriman
+            {
+                toastStatus && (<Toast message={toastMassage} />)
+            }
+            <button type="button" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-yellow-400 text-white hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"  data-hs-overlay={`#modalUpdate${currentData.ID_Penerimaan}`}>
+                <FontAwesomeIcon 
+                    icon={faPen}
+                />
             </button>
 
-            <div id="modalpengiriman" className="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">
+
+            <div id={`modalUpdate${currentData.ID_Penerimaan}`} className="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[60] overflow-x-hidden overflow-y-auto">
                 <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all md:max-w-2xl md:w-full m-3 md:mx-auto">
                     <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
                         <div className="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
                         <h3 className="font-bold text-gray-800 dark:text-white">
-                            Tambah Pengiriman
+                            Update Pengiriman
                         </h3>
-                        <button type="button" className="hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-sm dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay="#modalpengiriman">
+                        <button type="button" className="hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-sm dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay={`#modalUpdate${currentData.ID_Penerimaan}`}>
                             <span className="sr-only">Close</span>
                             <FontAwesomeIcon 
                                 icon={faXmark}
@@ -109,7 +111,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="namapengirim" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pengirim</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Nama Pengirim</label>
                                             <input 
                                                 type="text" 
                                                 id="namapengirim" 
@@ -122,7 +124,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="nohppengirim" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No Hp Pengirim</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">No Hp Pengirim</label>
                                             <input 
                                                 type="text" 
                                                 id="nohppengirim" 
@@ -135,7 +137,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="noktppengirim" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No KTP Pengirim</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">No KTP Pengirim</label>
                                             <input 
                                                 type="text" 
                                                 id="noktppengirim" 
@@ -148,7 +150,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="nonpwppengirim" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NO NPWP Pengirim</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">NO NPWP Pengirim</label>
                                             <input 
                                                 type="text" 
                                                 id="nonpwppengirim" 
@@ -163,7 +165,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="jenisbarang" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Barang</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Jenis Barang</label>
                                             <input 
                                                 type="text" 
                                                 id="jenisbarang" 
@@ -176,7 +178,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="Layanan" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Layanan</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Layanan</label>
                                             <input 
                                                 type="text" 
                                                 id="Layanan" 
@@ -189,7 +191,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="alamatpengirim" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat Pengirim</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Alamat Pengirim</label>
                                             <input 
                                                 type="text" 
                                                 id="alamatpengirim" 
@@ -202,7 +204,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="from" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">From</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">From</label>
                                             <input 
                                                 type="text" 
                                                 id="from" 
@@ -215,7 +217,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="to" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">To</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">To</label>
                                             <input 
                                                 type="text" 
                                                 id="to" 
@@ -228,7 +230,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="alamatTujuan" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat Tujuan</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Alamat Tujuan</label>
                                             <input 
                                                 type="text" 
                                                 id="alamatTujuan" 
@@ -242,7 +244,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="namapenerima" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Penerima</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Nama Penerima</label>
                                             <input 
                                                 type="text" 
                                                 id="namapenerima" 
@@ -255,7 +257,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="nohppenerima" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No Hp Penerima</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">No Hp Penerima</label>
                                             <input 
                                                 type="text" 
                                                 id="nohppenerima" 
@@ -268,7 +270,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="noKtpPenerima" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No KTP Penerima</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">No KTP Penerima</label>
                                             <input 
                                                 type="text" 
                                                 id="noKtpPenerima" 
@@ -283,7 +285,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="shippingline" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Shipping Line</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Shipping Line</label>
                                             <input 
                                                 type="text" 
                                                 id="shippingline" 
@@ -296,7 +298,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="namakapal" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kapal</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Nama Kapal</label>
                                             <input 
                                                 type="text" 
                                                 id="namakapal" 
@@ -309,7 +311,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="noContainer" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No Container</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">No Container</label>
                                             <input 
                                                 type="text" 
                                                 id="noContainer" 
@@ -322,7 +324,7 @@ export default function tambahPengiriman (){
                                         <div>
                                             <label 
                                                 htmlFor="nobl" 
-                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No BL</label>
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">No BL</label>
                                             <input 
                                                 type="text" 
                                                 id="nobl" 
@@ -336,10 +338,10 @@ export default function tambahPengiriman (){
                                         
                             </div>
                             <div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-gray-700">
-                                <button ref={buttonRef} type="button" className="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-overlay="#modalpengiriman">
+                                <button ref={buttonRef} type="button" className="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-overlay={`#modalUpdate${currentData.ID_Penerimaan}`}>
                                     Close
                                 </button>
-                                <button type="submit" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
+                                <button type="submit" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-yellow-400 text-white hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
                                 Save changes
                                 </button>
                             </div>

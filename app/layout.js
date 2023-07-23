@@ -21,24 +21,15 @@ export default function RootLayout({children, session} ) {
   useEffect(() => {
     import('preline')
   }, [])
-
   return (
     <html lang="en">
       <body className='bg-white'>
         <SessionProvider session={session} >
-          {session?.user ? (
-            <>
-              <Navbar />
-              <div className={"min-h-screen pt-16"}>{children}</div>
-              <Footer />
-            </>
-          ):(
-            <>
-              <div className={"min-h-screen"}>{children}</div>
-            </>
-          )}
+          <Navbar />
+            <div className={"min-h-screen pt-16"}>{children}</div>
+          <Footer />
         </SessionProvider>
       </body>
     </html>
-  );
+  )
 }
