@@ -4,7 +4,7 @@ import NilaiPerusahaan from '../component/NilaiPerusahaan'
 
 export default function Home() {
   return (
-    <main>
+    <main className='pt-16'>
       <About />
       <VisiMisi />
       <NilaiPerusahaan/>

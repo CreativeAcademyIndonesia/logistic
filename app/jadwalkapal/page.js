@@ -51,7 +51,7 @@ export default function Home() {
     }
 
   return (
-    <main>
+    <main className="pt-16">
         <div className="overflow-x-hidden bg-gray-50 min-h-screen">
             <section className="relative py-12 sm:py-16 ">
                 <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">

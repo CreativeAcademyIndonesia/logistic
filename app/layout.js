@@ -26,7 +26,7 @@ export default function RootLayout({children, session} ) {
       <body className='bg-white'>
         <SessionProvider session={session} >
           <Navbar />
-            <div className={"min-h-screen pt-16"}>{children}</div>
+            <div className={"min-h-screen"}>{children}</div>
           <Footer />
         </SessionProvider>
       </body>
