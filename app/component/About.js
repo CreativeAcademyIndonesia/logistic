@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import logis1 from '../../public/logis 1.PNG'
-import logis2 from '../../public/logis 2.PNG'
-import logis3 from '../../public/logis 3.PNG'
+import logis1 from '../../public/logis1.png'
+import logis2 from '../../public/logis2.png'
+import logis3 from '../../public/logis3.png'
 
 export default function About(){
     return(

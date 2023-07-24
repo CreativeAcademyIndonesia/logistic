@@ -1,5 +1,5 @@
 import Image from "next/image"
-import visi from "../../public/visi.PNG"
+import visi from "../../public/visi.png"
 
 export default function VisiMisi(){
     return(
