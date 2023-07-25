@@ -1,7 +1,7 @@
 import { query } from "../database/db_connection"
 import { NextResponse } from "next/server"
 
-export default async function GET(){
+export async function GET(){
   const data = await query({
     query : "SELECT * FROM pengiriman",
     values : []

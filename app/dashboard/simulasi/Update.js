@@ -8,8 +8,8 @@ import { useRouter } from 'next/navigation';
 import Toast from "@/app/component/Toast"
 
 export default function Update ({currentData}){
-    const [kotaAsal, setKotaAsal] = useState(currentData.id)
-    const [kotaTujuan, setKotaTujuan] = useState(currentData.Kota_Asal)
+    const [kotaAsal, setKotaAsal] = useState(currentData.Kota_Asal)
+    const [kotaTujuan, setKotaTujuan] = useState(currentData.Kota_Tujuan)
     const [harga, setHarga] = useState(currentData.Harga)
     
     const [toastStatus, setToastStatus] = useState(false)
@@ -19,9 +19,8 @@ export default function Update ({currentData}){
 
     async function handleSubmit(e) {
         let data = {kotaAsal, kotaTujuan, harga }
-
         e.preventDefault()
-        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/simulasi/${currentData.Id}`, {
+        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/simulasi/${currentData.id}`, {
             method : "PATCH", 
             headers : {
                 'Content-Type' : 'application/json'

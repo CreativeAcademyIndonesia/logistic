@@ -17,6 +17,5 @@ export async function GET(request){
         `,
         values : []
     })
-
     return NextResponse.json(data)
 }

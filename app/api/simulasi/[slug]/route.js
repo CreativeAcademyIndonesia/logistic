@@ -20,6 +20,7 @@ export async function DELETE(request, {params}){
 
 export async function PATCH(request, {params}){
   const idSimulasi = params.slug
+  console.log(idSimulasi)
   const {kotaAsal, kotaTujuan, harga} = await request.json()
   const result = await query({
       query : `UPDATE simulasi SET 

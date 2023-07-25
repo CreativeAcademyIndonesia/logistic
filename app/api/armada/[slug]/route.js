@@ -14,7 +14,7 @@ export async function DELETE(request, {params}){
     }else{
         message = 'ERROR'
     }
-    return NextResponse.json(message)
+    return NextResponse.json({message})
 }
 
 export async function PATCH(request, {params}){
@@ -51,5 +51,5 @@ export async function PATCH(request, {params}){
     }else{
         message = 'ERROR'
     }
-    return NextResponse.json(message)
+    return NextResponse.json({message})
 }

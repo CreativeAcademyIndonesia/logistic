@@ -2,7 +2,7 @@ import { query } from "../../database/db_connection"
 import { NextResponse } from "next/server"
 
 export async function DELETE(request, {params}) {
-  const idPenerimaan  = params.snug
+  const idPenerimaan  = params.slug
     const deletePenerimaan = await query({
       query : `DELETE FROM penerimaan WHERE ID_Penerimaan='${idPenerimaan}'`, 
       values : []
@@ -19,7 +19,7 @@ export async function DELETE(request, {params}) {
 
 export async function PATCH(request, {params}){
   const {namaPengirim, noHpPengirim, noKtpPengirim, noNpwpPengirim, jenisBarang, layanan, alamatPengirim, from, to, alamatTujuan, namaPenerima, noHpPenerima, noKtpPenerima, shipingLine, namaKapal, noContainer, noBl} = await request.json()
-  const idPenerimaan  = params.snug
+  const idPenerimaan  = params.slug
   const updatePenerimaan = await query({
     query : `UPDATE penerimaan SET 
     Nama_Pengirim = '${namaPengirim}',
