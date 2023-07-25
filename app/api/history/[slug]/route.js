@@ -1,4 +1,5 @@
-import { query } from "../database/db_connection"
+import { NextResponse } from "next/server"
+import { query } from "../../database/db_connection"
 
 export default async function handler(req, res) {
     const { idHistory } = req.query
