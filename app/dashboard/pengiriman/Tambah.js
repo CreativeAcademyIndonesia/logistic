@@ -25,6 +25,7 @@ export default function TambahPengiriman (){
     const [namaKapal, setNamaKapal] = useState('')
     const [noContainer, setNoContainer] = useState('')
     const [noBl, setNoBl] = useState('')
+    const [file, setFile] = useState('')
     const [toastStatus, setToastStatus] = useState(false)
     const [toastMassage, setToastMessage] = useState('')
     const buttonRef = useRef()
@@ -48,15 +49,37 @@ export default function TambahPengiriman (){
             shipingLine,
             namaKapal,
             noContainer,
-            noBl
+            noBl,
+            file
         }
+        const formData = new FormData();
+        formData.append('namaPengirim', namaPengirim);
+        formData.append('noHpPengirim', noHpPengirim);
+        formData.append('noKtpPengirim', noKtpPengirim);
+        formData.append('noNpwpPengirim', noNpwpPengirim);
+        formData.append('jenisBarang', jenisBarang);
+        formData.append('layanan', layanan);
+        formData.append('alamatPengirim', alamatPengirim);
+        formData.append('from', from);
+        formData.append('to', to);
+        formData.append('alamatTujuan', alamatTujuan);
+        formData.append('namaPenerima', namaPenerima);
+        formData.append('noHpPenerima', noHpPenerima);
+        formData.append('noKtpPenerima', noKtpPenerima);
+        formData.append('shipingLine', shipingLine);
+        formData.append('namaKapal', namaKapal);
+        formData.append('noContainer', noContainer);
+        formData.append('noBl', noBl);
+        formData.append('file', file);
+
+    
         e.preventDefault()
         const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/pengiriman`, {
             method : "POST", 
-            headers : {
-                'Content-Type' : 'application/json'
-            }, 
-            body : JSON.stringify(data)
+            body: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data', // Ensure this is set correctly
+            },
         })
 
         const response = await res.json()
@@ -118,7 +141,7 @@ export default function TambahPengiriman (){
                             />
                         </button>
                         </div>
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit} encType="multipart/form-data" >
                                 <div className="p-4 overflow-y-auto">
                                     <div className="grid gap-4 mb-4 md:grid-cols-2">
                                         <div>
@@ -345,6 +368,18 @@ export default function TambahPengiriman (){
                                                 placeholder="No BL" 
                                                 value={noBl}
                                                 onChange={(e)=>setNoBl(e.target.value)}
+                                                required />
+                                        </div>
+                                        <div>
+                                            <label 
+                                                htmlFor="file" 
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">File</label>
+                                            <input 
+                                                type="file" 
+                                                id="file" 
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                                placeholder="No BL" 
+                                                onChange={(e)=>setFile(e.target.value)}
                                                 required />
                                         </div>
                                     </div>
