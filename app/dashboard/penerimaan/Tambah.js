@@ -25,40 +25,44 @@ export default function Tambah (){
     const [namaKapal, setNamaKapal] = useState('')
     const [noContainer, setNoContainer] = useState('')
     const [noBl, setNoBl] = useState('')
+    const [file, setFile] = useState('')
+    const [filepdf, setFilepdf] = useState('')
     const [toastStatus, setToastStatus] = useState(false)
     const [toastMassage, setToastMessage] = useState('')
     const buttonRef = useRef()
     const router = useRouter()
 
     async function handleSubmit(e) {
-        let data = {
-            namaPengirim,
-            noHpPengirim,
-            noKtpPengirim,
-            noNpwpPengirim,
-            jenisBarang,
-            layanan,
-            alamatPengirim,
-            from,
-            to,
-            alamatTujuan,
-            namaPenerima,
-            noHpPenerima,
-            noKtpPenerima,
-            shipingLine,
-            namaKapal,
-            noContainer,
-            noBl
-        }
         e.preventDefault()
-        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/penerimaan`, {
-            method : "POST", 
-            headers : {
-                'Content-Type' : 'application/json'
-            }, 
-            body : JSON.stringify(data)
-        })
+        try {
+            const formData = new FormData()
+            formData.set('file', file)
+            formData.set('filepdf', filepdf)
+            formData.append('namaPengirim', namaPengirim);
+            formData.append('noHpPengirim', noHpPengirim);
+            formData.append('noKtpPengirim', noKtpPengirim);
+            formData.append('noNpwpPengirim', noNpwpPengirim);
+            formData.append('jenisBarang', jenisBarang);
+            formData.append('layanan', layanan);
+            formData.append('alamatPengirim', alamatPengirim);
+            formData.append('from', from);
+            formData.append('to', to);
+            formData.append('alamatTujuan', alamatTujuan);
+            formData.append('namaPenerima', namaPenerima);
+            formData.append('noHpPenerima', noHpPenerima);
+            formData.append('noKtpPenerima', noKtpPenerima);
+            formData.append('shipingLine', shipingLine);
+            formData.append('namaKapal', namaKapal);
+            formData.append('noContainer', noContainer);
+            formData.append('noBl', noBl);
 
+            const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/penerimaan`, {
+                method : "POST", 
+                body: formData,
+
+            })
+
+            
         const response = await res.json()
         if(response.message == 'SUCCESS'){
             setToastMessage('Data Berhasil Ditambahkan')
@@ -88,6 +92,13 @@ export default function Tambah (){
         setNamaKapal('')
         setNoContainer('')
         setNoBl('')
+        setFilepdf('')
+        setFile('')
+
+          if (!res.ok) throw new Error(await res.text())
+        } catch (e) {
+          console.error(e)
+        }
 
         buttonRef.current.click();
         router.refresh()
@@ -346,6 +357,30 @@ export default function Tambah (){
                                                 value={noBl}
                                                 onChange={(e)=>setNoBl(e.target.value)}
                                                 required />
+                                        </div>
+                                        <div>
+                                            <label 
+                                                htmlFor="file" 
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">File</label>
+                                            <input 
+                                                type="file" 
+                                                id="file" 
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                                placeholder="No BL" 
+                                                onChange={(e)=>setFile(e.target.files?.[0])}
+                                                 />
+                                        </div>
+                                        <div>
+                                            <label 
+                                                htmlFor="filepdf" 
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Filepdf</label>
+                                            <input 
+                                                type="file" 
+                                                id="filepdf" 
+                                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                                placeholder="file" 
+                                                onChange={(e)=>setFilepdf(e.target.files?.[0])}
+                                                 />
                                         </div>
                                     </div>
                                         

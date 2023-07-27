@@ -14,10 +14,9 @@ export async function GET(){
 }
 
 export async function POST(request){
-  // const {namaPengirim, noHpPengirim, noKtpPengirim, noNpwpPengirim, jenisBarang, layanan, alamatPengirim, from, to, alamatTujuan, namaPenerima, noHpPenerima, noKtpPenerima, shipingLine, namaKapal, noContainer, noBl} = await request.json()
   const data = await request.formData()
   const file = data.get('file')
-
+  const filepdf = data.get('filepdf')
   const namaPengirim = data.get('namaPengirim')
   const noHpPengirim = data.get('noHpPengirim')
   const noKtpPengirim = data.get('noKtpPengirim')
@@ -35,25 +34,33 @@ export async function POST(request){
   const namaKapal = data.get('namaKapal')
   const noContainer = data.get('noContainer')
   const noBl = data.get('noBl')
- 
-  if (!file) {
-    return NextResponse.json({ success: false })
-  }
-  const bytes = await file.arrayBuffer()
-  const buffer = Buffer.from(bytes)
-  
-  let filename = uuidv4();
-  const fileExt = path.extname(file.name)
-  filename = filename + fileExt
+  let pathspdf = ''
+  let paths = ''
 
-  // file.name = filename
-  const paths = `/logistic/storage/${filename}`
-  await writeFile(paths, buffer)
+  if(file){
+    const bytes = await file.arrayBuffer()
+    const buffer = Buffer.from(bytes)
+    let filename = uuidv4();
+    const fileExt = path.extname(file.name)
+    filename = filename + fileExt
+     paths = `${process.env.ROUTE_PATH}/storage/${filename}`
+    await writeFile(paths, buffer)
+  }
+  
+  if(filepdf){
+    const bytespdf = await filepdf.arrayBuffer()
+    const bufferpdf = Buffer.from(bytespdf)
+    let filenamepdf = uuidv4();
+    const fileExtpdv = path.extname(filepdf.name)
+    filenamepdf = filenamepdf + fileExtpdv
+     pathspdf = `${process.env.ROUTE_PATH}/storage/${filenamepdf}`
+    await writeFile(pathspdf, bufferpdf)
+  }
 
 
   const result = await query({
-    query : `INSERT INTO pengiriman (Nama_Pengirim, No_Hp_Pengirim, No_Ktp_Pengirim, No_Npwp_Pengirim, Jenis_Barang, Layanan, Alamat_Pengirim, dari, ke, Alamat_Tujuan, Nama_Penerima, No_Hp_Penerima, No_Ktp_Penerima, Shipping_Line, Nama_Kapal, No_Container, No_Bl) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, 
-    values : [namaPengirim, noHpPengirim, noKtpPengirim, noNpwpPengirim, jenisBarang, layanan, alamatPengirim, from, to, alamatTujuan, namaPenerima, noHpPenerima, noKtpPenerima, shipingLine, namaKapal, noContainer, noBl]
+    query : `INSERT INTO pengiriman (Nama_Pengirim, No_Hp_Pengirim, No_Ktp_Pengirim, No_Npwp_Pengirim, Jenis_Barang, Layanan, Alamat_Pengirim, dari, ke, Alamat_Tujuan, Nama_Penerima, No_Hp_Penerima, No_Ktp_Penerima, Shipping_Line, Nama_Kapal, No_Container, No_Bl, Image, Pdf) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, 
+    values : [namaPengirim, noHpPengirim, noKtpPengirim, noNpwpPengirim, jenisBarang, layanan, alamatPengirim, from, to, alamatTujuan, namaPenerima, noHpPenerima, noKtpPenerima, shipingLine, namaKapal, noContainer, noBl, paths, pathspdf]
   })
 
   let message =''
