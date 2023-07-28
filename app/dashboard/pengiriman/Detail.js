@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCircleInfo, faInfo, faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
+import { faCircleInfo, faFilePdf, faInfo, faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
 
 export default function Detail ({currentData}){
     console.log(currentData)
@@ -108,19 +108,40 @@ export default function Detail ({currentData}){
                                     <span className="text-start font-normal text-slate-600">tanggal</span>
                                     <span className="text-end">{currentData.tanggal}</span>
                                 </li>
-                                <li>
-                                    <Image
-                                    src={`/storage/${currentData.Image}`}
-                                    className='w-full'
-                                    alt="My Image" width={300} height={200}
-                                    />
+                                <li className='flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white'>
+
+                                    {
+                                        currentData.Pdf == '' ? (
+                                            <p className='text-slate-400'>Tidak ada file Pdf</p>
+                                        ) : (
+                                            <a 
+                                            href={`/storage/${currentData.Pdf}`} 
+                                            className="inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.875rem]  rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all text-sm  dark:focus:ring-offset-gray-800 w-full"
+                                            alt="alt text"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            >
+                                                Download Pdf 
+                                                <FontAwesomeIcon 
+                                                    icon={faFilePdf}
+                                                    className='text-2xl ml-2'
+                                                />
+                                            </a>
+                                        )
+                                    }
                                 </li>
-                                <li>
-                                    <div>
-                                        <div>
-                                            <h1>Pratinjau PDF</h1>
-                                        </div>
-                                    </div>
+                                <li className='flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white'>
+                                    {
+                                        currentData.Image == '' ? (
+                                            <p className='text-slate-400'>Tidak ada file gambar</p>
+                                        ) : (
+                                            <Image
+                                            src={`/storage/${currentData.Image}`}
+                                            className='w-full'
+                                            alt="My Image" width={300} height={200}
+                                            />
+                                        )
+                                    }
                                 </li>
                             </ul>
                         </div>
