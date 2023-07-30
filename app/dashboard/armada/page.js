@@ -5,6 +5,7 @@ import Update from "./Update"
 import Detail from "./Detail"
 import NoData from "@/app/component/NoData"
 import { Jumbotrons } from "@/app/component/Jumbotron"
+import moment from "moment/moment"
 
 export default async function Home() {
   const data = await getData('/api/armada')
@@ -25,6 +26,9 @@ export default async function Home() {
                   <tr>
                       <th scope="col" className="px-6 py-3">
                           No
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                          ID
                       </th>
                       <th scope="col" className="px-6 py-3">
                         Nama Pemilik Truck
@@ -54,8 +58,11 @@ export default async function Home() {
               </thead>
               <tbody>
                 {
-                  data.map((d)=>(
-                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  data.map((d, index)=>(
+                    <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {index +1}
+                        </th>
                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {d['Id']}
                         </th>
@@ -69,16 +76,16 @@ export default async function Home() {
                           {d['DG_Truck']}
                         </td>
                         <td className="px-6 py-4">
-                            {new Date(d['Masa_Berlaku_STNK']).toISOString().split('T')[0]}
+                           {moment(d['Masa_Berlaku_STNK']).format('l')}
                         </td>
                         <td className="px-6 py-4">
                             {d['Status']}
                         </td>
                         <td className="px-6 py-4">
-                            {new Date(d['Tanggal_PAS_Masuk']).toISOString().split('T')[0]}
+                           {moment(d['Tanggal_PAS_Masuk']).format('l')}
                         </td>
                         <td className="px-6 py-4">
-                            {new Date(d['Tanggal_PAS_Akhir']).toISOString().split('T')[0]}
+                           {moment(d['Tanggal_PAS_Akhir']).format('l')}
                         </td>
                         
                         <td className="px-6 py-4 text-right">

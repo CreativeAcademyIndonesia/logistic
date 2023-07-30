@@ -3,9 +3,10 @@
 import Image from 'next/image';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleInfo, faFilePdf, faInfo, faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
+import moment from 'moment/moment';
 
 export default function Detail ({currentData}){
-    console.log(currentData)
+
     return (
         <>
             <button type="button" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800"  data-hs-overlay={`#modalInfo${currentData.ID_Pengiriman}`}>
@@ -106,7 +107,8 @@ export default function Detail ({currentData}){
                                 </li>
                                 <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                                     <span className="text-start font-normal text-slate-600">tanggal</span>
-                                    <span className="text-end">{currentData.tanggal}</span>
+                                    <span className="text-end">{moment(currentData.tanggal).format('l')}</span>
+                                    
                                 </li>
                                 <li className='flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white'>
 

@@ -19,7 +19,7 @@ export const authOptions = {
           async authorize(credentials, req) {
             const {username, password} = credentials
             if(username != 'agus@gmail.com' || password != '1234'){
-                throw new Error('Username tidak terdaftar')
+              throw new Error('Username tidak terdaftar')
             }
 
             return { 
@@ -29,6 +29,20 @@ export const authOptions = {
           }
         })
     ], 
+    callbacks: {
+      async signIn({credentials }) {
+        const isAllowedToSignIn = true
+        if (isAllowedToSignIn) {
+          return true
+        } else {
+          // Return false to display a default error message
+          return false
+          // Or you can return a URL to redirect to:
+          // return '/unauthorized'
+        }
+      }
+    },
+
     pages: {
       signIn: "/auth/login",
     },

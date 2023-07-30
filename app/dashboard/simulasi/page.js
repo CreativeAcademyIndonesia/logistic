@@ -26,6 +26,9 @@ export default async function Home() {
                           No
                       </th>
                       <th scope="col" className="px-6 py-3">
+                          ID
+                      </th>
+                      <th scope="col" className="px-6 py-3">
                         Kota Asal
                       </th>
                       <th scope="col" className="px-6 py-3">
@@ -41,8 +44,11 @@ export default async function Home() {
               </thead>
               <tbody>
                 {
-                  data.map((d)=>(
-                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  data.map((d, index)=>(
+                    <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          {index +1}
+                        </th>
                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {d['id']}
                         </th>

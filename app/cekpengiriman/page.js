@@ -1,11 +1,15 @@
 'use client'
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 
 export default function Home() {
     const [noContainer, setNoContainer] = useState()
     const [results, setResults] = useState([])
     const [onError, setOnError] = useState(false)
+    const [isMutate, setIsMutate] = useState(false)
     async function handleSubmit(e){
+        setIsMutate(true)
         e.preventDefault()
         try {
             const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history/${noContainer}`)
@@ -15,6 +19,7 @@ export default function Home() {
         } catch (error) {
             console.error('Error fetching data:', error)
         }
+        setIsMutate(false)
     }
     return (
     <main >
@@ -34,7 +39,19 @@ export default function Home() {
                                         <div>
                                         <input type="container" name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-lg sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nomor Container" onChange={(e)=>setNoContainer(e.target.value)} />
                                         </div>
-                                    </div><button className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3 sm:text-sm text-base sm:py-3.5 font-semibold text-white transition-all duration-200 bg-gray-900 border border-transparent rounded-lg sm:rounded-r-lg sm:rounded-l-none hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">Cek Pengiriman</button>
+                                    </div>
+                                    {
+                                        isMutate ? (
+                                            <button className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3 sm:text-sm text-base sm:py-3.5 font-semibold text-white transition-all duration-200 bg-gray-900 border border-transparent rounded-lg sm:rounded-r-lg sm:rounded-l-none hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">
+                                            <FontAwesomeIcon 
+                                            icon={faCircleNotch}
+                                            className='animate-spin '
+                                            /> Checking..
+                                            </button>
+                                        ):(
+                                            <button className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3 sm:text-sm text-base sm:py-3.5 font-semibold text-white transition-all duration-200 bg-gray-900 border border-transparent rounded-lg sm:rounded-r-lg sm:rounded-l-none hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">Cek Pengiriman</button>
+                                        )
+                                    }
                                     </div>
                                 </form>
                         </div>
@@ -67,7 +84,6 @@ const Error = ()=>{
 
 
 const Track = ({data, container})=> {
-    console.log(data)
     return(
         <div className='py-10 flex justify-center'>     
             <a href="#" className="block max-w-lg min-w-[50%] p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">

@@ -4,7 +4,7 @@ import { query } from "../database/db_connection";
 export async function GET(request) {
     let message = ''
     const data = await query({
-        query : "SELECT * FROM armada",
+        query : "SELECT * FROM armada ORDER BY Id DESC",
         values : []
     })
     return NextResponse.json(data);

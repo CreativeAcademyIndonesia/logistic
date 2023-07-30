@@ -1,27 +1,34 @@
 "use client"
-import { signIn } from 'next-auth/react'
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { signIn, useSession  } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const router = useRouter()
+  const { status } = useSession();
   const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
   const [denied, setDenied] = useState(false)
+  const [isMutate, setIsMutate] = useState(false)
+
   const handleSubmit = async (e)=>{
     e.preventDefault()
+    setIsMutate(true)
+    setDenied(false)
     const res = await signIn('credentials', {
       username : username,
       password : password,
       redirect : false
     })
 
-    if(res.status == 200) {
-      router.push('/dashboard')
-    }else{
+    if (status === "unauthenticated") {
+      setIsMutate(false)
       setDenied(true)
+    } else if (status === "authenticated") {
+      void router.push("/dashboard");
     }
-
 
   }
   return (
@@ -56,7 +63,19 @@ export default function Home() {
                     placeholder="••••••••" 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
               </div>
-              <button type="submit" className="w-full text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Login as Admin</button>
+              {
+                !isMutate ? (
+                  <button type="submit" className="w-full text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Login as Admin</button>
+                ) : (
+                  <button type="button" className="w-full text-white bg-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">  
+                    <FontAwesomeIcon 
+                    icon={faCircleNotch}
+                    className='animate-spin '
+                    />
+                  </button>
+                )
+              }
+
           </form>
           {
             denied && (

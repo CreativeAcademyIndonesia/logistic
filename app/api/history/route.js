@@ -3,7 +3,7 @@ import { query } from "../database/db_connection"
 
 export async function GET(request){
   const data = await query({
-    query : "SELECT * FROM history",
+    query : "SELECT * FROM history ORDER BY tanggal DESC",
     values : []
   })
   return NextResponse.json(data)

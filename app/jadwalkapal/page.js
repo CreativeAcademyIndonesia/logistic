@@ -1,6 +1,9 @@
 'use client'
 
+import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
+import moment from "moment/moment";
 
 export default function Home() {
 
@@ -11,18 +14,23 @@ export default function Home() {
     const [tanggalETD, setTanggalETD] = useState('')
     const [ruteTujuan, setRuteTujuan] = useState('')
     const [rutePanjang, setRutePanjang] = useState('')
+    const [isMutate, setIsMutate] = useState(false)
+    const [load, setLoad] = useState(true) 
     
     const fetchData = async () => {
+        setLoad(true)
         try {
             const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal`)
             const jsonData = await response.json()
             setJadwalKapal(jsonData)
+            return NextResponse.json({message})(jsonData[0].Tanggal_Clossing)
         } catch (error) {
             console.error('Error fetching data:', error)
         }
     }
 
     const fetchitem = async (target) => {
+        setLoad(true)
         try {
             const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal/item/${target}`)
             const jsonData = await response.json()
@@ -35,18 +43,21 @@ export default function Home() {
         fetchData()
         fetchitem('Rute_dan_Tujuan')
         fetchitem('Rute_Panjang')
+        setLoad(false)
     }, []);
 
     async function handleSubmit(e){
+        setIsMutate(true)
         e.preventDefault()
         try {
             const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal/cek?namaKapal=${namaKapal}&tanggalETD=${tanggalETD}&ruteTujuan=${ruteTujuan}&rutePanjang=${rutePanjang}`)
-            console.log(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal/cek?namaKapal=${namaKapal}&tanggalETD=${tanggalETD}&ruteTujuan=${ruteTujuan}&rutePanjang=${rutePanjang}`)   
+            return NextResponse.json({message})(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal/cek?namaKapal=${namaKapal}&tanggalETD=${tanggalETD}&ruteTujuan=${ruteTujuan}&rutePanjang=${rutePanjang}`)   
             const jsonData = await response.json()
             setJadwalKapal(jsonData)
         } catch (error) {
             console.error('Error fetching data:', error)
         }
+        setIsMutate(false)
         
     }
 
@@ -99,7 +110,20 @@ export default function Home() {
                                 <div className='col-span-4 md:col-span-2'>
                                     <label  
                                     className="block mb-2 text-sm font-medium text-white">_</label>
-                                    <button className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800 grow w-full">Cari</button>
+                                    {
+                                        isMutate ? (
+                                            <button className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800 grow w-full">
+                                            <FontAwesomeIcon 
+                                            icon={faCircleNotch}
+                                            className='animate-spin '
+                                            /> Mencari ..
+                                            </button>
+                                        ) :(
+                                            <button className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800 grow w-full">Cari</button>
+                                        )
+                                    }
+
+                                    
                                 </div>
                             </div>
                         </form>
@@ -109,6 +133,9 @@ export default function Home() {
                         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
+                                    <th scope="col" className="px-6 py-3">
+                                        NO
+                                    </th>
                                     <th scope="col" className="px-6 py-3">
                                         ID
                                     </th>
@@ -136,8 +163,11 @@ export default function Home() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {jadwalKapal.map((jadwal)=>(
+                                {jadwalKapal.map((jadwal, index)=>(
                                     <tr key={jadwal.Id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {index +1}
+                                            </th>
                                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {jadwal.Id}
                                             </th>
@@ -148,7 +178,7 @@ export default function Home() {
                                                 {jadwal.No_Voyage}
                                             </th>
                                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {new Date(jadwal['Tanggal_Clossing']).toISOString().split('T')[0]}
+                                                {moment(jadwal['Tanggal_Clossing']).format('l')}
                                             </th>
                                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 {jadwal.Rute_dan_Tujuan}
@@ -157,15 +187,20 @@ export default function Home() {
                                                 {jadwal.Rute_Panjang}
                                             </th>
                                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {new Date(jadwal['Date_RangeETD']).toISOString().split('T')[0]}
+                                                {moment(jadwal['Date_RangeETD']).format('l')}
                                             </th>
                                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {new Date(jadwal['Date_RangeETA']).toISOString().split('T')[0]}
+                                                {moment(jadwal['Date_RangeETA']).format('l')}
                                             </th>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
+                        {
+                            load && (
+                                <p className="text-slate-600 py-10 text-base md:text-lg font-medium text-center">Mencari Data</p>
+                            ) 
+                        }
                     </div>
 
                 </div>

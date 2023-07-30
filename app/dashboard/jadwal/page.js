@@ -4,6 +4,7 @@ import Delete from "./Delete"
 import Update from "./Update"
 import NoData from "@/app/component/NoData"
 import { Jumbotrons } from "@/app/component/Jumbotron"
+import moment from "moment/moment"
 
 export default async function Home() {
   const data = await getData('/api/jadwal')
@@ -24,6 +25,9 @@ export default async function Home() {
                   <tr>
                       <th scope="col" className="px-6 py-3">
                           No
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                          ID
                       </th>
                       <th scope="col" className="px-6 py-3">
                         Nama Kapal
@@ -53,8 +57,11 @@ export default async function Home() {
               </thead>
               <tbody>
                 {
-                  data.map((d)=>(
-                    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                  data.map((d, index)=>(
+                    <tr key={index} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          {index +1}
+                        </th>
                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {d['Id']}
                         </th>
@@ -65,7 +72,7 @@ export default async function Home() {
                           {d['No_Voyage']}
                         </td>
                         <td className="px-6 py-4">
-                          {new Date(d['Tanggal_Clossing']).toISOString().split('T')[0]}
+                          {moment(d['Tanggal_Clossing']).format('l')}
                         </td>
                         <td className="px-6 py-4">
                           {d['Rute_dan_Tujuan']}
@@ -74,10 +81,10 @@ export default async function Home() {
                             {d['Rute_Panjang']}
                         </td>
                         <td className="px-6 py-4">
-                            {new Date(d['Date_RangeETD']).toISOString().split('T')[0]}
+                          {moment(d['Date_RangeETD']).format('l')}
                         </td>
                         <td className="px-6 py-4">
-                            {new Date(d['Date_RangeETA']).toISOString().split('T')[0]}
+                          {moment(d['Date_RangeETA']).format('l')}
                         </td>
                         
                         <td className="px-6 py-4 text-right">

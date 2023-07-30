@@ -1,6 +1,6 @@
 'use client'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBuilding, faMoneyBill } from "@fortawesome/free-solid-svg-icons"
+import { faBuilding, faCircleNotch, faMoneyBill } from "@fortawesome/free-solid-svg-icons"
 // import { getData } from "../dashboard/lib/getdata"
 import { useState, useEffect } from 'react';
 
@@ -10,6 +10,7 @@ export default function SimulasiHarga(){
     const [kotaTujuan, setKotaTujuan] = useState([])
     const [dataAsal, setDataAsal] = useState('')
     const [dataTujuan, setDataTujuan] = useState('')
+    const [isMutate, setIsMutate] = useState(false)
 
     const [results, setResults] = useState([])
     const [pesan, setPesan] = useState(false)
@@ -26,6 +27,7 @@ export default function SimulasiHarga(){
 
     async function handleSubmit(e){
         e.preventDefault()
+        setIsMutate(true)
         try {
             const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/simulasi/cek?asal=${dataAsal}&tujuan=${dataTujuan}`)
             const jsonData = await response.json()
@@ -34,6 +36,7 @@ export default function SimulasiHarga(){
         } catch (error) {
             console.error('Error fetching data:', error)
         }
+        setIsMutate(false)
         
     }
 
@@ -85,7 +88,18 @@ export default function SimulasiHarga(){
                                 </div> */}
         
                                 <div className='col-span-4 md:col-span-4'>
-                                    <button className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800 grow w-full">Cek Estimasi Harga </button>
+                                    { isMutate ? (
+                                    <button className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800 grow w-full">
+                                    <FontAwesomeIcon 
+                                    icon={faCircleNotch}
+                                    className='animate-spin '
+                                    /> Checking..
+                                    </button>
+                                    ):(
+                                        <button className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800 grow w-full">Cek Estimasi Harga </button>
+                                    ) }
+
+
                                 </div>
                             </div>
                         </form>

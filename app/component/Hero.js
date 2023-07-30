@@ -4,7 +4,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 
 export default function Hero() {        
 return (
-    <div className="overflow-x-hidden bg-gray-50 pt-16">
+    <div className="overflow-x-hidden bg-gray-50 pt-16" id="home">
         <section className="relative py-12 sm:py-16 ">
             <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="max-w-3xl mx-auto text-center">

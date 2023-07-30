@@ -7,7 +7,7 @@ import fs from 'fs/promises';
 
 export async function GET(){
   const data = await query({
-    query : "SELECT * FROM pengiriman",
+    query : "SELECT * FROM pengiriman ORDER BY ID_Pengiriman DESC",
     values : []
   })
   return NextResponse.json(data)

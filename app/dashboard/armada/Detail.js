@@ -2,6 +2,7 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleInfo, faInfo, faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
+import moment from "moment/moment"
 
 export default function Detail ({currentData}){
     return (
@@ -44,7 +45,7 @@ export default function Detail ({currentData}){
                                 </li>
                                 <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                                     <span className="text-start font-normal text-slate-600">Masa Berlaku STNK</span>
-                                    <span className="text-end">{currentData.Masa_Berlaku_STNK}</span>
+                                    <span className="text-end">{moment(currentData.Masa_Berlaku_STNK).format('l')}</span>
                                 </li>
                                 <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                                     <span className="text-start font-normal text-slate-600">Nama Pemilik Truck</span>
@@ -72,15 +73,15 @@ export default function Detail ({currentData}){
                                 </li>
                                 <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                                     <span className="text-start font-normal text-slate-600">Tanggal PAS Akhir</span>
-                                    <span className="text-end">{currentData.Tanggal_PAS_Akhir}</span>
+                                    <span className="text-end">{moment(currentData.Tanggal_PAS_Akhir).format('l')}</span>
                                 </li>
                                 <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                                     <span className="text-start font-normal text-slate-600">Tanggal PAS Masuk</span>
-                                    <span className="text-end">{currentData.Tanggal_PAS_Masuk}</span>
+                                    <span className="text-end">{moment(currentData.Tanggal_PAS_Masuk).format('l')}</span>
                                 </li>
                                 <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                                     <span className="text-start font-normal text-slate-600">Dibuat pada </span>
-                                    <span className="text-end">{currentData.tanggal}</span>
+                                    <span className="text-end">{moment(currentData.tanggal).format('l')}</span>
                                 </li>
                             </ul>
                         </div>
