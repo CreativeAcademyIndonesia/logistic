@@ -8,8 +8,6 @@ import { useEffect, useState } from 'react'
 export default function Home() {
   const router = useRouter()
   const { status } = useSession();
-  const [username, setUserName] = useState('')
-  const [password, setPassword] = useState('')
   const [denied, setDenied] = useState(false)
   const [isMutate, setIsMutate] = useState(false)
 
@@ -18,19 +16,25 @@ export default function Home() {
     setIsMutate(true)
     setDenied(false)
     const res = await signIn('credentials', {
-      username : username,
-      password : password,
+      username : e.target.username.value,
+      password : e.target.password.value,
       redirect : false
     })
+    if(res.error == 'Username tidak terdaftar'){
+      setDenied(true)
+    }
+    setIsMutate(false)
 
+  }
+  useEffect(()=>{
     if (status === "unauthenticated") {
       setIsMutate(false)
-      setDenied(true)
     } else if (status === "authenticated") {
       void router.push("/dashboard");
     }
+  },[status])
 
-  }
+  
   return (
     <div className='flex min-h-screen flex-col items-center justify-between p-24 bg-white'>
       
@@ -40,10 +44,6 @@ export default function Home() {
               <div>
                   <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">username</label>
                   <input 
-                  value={username}
-                  onChange={(e)=>{
-                    setUserName(e.target.value)
-                  }}
                   type='text' 
                   placeholder='username'
                   name="username" 
@@ -53,10 +53,6 @@ export default function Home() {
               <div>
                   <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">password</label>
                   <input 
-                    value={password}
-                    onChange={(e)=>{
-                      setPassword(e.target.value)
-                    }}
                     type="password" 
                     name="password" 
                     id="password" 

@@ -23,7 +23,6 @@ export default function Home() {
             const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal`)
             const jsonData = await response.json()
             setJadwalKapal(jsonData)
-            return NextResponse.json({message})(jsonData[0].Tanggal_Clossing)
         } catch (error) {
             console.error('Error fetching data:', error)
         }
@@ -51,7 +50,6 @@ export default function Home() {
         e.preventDefault()
         try {
             const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal/cek?namaKapal=${namaKapal}&tanggalETD=${tanggalETD}&ruteTujuan=${ruteTujuan}&rutePanjang=${rutePanjang}`)
-            return NextResponse.json({message})(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal/cek?namaKapal=${namaKapal}&tanggalETD=${tanggalETD}&ruteTujuan=${ruteTujuan}&rutePanjang=${rutePanjang}`)   
             const jsonData = await response.json()
             setJadwalKapal(jsonData)
         } catch (error) {
@@ -67,7 +65,7 @@ export default function Home() {
             <section className="relative py-12 sm:py-16 ">
                 <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                     <div className="max-w-3xl mx-auto text-center">
-                        <h1 className="mt-5 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight font-pj">Jadwal Kapal</h1>
+                        <h1 className="mt-5 text-4xl font-bold leading-tight text-blue-primary sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight font-pj">Jadwal Kapal</h1>
                     </div>
                     <div className='p-6 mt-16'>
                         <form onSubmit={handleSubmit}>

@@ -4,12 +4,13 @@ import Image from 'next/image'
 
 export default function Testimonial(){
     return(
-        <section className="py-12 bg-gray-50 sm:py-16 lg:py-20">
-            <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <section className="py-16 bg-gray-50 sm:py-24 lg:py-40 bg-customer-happy bg-no-repeat bg-cover bg-center relative">
+            <div className="bg-blue-primary/80 absolute top-0 left-0 w-full h-full z-10"></div>
+            <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-20">
                 <div className="flex flex-col items-center">
                     <div className="text-center">
-                        <p className="text-lg font-medium text-gray-600 font-pj">2.157 Orang Telah Menyatakan Kepuasan layanan PT. Hasfi Prima Logistik</p>
-                        <h2 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl xl:text-5xl font-pj">"Suara Klien yang Bahagia, Menginspirasi Layanan Kami"</h2>
+                        <p className="text-lg font-medium text-white/80 font-pj">2.157 Orang Telah Menyatakan Kepuasan layanan PT. Hasfi Prima Logistik</p>
+                        <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl xl:text-5xl font-pj">"Suara Klien yang Bahagia, Menginspirasi Layanan Kami"</h2>
                     </div>
     
                     <div className="relative mt-10 md:mt-24 md:order-2">

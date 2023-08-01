@@ -2,6 +2,7 @@ import Image from 'next/image'
 import logis1 from '../../public/logis1.png'
 import logis2 from '../../public/logis2.png'
 import logis3 from '../../public/logis3.png'
+import Link from 'next/link'
 
 export default function About(){
     return(
@@ -13,17 +14,17 @@ export default function About(){
                             <div className="flex items-center -mx-3 sm:-mx-4">
                                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                                 <div className="py-3 sm:py-4">
-                                    <Image alt="logistic" src={logis1} className='w-full rounded-2xl'/>
+                                    <Image alt="logistic" src={logis1} className='w-full rounded-2xl' placeholder="blur"/>
                                    
                                 </div>
                                 <div className="py-3 sm:py-4">
-                                    <Image alt="logistic" src={logis2} className='w-full rounded-2xl'/>
+                                    <Image alt="logistic" src={logis2} className='w-full rounded-2xl' placeholder="blur"/>
 
                                 </div>
                                 </div>
                                 <div className="w-full px-3 sm:px-4 xl:w-1/2">
                                     <div className="relative z-10 my-4">
-                                        <Image alt="logistic" src={logis3} className='w-full rounded-2xl'/>
+                                        <Image alt="logistic" src={logis3} className='w-full rounded-2xl' placeholder="blur"/>
 
                                         <span className="absolute -right-7 -bottom-7 z-[-1]">
                                         <svg
@@ -604,7 +605,7 @@ export default function About(){
                                 <span className="block mb-2 text-lg font-semibold text-slate-600">
                                 Tentang PT. Hasfi Prima Logistik
                                 </span>
-                                <h2 className="mb-8 text-3xl font-bold sm:text-4xl text-slate-900">
+                                <h2 className="mb-8 text-3xl font-bold sm:text-4xl text-blue-primary">
                                     Membawa Impianmu Menembus Batas!
                                 </h2>
                                 <p className="mb-8 text-base text-slate-900">
@@ -613,9 +614,9 @@ export default function About(){
                                 <div className="relative inline-flex mt-10 group">
                                     <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
 
-                                    <a href="https://api.whatsapp.com/send?phone=6282293663314" title="" className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900" role="button">
+                                    <Link href="https://api.whatsapp.com/send?phone=6282293663314" title="" className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900" role="button">
                                     Kenal Lebih Jauh
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

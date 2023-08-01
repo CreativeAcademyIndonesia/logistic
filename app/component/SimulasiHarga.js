@@ -4,7 +4,6 @@ import { faBuilding, faCircleNotch, faMoneyBill } from "@fortawesome/free-solid-
 // import { getData } from "../dashboard/lib/getdata"
 import { useState, useEffect } from 'react';
 
-
 export default function SimulasiHarga(){
     const [kotaAsal, setKotaAsal] = useState([])
     const [kotaTujuan, setKotaTujuan] = useState([])
@@ -47,11 +46,11 @@ export default function SimulasiHarga(){
 
     return(
         <div className="bg-white">
-            <section className="py-12 bg-blue-primary sm:py-16 lg:py-20 " id="simulasipengiriman">
+            <section className="py-12 bg-blue-primary sm:py-16 lg:py-20 relative bg-line-bg bg-center bg-cover bg-no-repeat" id="simulasipengiriman">
                 <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="flex flex-col items-center ">
                         <div className="text-center">
-                            <p className="text-lg font-medium text-white/80 font-pj">Cek estimasi biaya pengiriman</p>
+                            <p className="text-lg font-medium text-white/60 font-pj">Cek estimasi biaya pengiriman</p>
                             <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl xl:text-5xl font-pj">"Simulasi Pengiriman"</h2>
                         </div>
         
@@ -90,7 +89,7 @@ export default function SimulasiHarga(){
             
                                     <div className='col-span-4 md:col-span-4'>
                                         { isMutate ? (
-                                        <button className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-gray-900 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm  grow w-full">
+                                        <button className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm  grow w-full">
                                         <FontAwesomeIcon 
                                         icon={faCircleNotch}
                                         className='animate-spin '
@@ -110,13 +109,12 @@ export default function SimulasiHarga(){
                             ? 
                                 <Pencarian data={results} /> 
                                 : 
-                                pesan && <p className="text-gray-600 relative mt-9 text-xl md:text-2xl lg:text-3xl  text-center">Belum Ada Estimasi pengiriman untuk kota asal atau tujuan ini</p>
+                                pesan && <p className="text-white w-1/2 mx-auto relative mt-9 text-xl md:text-2xl lg:text-3xl  text-center">Belum Ada Estimasi pengiriman untuk kota asal atau tujuan ini</p>
                         }
                     </div>
                 </div>
             </section>
             <svg xmlns="http://www.w3.org/2000/svg" className="rotate-180" viewBox="0 0 1440 320"><path fill="#13418e" fillOpacity="1" d="M0,96L120,117.3C240,139,480,181,720,197.3C960,213,1200,203,1320,197.3L1440,192L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path></svg>
-        
         </div>
     )
 }

@@ -1,12 +1,15 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import { signIn, useSession } from "next-auth/react";
 import { signOut } from "next-auth/react";
 import logovertical from "../public/logovertical.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBarsStaggered, faChevronCircleDown, faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faBarsStaggered, faChevronCircleDown, faChevronDown, faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 export default function NavbarMenu() {
+    const [isMutate, setIsMutate] = useState(false)
     const {data : session} = useSession()
     if(!session?.user) {
         return (
@@ -60,15 +63,29 @@ export default function NavbarMenu() {
                         </div>
     
                             <div className="flex gap-2">
-                                {session?.user ? (
-                                    <button onClick={()=>signOut()} type="button" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
-                                    Logout
-                                    </button>
-                                ) : (
-                                    <button onClick={()=>signIn()} type="button" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
-                                    Login
-                                    </button>
-                                )} 
+                                {
+                                    isMutate ? (
+                                        <button type="button" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
+                                            <FontAwesomeIcon 
+                                            icon={faCircleNotch}
+                                            className='animate-spin '
+                                            />
+                                            Please Wait...
+                                        </button>
+                                    ) :(
+                                        <button onClick={
+                                            ()=>{
+                                                signIn() 
+                                                setIsMutate(true)
+                                            }
+                                            } type="button" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
+                                        Login
+                                        </button>
+                                    )
+                                }
+
+
+                                
                             </div>
                         </div>
                     </div>

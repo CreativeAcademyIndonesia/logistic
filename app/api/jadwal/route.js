@@ -3,7 +3,7 @@ import { NextResponse } from "next/server"
 
 export async function GET(){
   const data = await query({
-    query : "SELECT * FROM jadwal ORDER BY Id DESC",
+    query : "SELECT * FROM jadwal ORDER BY Id DESC LIMIT 10",
     values : []
   })
   return NextResponse.json(data)

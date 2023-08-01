@@ -1,6 +1,7 @@
 'use client'
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Link from "next/link"
 import { useState } from "react"
 
 export default function Home() {
@@ -27,7 +28,7 @@ export default function Home() {
             <section className="relative py-12 sm:py-16 ">
                 <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                     <div className="max-w-3xl mx-auto text-center">
-                        <h1 className="mt-5 text-4xl font-bold leading-tight text-gray-900 sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight font-pj">Cek Pengiriman</h1>
+                        <h1 className="mt-5 text-4xl font-bold leading-tight text-blue-primary sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight font-pj">Cek Pengiriman</h1>
                         <p className="max-w-md mx-auto mt-6 text-base leading-7 text-gray-600 font-inter">Silahkan Masukan No. Container</p>
                         <div className="relative inline-flex mt-10 group">
                                 <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
@@ -86,7 +87,7 @@ const Error = ()=>{
 const Track = ({data, container})=> {
     return(
         <div className='py-10 flex justify-center'>     
-            <a href="#" className="block max-w-lg min-w-[50%] p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <Link href="#" className="block max-w-lg min-w-[50%] p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Nomor Container : {container}</h5>
                 <ol className="relative border-l border-gray-200 dark:border-gray-700"> 
                 {
@@ -103,7 +104,7 @@ const Track = ({data, container})=> {
                     ))
                 }            
                 </ol>
-            </a>
+            </Link>
         </div>
     )
 }
