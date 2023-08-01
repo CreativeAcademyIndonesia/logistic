@@ -608,11 +608,7 @@ export default function About(){
                                     Membawa Impianmu Menembus Batas!
                                 </h2>
                                 <p className="mb-8 text-base text-slate-900">
-                                PT. Hasfi Prima Logistik adalah sebuah perusahaan yang bergerak di bidang jasa pengurusan
-                                transportasi. Kami menyediakan solusi transportasi yang efisien dan andal bagi pelanggan
-                                kami. Dengan tim yang berpengalaman dan dukungan teknologi terkini, kami berkomitmen
-                                untuk memberikan pelayanan terbaik dalam memenuhi kebutuhan transportasi pelanggan
-                                kami.
+                                PT. Hasfi prima logistik adalah sebuah perusahaan yang bergerak dibidang jasa pengurusan transportasi. Kami menyediakan solusi pengiriman dan penerimaan barang melalui transportasi darat, laut dan udara yang efisien dan andal bagi pelanggan kami.
                                 </p>
                                 <div className="relative inline-flex mt-10 group">
                                     <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
