@@ -34,6 +34,9 @@ export async function POST(request){
   const namaKapal = data.get('namaKapal')
   const noContainer = data.get('noContainer')
   const noBl = data.get('noBl')
+  const tglStripping = data.get('tglStripping')
+  const petugasStripping = data.get('petugasStripping')
+  const keterangan = data.get('keterangan')
   let pathspdf = ''
   let paths = ''
 
@@ -62,8 +65,8 @@ export async function POST(request){
   }
   
   const result = await query({
-    query : `INSERT INTO penerimaan (Nama_Pengirim, No_Hp_Pengirim, No_Ktp_Pengirim, No_Npwp_Pengirim, Jenis_Barang, Layanan, Alamat_Pengirim, dari, ke, Alamat_Tujuan, Nama_Penerima, No_Hp_Penerima, No_Ktp_Penerima, Shipping_Line, Nama_Kapal, No_Container, No_Bl, Image, Pdf) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, 
-    values : [namaPengirim, noHpPengirim, noKtpPengirim, noNpwpPengirim, jenisBarang, layanan, alamatPengirim, from, to, alamatTujuan, namaPenerima, noHpPenerima, noKtpPenerima, shipingLine, namaKapal, noContainer, noBl, filename, filenamepdf]
+    query : `INSERT INTO penerimaan (Nama_Pengirim, No_Hp_Pengirim, No_Ktp_Pengirim, No_Npwp_Pengirim, Jenis_Barang, Layanan, Alamat_Pengirim, dari, ke, Alamat_Tujuan, Nama_Penerima, No_Hp_Penerima, No_Ktp_Penerima, Shipping_Line, Nama_Kapal, No_Container, No_Bl, Image, Pdf, Petugas_Stripping, Tgl_Stripping, Keterangan) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`, 
+    values : [namaPengirim, noHpPengirim, noKtpPengirim, noNpwpPengirim, jenisBarang, layanan, alamatPengirim, from, to, alamatTujuan, namaPenerima, noHpPenerima, noKtpPenerima, shipingLine, namaKapal, noContainer, noBl, filename, filenamepdf, petugasStripping, tglStripping, keterangan]
   })
 
   let message =''

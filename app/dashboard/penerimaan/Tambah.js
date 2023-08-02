@@ -1,7 +1,7 @@
 'use client'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faXmark } from "@fortawesome/free-solid-svg-icons"
+import { faCircleNotch, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { useState  } from "react"
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
@@ -25,16 +25,21 @@ export default function Tambah (){
     const [namaKapal, setNamaKapal] = useState('')
     const [noContainer, setNoContainer] = useState('')
     const [noBl, setNoBl] = useState('')
+    const [tglStripping, setTglStripping] = useState('')
+    const [petugasStripping, setPetugasStripping] = useState('')
+    const [keterangan, setKeterangan] = useState('')
     const [file, setFile] = useState(null)
     const [filepdf, setFilepdf] = useState(null)
     const [toastStatus, setToastStatus] = useState(false)
     const [toastMassage, setToastMessage] = useState('')
+    const [isMutate, setIsMutate] = useState(false)
     const buttonRef = useRef()
     const router = useRouter()
     const fileInputRef = useRef('');
     const fileInputRefPdf = useRef('');
 
     async function handleSubmit(e) {
+        setIsMutate(true)
         e.preventDefault()
         try {
             const formData = new FormData()
@@ -57,6 +62,9 @@ export default function Tambah (){
             formData.append('namaKapal', namaKapal);
             formData.append('noContainer', noContainer);
             formData.append('noBl', noBl);
+            formData.append('tglStripping', tglStripping);
+            formData.append('petugasStripping', petugasStripping);
+            formData.append('keterangan', keterangan);
 
             const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/penerimaan`, {
                 method : "POST", 
@@ -94,6 +102,9 @@ export default function Tambah (){
         setNamaKapal('')
         setNoContainer('')
         setNoBl('')
+        setTglStripping('')
+        setPetugasStripping('')
+        setKeterangan('')
         setFilepdf(null)
         setFile(null)
         fileInputRef.current.value = '';
@@ -103,7 +114,7 @@ export default function Tambah (){
         } catch (e) {
           console.error(e)
         }
-
+        setIsMutate(false)
         buttonRef.current.click();
         router.refresh()
     }
@@ -362,13 +373,56 @@ export default function Tambah (){
                                             onChange={(e)=>setNoBl(e.target.value)}
                                             required />
                                     </div>
+
+                                    <div>
+                                        <label 
+                                            htmlFor="tglStripping" 
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Stripping</label>
+                                        <input 
+                                            type="date" 
+                                            id="tglStripping" 
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                            placeholder="Tanggal Stripping" 
+                                            value={tglStripping}
+                                            onChange={(e)=>setTglStripping(e.target.value)}
+                                            required />
+                                    </div>
+
+                                    <div>
+                                        <label 
+                                            htmlFor="petugasStripping" 
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Petugas Stripping</label>
+                                        <input 
+                                            type="text" 
+                                            id="petugasStripping" 
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                            placeholder="Petugas Stripping" 
+                                            value={petugasStripping}
+                                            onChange={(e)=>setPetugasStripping(e.target.value)}
+                                            required />
+                                    </div>
+
+                                    <div>
+                                        <label 
+                                            htmlFor="keterangan" 
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
+                                        <input 
+                                            type="text" 
+                                            id="keterangan" 
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                            placeholder="Keterangan" 
+                                            value={keterangan}
+                                            onChange={(e)=>setKeterangan(e.target.value)}
+                                            required />
+                                    </div>
                                 </div>
                                 <div className="grid gap-4 md:grid-cols-2">
                                     <div>
                                         <label 
                                             htmlFor="file" 
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">File</label>
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">File Gambar</label>
                                         <input 
+                                            accept="image/*"
                                             ref={fileInputRef}
                                             type="file" 
                                             id="file" 
@@ -382,6 +436,7 @@ export default function Tambah (){
                                             htmlFor="filepdf" 
                                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Filepdf</label>
                                         <input 
+                                            accept="application/pdf"
                                             ref={fileInputRefPdf}
                                             type="file" 
                                             id="filepdf" 
@@ -396,9 +451,21 @@ export default function Tambah (){
                                 <button ref={buttonRef} type="button" className="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-overlay="#modalpengiriman">
                                     Close
                                 </button>
-                                <button type="submit" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
-                                Save changes
-                                </button>
+                                {
+                                    isMutate ? (
+                                        <button type="button" disabled className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
+                                            <FontAwesomeIcon 
+                                            icon={faCircleNotch}
+                                            className='animate-spin '
+                                            />
+                                            Saving
+                                        </button>
+                                    ): (
+                                        <button type="submit" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
+                                        Save changes
+                                        </button>   
+                                    )
+                                }
                             </div>
                         </form>
                     </div>

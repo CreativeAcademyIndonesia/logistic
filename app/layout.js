@@ -23,10 +23,10 @@ export default function RootLayout({children, session} ) {
   }, [])
   return (
     <html lang="en">
-      <body className='bg-white min-w-max min-h-screen'>
+      <body className='bg-white min-h-screen'>
         <SessionProvider session={session} >
           <Navbar />
-            <div className={"min-h-screen"}>{children}</div>
+            <div className={"min-h-screen bg-white"}>{children}</div>
           <Footer />
         </SessionProvider>
       </body>

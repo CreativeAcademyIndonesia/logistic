@@ -1,7 +1,7 @@
 'use client'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
+import { faCircleNotch, faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
@@ -31,10 +31,12 @@ export default function Update ({currentData}){
     const [oldfilepdf, setOldFilepdf] = useState(currentData.Pdf)
     const [toastStatus, setToastStatus] = useState(false)
     const [toastMassage, setToastMessage] = useState('')
+    const [isMutate, setIsMutate] = useState(false)
     const buttonRef = useRef()
     const router = useRouter()
 
     async function handleSubmit(e) {
+        setIsMutate(true)
         e.preventDefault()
         let data = {
             namaPengirim,
@@ -85,6 +87,7 @@ export default function Update ({currentData}){
             setToastStatus(false)
         }, 4000)
 
+        setIsMutate(false)
         buttonRef.current.click();
         router.refresh()
     }
@@ -378,9 +381,23 @@ export default function Update ({currentData}){
                                 <button ref={buttonRef} type="button" className="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-overlay={`#modalUpdate${currentData.ID_Pengiriman}`}>
                                     Close
                                 </button>
-                                <button type="submit" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-yellow-400 text-white hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
-                                Save changes
-                                </button>
+                                {
+                                    isMutate ? (
+                                        <button type="button" disabled className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-yellow-400 text-white hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+                                            <FontAwesomeIcon 
+                                                icon={faCircleNotch}
+                                                className='animate-spin '
+                                            />
+                                            Updating
+                                        </button>
+                                    ) : (
+                                        <button type="submit" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-yellow-400 text-white hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+                                            Save changes
+                                        </button>
+                                    )
+                                }
+                                
+                                
                             </div>
                         </form>
                     </div>

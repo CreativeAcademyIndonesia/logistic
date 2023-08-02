@@ -1,7 +1,7 @@
 'use client'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
+import { faCircleNotch, faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
@@ -14,13 +14,15 @@ export default function Update ({currentData}){
     const [nPWPMitra, setNPWPMitra] = useState(currentData.NPWP_Mitra)
     const [contacPerson, setContacPerson] = useState(currentData.Contac_Person)
     const [jangkaWaktuKerjaSama, setJangkaWaktuKerjaSama] = useState(currentData.Jangka_Waktu_Kerja_Sama)
-    
+    const [isMutate, setIsMutate] = useState(false)
     const [toastStatus, setToastStatus] = useState(false)
     const [toastMassage, setToastMessage] = useState('')
     const buttonRef = useRef()
     const router = useRouter()
 
     async function handleSubmit(e) {
+        setIsMutate(true)
+       
         let data = {
             namaMitra, 
             alamatMitra, 
@@ -51,7 +53,8 @@ export default function Update ({currentData}){
         setTimeout(()=>{
             setToastStatus(false)
         }, 4000)
-
+        setIsMutate(false)
+        
         buttonRef.current.click();
         router.refresh()
     }
@@ -173,9 +176,24 @@ export default function Update ({currentData}){
                                 <button type="button" className="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-overlay={`#modalUpdate${currentData.Id}`} ref={buttonRef}>
                                     Close
                                 </button>
-                                <button type="submit" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
-                                Save changes
-                                </button>
+                                {
+                                    isMutate ? (
+                                        <button type="button" disabled className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
+                                        <FontAwesomeIcon 
+                                            icon={faCircleNotch}
+                                            className='animate-spin '
+                                        />
+                                        Updating
+                                        </button>
+                                    ) : (
+                                        <button type="submit" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
+                                        Save changes
+                                        </button>
+                                    )
+                                }
+                                
+
+
                             </div>
                         </form>
                     </div>

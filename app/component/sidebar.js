@@ -23,6 +23,7 @@ const Sidebar = () => {
                             src={logovertical}
                             className="w-full"
                             alt="logo"
+                            priority 
                         />
                     </div>
                 </div>

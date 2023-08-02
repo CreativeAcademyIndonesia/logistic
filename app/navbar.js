@@ -21,6 +21,7 @@ export default function NavbarMenu() {
                                 src={logovertical}
                                 className="h-full"
                                 alt="logo"
+                                priority 
                             />
                         </div>
                         <div className="sm:hidden">
@@ -83,9 +84,6 @@ export default function NavbarMenu() {
                                         </button>
                                     )
                                 }
-
-
-                                
                             </div>
                         </div>
                     </div>

@@ -105,7 +105,19 @@ export default function Detail ({currentData}){
                                     <span className="text-end">{currentData.ke}</span>
                                 </li>
                                 <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
-                                    <span className="text-start font-normal text-slate-600">tanggal</span>
+                                    <span className="text-start font-normal text-slate-600">Petugas Stripping</span>
+                                    <span className="text-end">{currentData.Petugas_Stripping}</span>
+                                </li>
+                                <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                    <span className="text-start font-normal text-slate-600">Keterangan</span>
+                                    <span className="text-end">{currentData.Keterangan}</span>
+                                </li>
+                                <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                    <span className="text-start font-normal text-slate-600">Tanggal Stripping</span>
+                                    <span className="text-end">{moment(currentData.Tgl_Stripping).format('l')}</span>
+                                </li>
+                                <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
+                                    <span className="text-start font-normal text-slate-600">Tanggal dibuat</span>
                                     <span className="text-end">{moment(currentData.tanggal).format('l')}</span>
                                 </li>
                                 <li className='flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white'>

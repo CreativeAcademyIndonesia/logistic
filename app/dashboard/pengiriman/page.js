@@ -11,7 +11,7 @@ export default async function Home() {
   const data = await getData('/api/pengiriman')
 
   return (
-    <main className="min-h-screen bg-white relative">
+    <main className="min-h-screen bg-white relative ">
       <Jumbotrons title="Pengiriman"/>
       <div className="flex justify-between items-center p-4">
         <span className="text-slate-700 font-medium text-base md:text-xl">Data Pengiriman</span>

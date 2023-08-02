@@ -1,20 +1,22 @@
 'use client'
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
+import { faCircleNotch, faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Toast from "@/app/component/Toast"
+import moment from "moment/moment";
 
 export default function Update ({currentData}){
     const [namaKapal, setNamaKapal] = useState(currentData.Nama_Kapal)
     const [noVoyage, setNoVoyage] = useState(currentData.No_Voyage)
-    const [tanggalClossing, setTanggalClossing] = useState(new Date(currentData.Tanggal_Clossing).toISOString().split('T')[0]);
+    const [tanggalClossing, setTanggalClossing] = useState(moment(currentData.Tanggal_Clossing).format('YYYY-MM-DD'));
     const [rutedanTujuan, setRutedanTujuan] = useState(currentData.Rute_dan_Tujuan)
     const [rutePanjang, setRutePanjang] = useState(currentData.Rute_Panjang)
-    const [dateRangeETD, setDateRangeETD] = useState(new Date(currentData.Date_RangeETD).toISOString().split('T')[0]);
-    const [dateRangeETA, setDateRangeETA] = useState(new Date(currentData.Date_RangeETA).toISOString().split('T')[0]);
+    const [dateRangeETD, setDateRangeETD] = useState(moment(currentData.Date_RangeETD).format('YYYY-MM-DD'));
+    const [dateRangeETA, setDateRangeETA] = useState(moment(currentData.Date_RangeETA).format('YYYY-MM-DD'));
+    const [isMutate, setIsMutate]= useState(false)
     
     const [toastStatus, setToastStatus] = useState(false)
     const [toastMassage, setToastMessage] = useState('')
@@ -22,6 +24,8 @@ export default function Update ({currentData}){
     const router = useRouter()
 
     async function handleSubmit(e) {
+        setIsMutate(true)
+    
         let data = {
             namaKapal,
             noVoyage,
@@ -54,6 +58,8 @@ export default function Update ({currentData}){
             setToastStatus(false)
         }, 4000)
 
+        setIsMutate(false)
+    
         buttonRef.current.click();
         router.refresh()
     }
@@ -195,9 +201,25 @@ export default function Update ({currentData}){
                                 <button ref={buttonRef} type="button" className="hs-dropdown-toggle py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" data-hs-overlay={`#modalUpdate${currentData.Id}`}>
                                     Close
                                 </button>
-                                <button type="submit" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
-                                Save changes
-                                </button>
+
+                                {
+                                    isMutate ? (
+                                        <button type="button" disabled className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
+                                        <FontAwesomeIcon 
+                                            icon={faCircleNotch}
+                                            className='animate-spin '
+                                        />
+                                        Updating
+                                        </button>
+                                    ) : (
+                                        <button type="submit" className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-gray-800 text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 transition-all text-sm dark:focus:ring-gray-900 dark:focus:ring-offset-gray-800">
+                                        Save changes
+                                        </button>
+                                    )
+                                }
+
+
+
                             </div>
                         </form>
                     </div>
