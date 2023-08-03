@@ -4,10 +4,9 @@ import { query } from "../database/db_connection";
 export async function GET(request) {
     const params = new URL(request.url)
     const date = params.searchParams.get('date')
-    console.log(date)
     let message = ''
     const data = await query({
-        query : "SELECT * FROM armada ORDER BY Id DESC",
+        query : `SELECT * FROM armada WHERE tanggal >= '${date}-01' AND tanggal < '${date}-31' ORDER BY Id DESC;`,
         values : []
     })
     return NextResponse.json(data);
