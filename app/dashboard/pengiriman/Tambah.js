@@ -60,7 +60,7 @@ export default function TambahPengiriman (){
             formData.append('noContainer', noContainer);
             formData.append('noBl', noBl);
 
-            const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/pengiriman`, {
+            const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/pengiriman`, {
                 method : "POST", 
                 body: formData,
 

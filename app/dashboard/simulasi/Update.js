@@ -22,7 +22,7 @@ export default function Update ({currentData}){
         setIsMutate(true)
         let data = {kotaAsal, kotaTujuan, harga }
         e.preventDefault()
-        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/simulasi/${currentData.id}`, {
+        const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/simulasi/${currentData.id}`, {
             method : "PATCH", 
             headers : {
                 'Content-Type' : 'application/json'

@@ -21,7 +21,7 @@ export default function Tracking({sid}){
     async function handleSubmit(e) {
         let data = { iDPengiriman, tanggal, status, deskripsi}
         e.preventDefault()
-        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history`, {
+        const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history`, {
             method : "POST", 
             headers : {
                 'Content-Type' : 'application/json'

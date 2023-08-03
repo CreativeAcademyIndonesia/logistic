@@ -16,7 +16,7 @@ export default function SimulasiHarga(){
 
     const fetchData = async (target) => {
         try {
-            const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/simulasi/item/${target}`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/simulasi/item/${target}`)
             const jsonData = await response.json()
             target == 'Kota_Asal' ?  setKotaAsal(jsonData) : setKotaTujuan(jsonData) 
         } catch (error) {
@@ -28,7 +28,7 @@ export default function SimulasiHarga(){
         e.preventDefault()
         setIsMutate(true)
         try {
-            const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/simulasi/cek?asal=${dataAsal}&tujuan=${dataTujuan}`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/simulasi/cek?asal=${dataAsal}&tujuan=${dataTujuan}`)
             const jsonData = await response.json()
             setResults(jsonData)
             jsonData.length < 1 ? setPesan(true) :setPesan(false)

@@ -20,7 +20,7 @@ export default function Home() {
     const fetchData = async () => {
         setLoad(true)
         try {
-            const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal`)
             const jsonData = await response.json()
             setJadwalKapal(jsonData)
         } catch (error) {
@@ -31,7 +31,7 @@ export default function Home() {
     const fetchitem = async (target) => {
         setLoad(true)
         try {
-            const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal/item/${target}`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal/item/${target}`)
             const jsonData = await response.json()
             target == 'Rute_dan_Tujuan' ?  setKotaAsal(jsonData) : setKotaTujuan(jsonData) 
         } catch (error) {
@@ -49,7 +49,7 @@ export default function Home() {
         setIsMutate(true)
         e.preventDefault()
         try {
-            const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal/cek?namaKapal=${namaKapal}&tanggalETD=${tanggalETD}&ruteTujuan=${ruteTujuan}&rutePanjang=${rutePanjang}`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal/cek?namaKapal=${namaKapal}&tanggalETD=${tanggalETD}&ruteTujuan=${ruteTujuan}&rutePanjang=${rutePanjang}`)
             const jsonData = await response.json()
             setJadwalKapal(jsonData)
         } catch (error) {

@@ -23,7 +23,7 @@ export default function Tambah (){
     
         let data = { kotaAsal, kotaTujuan, harga }
         e.preventDefault()
-        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/simulasi`, {
+        const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/simulasi`, {
             method : "POST", 
             headers : {
                 'Content-Type' : 'application/json'

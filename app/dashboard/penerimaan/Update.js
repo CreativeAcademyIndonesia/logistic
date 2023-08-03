@@ -72,7 +72,7 @@ export default function Update ({currentData}){
         formData.append('file', file);
         formData.append('filepdf', filepdf);
         try{
-            const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/penerimaan/${currentData.ID_Penerimaan}`, {
+            const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/penerimaan/${currentData.ID_Penerimaan}`, {
                 method : "PATCH", 
                 body : formData
             }) 

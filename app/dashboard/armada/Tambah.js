@@ -43,7 +43,7 @@ export default function Tambah (){
             status
         }
         e.preventDefault()
-        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/armada`, {
+        const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/armada`, {
             method : "POST", 
             headers : {
                 'Content-Type' : 'application/json'

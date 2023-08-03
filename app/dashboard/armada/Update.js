@@ -44,7 +44,7 @@ export default function Update ({currentData}){
         }
 
         e.preventDefault()
-        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/armada/${currentData.Id}`, {
+        const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/armada/${currentData.Id}`, {
             method : "PATCH", 
             headers : {
                 'Content-Type' : 'application/json'

@@ -13,7 +13,7 @@ export default function Home() {
         setIsMutate(true)
         e.preventDefault()
         try {
-            const response = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history/${noContainer}`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history/${noContainer}`)
             const jsonData = await response.json()
             jsonData.length < 1 ? setOnError(true) : setOnError(false)
             setResults(jsonData)

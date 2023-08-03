@@ -66,7 +66,7 @@ export default function Tambah (){
             formData.append('petugasStripping', petugasStripping);
             formData.append('keterangan', keterangan);
 
-            const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/penerimaan`, {
+            const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/penerimaan`, {
                 method : "POST", 
                 body: formData,
 

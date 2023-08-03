@@ -33,7 +33,6 @@ export async function PATCH(request, {params}){
   let paths = ''
 
   let filename = uuidv4();
-  console.log(file)
   if(typeof file  === 'object' ){
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)

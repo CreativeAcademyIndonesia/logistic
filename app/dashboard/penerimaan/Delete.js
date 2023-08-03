@@ -17,7 +17,7 @@ export default function Delete ({sid}){
     const router = useRouter()
 
     async function handleDelete() {
-        const res = await fetch(`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/penerimaan/${sid}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/penerimaan/${sid}`, {
             method : "DELETE"
         })
 

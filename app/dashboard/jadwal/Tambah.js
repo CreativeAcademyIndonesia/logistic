@@ -35,7 +35,7 @@ export default function Tambah (){
             dateRangeETA
         }
         e.preventDefault()
-        const res = await fetch (`http://${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal`, {
+        const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal`, {
             method : "POST", 
             headers : {
                 'Content-Type' : 'application/json'
