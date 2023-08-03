@@ -20,7 +20,7 @@ export default function Home() {
     const fetchData = async () => {
         setLoad(true)
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/jadwal/active`)
             const jsonData = await response.json()
             setJadwalKapal(jsonData)
         } catch (error) {

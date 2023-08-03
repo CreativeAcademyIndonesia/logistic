@@ -4,10 +4,14 @@ import { writeFile } from 'fs/promises'
 import { v4 as uuidv4 } from 'uuid';
 const path = require('path');
 import fs from 'fs/promises';
+import moment from "moment";
 
-export async function GET(){
+export async function GET(request) {
+    const params = new URL(request.url)
+    let date = params.searchParams.get('date')
+    if(date == '' || !date) date = moment(new Date()).format('YYYY-MM')
   const data = await query({
-    query : "SELECT * FROM pengiriman ORDER BY ID_Pengiriman DESC",
+    query : `SELECT * FROM pengiriman WHERE tanggal >= '${date}-01' AND tanggal < '${date}-31' ORDER BY ID_Pengiriman DESC;`,
     values : []
   })
   return NextResponse.json(data)

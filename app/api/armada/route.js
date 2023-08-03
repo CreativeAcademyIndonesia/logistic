@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import { query } from "../database/db_connection";
+import moment from "moment";
 
 export async function GET(request) {
     const params = new URL(request.url)
-    const date = params.searchParams.get('date')
+    let date = params.searchParams.get('date')
+    if(date == '' || !date) date = moment(new Date()).format('YYYY-MM')
     let message = ''
     const data = await query({
         query : `SELECT * FROM armada WHERE tanggal >= '${date}-01' AND tanggal < '${date}-31' ORDER BY Id DESC;`,
