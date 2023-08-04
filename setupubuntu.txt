@@ -1,0 +1,50 @@
+# Create SSH 
+1. ssh-keygen 
+2. type C:\Users\asugandi/.ssh/id_rsa.pub
+3. ssh root@82.180.131.55
+
+1. Create SSH untuk remote Virtual Machine 
+2. ssh username@ippublic 
+
+
+1. Sudo apt update -> update repo, update os
+2. sudo apt install npm
+4. curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash -> untuk manage versi node yang dipake
+5. nvm install --lts
+3. sudo apt install nginx
+
+3. sudo service nginx status
+
+3. cd /var/www/html
+4. cek git 
+4. sudo chown -R username:group html 
+
+
+
+6. git clone 
+7. ls
+8. cd logistic
+9. npm install
+10. npm run build 
+11. npm install -g pm2 
+12. pm2 start npm --name "logisticapp" --start
+13. Setup domain 
+14. cd /etc/nginx/conf.d
+15. sudo nano nexjs.conf
+16. server {
+    liste 80;
+    server_name yourdomain.com nextjs.yourdomain;
+    location / {
+        proxy_pass http://localhost:3000;
+    }
+}
+17. save ctrl x -> y 
+18 sudo nginx -t -> cek configurasi
+19. sudo systemctl restart nginx
+
+
+
+
+1. sudo apt-get install mysql-server
+2. mysql --version
+3. sudo mysql -u root -p 
