@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2023 at 05:51 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.14
+-- Generation Time: Aug 04, 2023 at 08:19 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.0.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,7 @@ CREATE TABLE `armada` (
   `Tanggal_PAS_Akhir` date DEFAULT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
   `Status` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `armada`
@@ -139,7 +139,29 @@ CREATE TABLE `history` (
   `tanggal` date NOT NULL,
   `status` varchar(100) NOT NULL,
   `deskripsi` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`id`, `ID_Pengiriman`, `tanggal`, `status`, `deskripsi`) VALUES
+(19, 69, '2023-08-04', 'Beacukai', 'Masih dalam pemrosesan'),
+(20, 69, '2023-08-12', 'Persiapan', 'Dalam Proses persiapan perjalanan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `historypenerimaan`
+--
+
+CREATE TABLE `historypenerimaan` (
+  `id` int(11) NOT NULL,
+  `ID_Penerimaan` int(50) NOT NULL,
+  `tanggal` date NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `deskripsi` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -157,7 +179,7 @@ CREATE TABLE `jadwal` (
   `Date_RangeETD` date DEFAULT NULL,
   `Date_RangeETA` date DEFAULT NULL,
   `tanggal` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jadwal`
@@ -166,7 +188,16 @@ CREATE TABLE `jadwal` (
 INSERT INTO `jadwal` (`Id`, `Nama_Kapal`, `No_Voyage`, `Tanggal_Clossing`, `Rute_dan_Tujuan`, `Rute_Panjang`, `Date_RangeETD`, `Date_RangeETA`, `tanggal`) VALUES
 (9, 'A', 'Voyage', '2023-07-01', 'Bandung', 'Jakarta', '2023-07-02', '2023-07-03', '2023-08-03'),
 (10, 'Jadwal 1', 'Eum ut irure sunt si', '1981-03-23', 'At sit architecto q', 'Laboris dolores amet', '2015-06-11', '2021-09-23', '2023-08-03'),
-(11, 'Jadwal2', 'Sint hic ipsum esse', '2007-05-16', 'Et sed praesentium s', 'Quae libero similiqu', '1983-04-14', '2023-07-14', '2023-08-03');
+(11, 'A3321', 'Sint hic ipsum esse', '2007-05-16', 'Et sed praesentium s', 'Quae libero similiqu', '1983-04-14', '2023-07-14', '2023-08-03'),
+(14, 'A', 'Voyage', '2023-07-01', 'Bandung', 'Jakarta', '2023-07-02', '2023-07-03', '2023-08-03'),
+(15, 'Jadwal 1', 'Eum ut irure sunt si', '1981-03-23', 'At sit architecto q', 'Laboris dolores amet', '2015-06-11', '2021-09-23', '2023-08-03'),
+(16, 'A3321', 'Sint hic ipsum esse', '2007-05-16', 'Et sed praesentium s', 'Quae libero similiqu', '1983-04-14', '2023-07-14', '2023-08-03'),
+(17, 'A', 'Voyage', '2023-07-01', 'Bandung', 'Jakarta', '2023-07-02', '2023-07-03', '2023-08-03'),
+(18, 'Jadwal 1', 'Eum ut irure sunt si', '1981-03-23', 'At sit architecto q', 'Laboris dolores amet', '2015-06-11', '2021-09-23', '2023-08-03'),
+(19, 'A3321', 'Sint hic ipsum esse', '2007-05-16', 'Et sed praesentium s', 'Quae libero similiqu', '1983-04-14', '2023-07-14', '2023-08-03'),
+(20, 'A', 'Voyage', '2023-07-01', 'Bandung', 'Jakarta', '2023-07-02', '2023-07-03', '2023-08-03'),
+(21, 'Jadwal 1', 'Eum ut irure sunt si', '1981-03-23', 'At sit architecto q', 'Laboris dolores amet', '2015-06-11', '2021-09-23', '2023-08-03'),
+(22, 'A3321', 'Sint hic ipsum esse', '2007-05-16', 'Et sed praesentium s', 'Quae libero similiqu', '1983-04-14', '2023-07-14', '2023-08-03');
 
 -- --------------------------------------------------------
 
@@ -183,7 +214,7 @@ CREATE TABLE `mitra` (
   `Contac_Person` varchar(50) NOT NULL,
   `Jangka_Waktu_Kerja_Sama` varchar(50) NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `mitra`
@@ -194,7 +225,8 @@ INSERT INTO `mitra` (`Id`, `Nama_Mitra`, `Alamat_Mitra`, `Pemilik_Owner`, `NPWP_
 (7, '1', '2', '3', '4', '5', '6', '2023-07-22 12:36:26'),
 (9, 'Irure ut totam sint', 'Voluptas sapiente qu', 'Expedita exercitatio', 'Sed qui minus commod', 'Est delectus incid', 'Cum id sapiente reru', '2023-06-02 12:55:09'),
 (10, 'Cupidatat esse aliqu', 'Quisquam amet et de', 'Cillum suscipit pari', 'Modi tempore illum', 'Error in sunt volup', 'Excepteur nisi et lo', '2023-08-02 12:56:47'),
-(11, 'Agus', 'Quisquam amet et de', 'Cillum suscipit pari', 'Modi tempore illum', 'Error in sunt volups', 'Excepteur nisi et lo', '2023-06-02 12:57:01');
+(11, 'Agus', 'Quisquam amet et de', 'Cillum suscipit pari', 'Modi tempore illum', 'Error in sunt volups', 'Excepteur nisi et lo', '2023-06-02 12:57:01'),
+(13, 'Agus', '321', '321', '321', '321', '3', '2023-08-04 05:36:45');
 
 -- --------------------------------------------------------
 
@@ -227,7 +259,7 @@ CREATE TABLE `penerimaan` (
   `Petugas_Stripping` varchar(100) NOT NULL,
   `Keterangan` varchar(100) NOT NULL,
   `Tgl_Stripping` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `penerimaan`
@@ -238,7 +270,7 @@ INSERT INTO `penerimaan` (`ID_Penerimaan`, `Nama_Pengirim`, `No_Hp_Pengirim`, `N
 (26, 'Agus Sugandi', 'Ut minus deserunt et', 'Dolor elit reprehen', 'Nemo ab sunt proiden', 'Dolore quis mollit l', 'Aut labore impedit ', 'Totam reprehenderit ', 'Eius aliquip aperiam', 'Qui rerum fuga Nemo', 'Aut animi quia volu', 'Temporibus praesenti', 'Commodo dolore dolor', 'Laborum Nisi dolori', 'Reprehenderit nesci', 'Velit distinctio At', 'Dignissimos dolore e', 'Magni vitae dolor ve', '2023-08-02 12:19:13', 'bb4c6f5a-6526-43f5-a8c7-d66b291a362e.png', '34a93db8-1e60-4493-bbc9-478fb75c8150.pdf', 'Ucok Baba Ubah', 'Ini keterangan Ubah', '2023-01-01'),
 (27, 'In aliquam unde et a', 'Ea aut consequatur ', 'Aut maxime dolor qui', 'Fugiat nesciunt per', 'Odio sapiente est i', 'Sapiente a ad quibus', 'Non impedit nostrud', 'Vitae similique odit', 'Quis necessitatibus ', 'Beatae quasi qui aut', 'Corporis rerum persp', 'Debitis ipsam do adi', 'Sint minima blanditi', 'Ipsam ad placeat qu', 'Illum et sit tenetu', 'Sunt laboriosam su', 'Et sunt aliqua Magn', '2023-08-02 12:37:38', '', '', 'In et corrupti enim', 'Velit nobis et ad qu', '1970-07-24'),
 (28, 'Ea omnis autem unde ', 'Adipisci consequatur', 'Consequuntur commodi', 'Similique eos eligen', 'Qui voluptate dolore', 'Possimus ut eligend', 'Fugiat quidem commod', 'Sunt sit repudiand', 'Similique in id et c', 'Voluptatibus in iste', 'Id suscipit ex sint ', 'Officiis sunt corru', 'Deleniti deleniti do', 'Quaerat expedita qua', 'Irure ex cupidatat d', 'Dolor molestiae aute', 'Quas ad ab optio et', '2023-08-02 12:38:02', 'f405a28f-889c-4c94-bdc7-82aef17e20aa.png', '113b04cc-39ee-4103-9e57-1c821986e502.pdf', 'Sequi animi molliti', 'Ea qui aut iure omni', '1994-07-10'),
-(29, '651', '311', '313', '21', '3213', '123', '123', '13', '1', '31', '213', '1', '23', '31', '231', '31', '12', '2023-08-02 13:50:17', '32606518-5bca-422d-acdf-3eb0c940a027.jpg', '0d5609d5-c27b-44b8-97b6-fb0bb1c50c80.pdf', '23', '3123', '2023-08-25');
+(29, 'Agus', '311', '313', '21', '3213', '123', '123', '13', '1', '31', '213', '1', '23', '31', '231', '31', '12', '2023-08-02 13:50:17', '32606518-5bca-422d-acdf-3eb0c940a027.jpg', '0d5609d5-c27b-44b8-97b6-fb0bb1c50c80.pdf', '23', '3123', '2023-08-25');
 
 -- --------------------------------------------------------
 
@@ -268,7 +300,7 @@ CREATE TABLE `pengiriman` (
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
   `Image` varchar(255) NOT NULL,
   `Pdf` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pengiriman`
@@ -276,7 +308,8 @@ CREATE TABLE `pengiriman` (
 
 INSERT INTO `pengiriman` (`ID_Pengiriman`, `Nama_Pengirim`, `No_Hp_Pengirim`, `No_Ktp_Pengirim`, `No_Npwp_Pengirim`, `Jenis_Barang`, `Layanan`, `Alamat_Pengirim`, `dari`, `ke`, `Alamat_Tujuan`, `Nama_Penerima`, `No_Hp_Penerima`, `No_Ktp_Penerima`, `Shipping_Line`, `Nama_Kapal`, `No_Container`, `No_Bl`, `tanggal`, `Image`, `Pdf`) VALUES
 (64, 'Dolor vitae quisquam', 'Dolor dolore blandit', 'Consequatur Ut tene', 'Dolor eum quas deser', 'Suscipit cupiditate ', 'Suscipit esse et sit', 'Dolor obcaecati exer', 'Exercitation saepe p', 'Irure consequatur pr', 'Enim minim qui sit v', 'Sit quis tempore i', 'Qui est reprehenderi', 'Vel rerum voluptas i', 'Aut laborum qui quis', 'Consequatur reprehe', 'Ipsum earum volupta', 'Veniam id nihil inv', '2023-07-27 14:45:29', 'd0ceaae6-0ddf-41c7-aa1d-319760ee02a3.JPG', '77f141c0-4c7c-4f85-8a81-f69da2b99e48.pdf'),
-(67, 'Praesentium illo ame', 'Dolor quia porro fug', 'Earum eveniet conse', 'Debitis dolor reicie', 'Eum corporis ullamco', 'Delectus temporibus', 'Doloribus ut natus t', 'Eligendi dolor anim ', 'Quia modi velit odit', 'Architecto nulla et ', 'Est nihil in magna a', 'Suscipit sint volupt', 'Exercitation quae ve', 'Est velit eaque et ', 'Pariatur Repudianda', 'Eum error ea qui lab', 'Amet dolorum est co', '2023-08-02 12:47:48', '', '');
+(67, 'Praesentium illo ame', 'Dolor quia porro fug', 'Earum eveniet conse', 'Debitis dolor reicie', 'Eum corporis ullamco', 'Delectus temporibus', 'Doloribus ut natus t', 'Eligendi dolor anim ', 'Quia modi velit odit', 'Architecto nulla et ', 'Est nihil in magna a', 'Suscipit sint volupt', 'Exercitation quae ve', 'Est velit eaque et ', 'Pariatur Repudianda', 'A332', 'Amet dolorum est co', '2023-08-02 12:47:48', '', ''),
+(69, 'Eos sapiente volupta', 'Aperiam veritatis ob', 'Sed ullamco cupidita', 'Voluptate voluptatem', 'Amet aspernatur qui', 'Dolor sint aut eum ', 'Dolorum sint consec', 'Accusamus odio obcae', 'Dolore voluptas ad c', 'Eligendi in irure de', 'Est porro nihil occa', 'Nemo ea et proident', 'Deserunt quas distin', 'Qui quos culpa aut ', 'Ullam veniam et ea ', 'A331', 'Deleniti id exercit', '2023-08-04 05:34:31', '', '');
 
 -- --------------------------------------------------------
 
@@ -290,7 +323,7 @@ CREATE TABLE `simulasi` (
   `Kota_Tujuan` varchar(100) NOT NULL,
   `Harga` int(100) NOT NULL,
   `tanggal` date NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `simulasi`
@@ -319,6 +352,13 @@ ALTER TABLE `armada`
 ALTER TABLE `history`
   ADD PRIMARY KEY (`id`),
   ADD KEY `ID_Pengiriman` (`ID_Pengiriman`);
+
+--
+-- Indexes for table `historypenerimaan`
+--
+ALTER TABLE `historypenerimaan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ID_Penerimaan` (`ID_Penerimaan`);
 
 --
 -- Indexes for table `jadwal`
@@ -364,31 +404,37 @@ ALTER TABLE `armada`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `historypenerimaan`
+--
+ALTER TABLE `historypenerimaan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `jadwal`
 --
 ALTER TABLE `jadwal`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `mitra`
 --
 ALTER TABLE `mitra`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `penerimaan`
 --
 ALTER TABLE `penerimaan`
-  MODIFY `ID_Penerimaan` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `ID_Penerimaan` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `pengiriman`
 --
 ALTER TABLE `pengiriman`
-  MODIFY `ID_Pengiriman` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `ID_Pengiriman` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `simulasi`
@@ -405,6 +451,12 @@ ALTER TABLE `simulasi`
 --
 ALTER TABLE `history`
   ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`ID_Pengiriman`) REFERENCES `pengiriman` (`ID_Pengiriman`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `historypenerimaan`
+--
+ALTER TABLE `historypenerimaan`
+  ADD CONSTRAINT `historypenerimaan_ibfk_1` FOREIGN KEY (`ID_Penerimaan`) REFERENCES `penerimaan` (`ID_Penerimaan`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

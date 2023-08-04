@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Toast from "@/app/component/Toast"
 
-export default function Tambah (){
+export default function Tambah ({mutate, url}){
     const [namaMitra, setNamaMitra] = useState('')
     const [alamatMitra, setAlamatMitra] = useState('')
     const [pemilikOwner, setPemilikOwner] = useState('')
@@ -60,7 +60,7 @@ export default function Tambah (){
         setContacPerson('')
         setJangkaWaktuKerjaSama('')
         setIsMutate(false)
-        
+        mutate(url)
         buttonRef.current.click();
         router.refresh()
     }

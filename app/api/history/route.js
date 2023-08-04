@@ -10,15 +10,27 @@ export async function GET(request){
 }
 
 export async function POST(request){
-  const {
-    iDPengiriman, tanggal, status, deskripsi} = await request.json()
-  const result = await query({
-    query : `INSERT INTO history (
-      ID_Pengiriman, tanggal, status, deskripsi ) VALUES ( ?, ?, ?, ?);`, 
-    values : [
-      iDPengiriman, tanggal, status, deskripsi]
-  })
-
+  const params = new URL(request.url)
+  let type = params.searchParams.get('type')
+  let result = {}
+  if( type == 'penerimaan'){
+    const { iDPenerimaan, tanggal, status, deskripsi} = await request.json()
+    result = await query({
+      query : `INSERT INTO historypenerimaan (
+        ID_Penerimaan, tanggal, status, deskripsi ) VALUES ( ?, ?, ?, ?);`, 
+      values : [
+        iDPenerimaan, tanggal, status, deskripsi]
+    })
+  }else if(type == 'pengiriman'){
+    const { iDPengiriman, tanggal, status, deskripsi} = await request.json()
+    result = await query({
+      query : `INSERT INTO history (
+        ID_Pengiriman, tanggal, status, deskripsi ) VALUES ( ?, ?, ?, ?);`, 
+      values : [
+        iDPengiriman, tanggal, status, deskripsi]
+    })
+  }
+  
   let message =''
   if(result.insertId){
     message = 'SUCCESS'

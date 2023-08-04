@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Toast from "@/app/component/Toast"
 
-export default function Tambah (){
+export default function Tambah ({mutate, url}){
     const [namaPengirim, setNamaPengirim] = useState('')
     const [noHpPengirim, setNoHpPengirim] = useState('')
     const [noKtpPengirim, setNoKtpPengirim] = useState('')
@@ -114,6 +114,7 @@ export default function Tambah (){
         } catch (e) {
           console.error(e)
         }
+        mutate(url)
         setIsMutate(false)
         buttonRef.current.click();
         router.refresh()

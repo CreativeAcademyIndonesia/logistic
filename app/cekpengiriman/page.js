@@ -3,17 +3,19 @@ import { faCircleNotch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import { useState } from "react"
+import moment from "moment/moment"
 
 export default function Home() {
     const [noContainer, setNoContainer] = useState()
     const [results, setResults] = useState([])
     const [onError, setOnError] = useState(false)
     const [isMutate, setIsMutate] = useState(false)
+    const [type , setType] = useState('pengiriman')
     async function handleSubmit(e){
         setIsMutate(true)
         e.preventDefault()
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history/${noContainer}`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history/${noContainer}?type=${type}`)
             const jsonData = await response.json()
             jsonData.length < 1 ? setOnError(true) : setOnError(false)
             setResults(jsonData)
@@ -38,7 +40,32 @@ export default function Home() {
                                     <div className="flex-1">
                                         <label htmlFor="" className="sr-only">pengiriman</label>
                                         <div>
-                                        <input type="container" name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-lg sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nomor Container" onChange={(e)=>setNoContainer(e.target.value)} />
+                                            <input type="container" name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-lg sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nomor Container" onChange={(e)=>setNoContainer(e.target.value)} />
+                                        </div>
+                                        <div className="flex gap-x-6">
+                                            <div className="flex">
+                                                <input 
+                                                type="radio" 
+                                                name="hs-radio-group" 
+                                                className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
+                                                id="hs-radio-group-1"
+                                                value="pengiriman"
+                                                checked={ type == 'pengiriman' }
+                                                onChange={(e)=> setType(e.target.value)}  />
+                                                <label htmlFor="hs-radio-group-1" className="text-sm text-gray-500 ml-2 dark:text-gray-400">Pengiriman</label>
+                                            </div>
+
+                                            <div className="flex">
+                                                <input 
+                                                type="radio" 
+                                                name="hs-radio-group" 
+                                                className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
+                                                id="hs-radio-group-2"
+                                                value="penerimaan"
+                                                checked={ type == 'penerimaan' }
+                                                onChange={(e)=> setType(e.target.value)} />
+                                                <label htmlFor="hs-radio-group-2" className="text-sm text-gray-500 ml-2 dark:text-gray-400">Penerimaan</label>
+                                            </div>
                                         </div>
                                     </div>
                                     {
@@ -97,7 +124,7 @@ const Track = ({data, container})=> {
                     data.map((d, i)=>(
                         <li key={i} className="mb-10 ml-4">
                             <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-                            <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{d.tanggal}</time>
+                            <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{moment(d.tanggal).format('DD-MM-YYYY') }</time>
                             <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Status - {d.status}</h3>
                             <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">{d.deskripsi}</p>
                         </li>

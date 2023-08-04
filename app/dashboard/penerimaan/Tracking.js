@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import Toast from "@/app/component/Toast"
 
 export default function Tracking({sid}){
-    const [iDPengiriman, setIDPengiriman] = useState(sid)
+    const [iDPenerimaan, setIDPenerimaan] = useState(sid)
     const [tanggal, setTanggal] = useState('')
     const [status, setStatus] = useState('')
     const [deskripsi, setDeskripsi] = useState('')
@@ -19,9 +19,9 @@ export default function Tracking({sid}){
     const router = useRouter()
 
     async function handleSubmit(e) {
-        let data = { iDPengiriman, tanggal, status, deskripsi}
+        let data = { iDPenerimaan, tanggal, status, deskripsi}
         e.preventDefault()
-        const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history?type=pengiriman`, {
+        const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history?type=penerimaan`, {
             method : "POST", 
             headers : {
                 'Content-Type' : 'application/json'
@@ -41,7 +41,7 @@ export default function Tracking({sid}){
         setTimeout(()=>{
             setToastStatus(false)
         }, 4000)
-        // setIDPengiriman('')
+        // setIDPenerimaan('')
         setTanggal('')
         setStatus('')
         setDeskripsi('')
@@ -67,7 +67,7 @@ export default function Tracking({sid}){
                     <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
                         <div className="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
                         <h3 className="font-bold text-gray-800 dark:text-white">
-                            Upate Status ID Pengiriman {iDPengiriman}
+                            Upate Status ID Penerimaan {iDPenerimaan}
                         </h3>
                         <button type="button" className="hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 focus:ring-offset-white transition-all text-sm dark:focus:ring-gray-700 dark:focus:ring-offset-gray-800" data-hs-overlay={`#modalUpdateStatus${sid}`}>
                             <span className="sr-only">Close</span>

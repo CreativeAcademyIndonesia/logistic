@@ -72,17 +72,17 @@ export default function Home() {
                             <div className="grid grid-cols-4 md:grid-cols-10 gap-2">
                                 <div className='col-span-2'>
                                     <label  
-                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kapal</label>
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">Nama Kapal</label>
                                     <input onChange={(e)=>setNamaKapal(e.target.value)} value={namaKapal} type="text" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 grow" placeholder="Nama Kapal" required />
                                 </div>
                                 <div className='col-span-2'>
                                     <label  
-                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal ETD</label>
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">Tanggal ETD</label>
                                     <input onChange={(e)=>setTanggalETD(e.target.value)} value={tanggalETD} type="date" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 grow" placeholder="Tanggal ETD" required />
                                 </div>
                                 <div className='col-span-2'>
                                     <label  
-                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rute dan Tujuan</label>
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">Rute dan Tujuan</label>
                                     <select value={ruteTujuan} onChange={(e)=>setRuteTujuan(e.target.value)} name="kotaasal" className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 grow'>
                                         <option value="">Pilih Rute dan Tujuan</option>
                                         {
@@ -94,7 +94,7 @@ export default function Home() {
                                 </div>
                                 <div className='col-span-2'>
                                     <label  
-                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rute Panjang</label>
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">Rute Panjang</label>
                                     <select value={rutePanjang} onChange={(e)=>setRutePanjang(e.target.value)} name="kotatujaun"className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 grow'>
                                         <option value="">Pilih Rute Panjang</option>
                                         {

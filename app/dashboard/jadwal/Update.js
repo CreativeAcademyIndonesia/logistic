@@ -98,7 +98,7 @@ export default function Update ({currentData}){
                                     <div className="col-span-2">
                                         <label 
                                             htmlFor="namaKapal" 
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Kapal</label>
+                                            className="block mb-2 text-sm font-medium text-gray-900 text-start dark:text-white">Nama Kapal</label>
                                         <input 
                                             type="text" 
                                             id="namaKapal" 
@@ -112,7 +112,7 @@ export default function Update ({currentData}){
                                     <div>
                                         <label 
                                             htmlFor="noVoyage" 
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nomor Voyage</label>
+                                            className="block mb-2 text-sm font-medium text-gray-900 text-start dark:text-white">Nomor Voyage</label>
                                         <input 
                                             type="text" 
                                             id="noVoyage" 
@@ -126,7 +126,7 @@ export default function Update ({currentData}){
                                     <div>
                                         <label 
                                             htmlFor="tanggalClossing" 
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Clossing</label>
+                                            className="block mb-2 text-sm font-medium text-gray-900 text-start dark:text-white">Tanggal Clossing</label>
                                         <input 
                                             type="date" 
                                             id="tanggalClossing" 
@@ -140,7 +140,7 @@ export default function Update ({currentData}){
                                     <div>
                                         <label 
                                             htmlFor="rutedanTujuan" 
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rute dan Tujuan</label>
+                                            className="block mb-2 text-sm font-medium text-gray-900 text-start dark:text-white">Rute dan Tujuan</label>
                                         <input 
                                             type="text" 
                                             id="rutedanTujuan" 
@@ -154,7 +154,7 @@ export default function Update ({currentData}){
                                     <div>
                                         <label 
                                             htmlFor="rutePanjang" 
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rute Panjang</label>
+                                            className="block mb-2 text-sm font-medium text-gray-900 text-start dark:text-white">Rute Panjang</label>
                                         <input 
                                             type="text" 
                                             id="rutePanjang" 
@@ -168,7 +168,7 @@ export default function Update ({currentData}){
                                     <div>
                                         <label 
                                             htmlFor="dateRangeETD" 
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Range ETD</label>
+                                            className="block mb-2 text-sm font-medium text-gray-900 text-start dark:text-white">Date Range ETD</label>
                                         <input 
                                             type="date" 
                                             id="dateRangeETD" 
@@ -182,7 +182,7 @@ export default function Update ({currentData}){
                                     <div>
                                         <label 
                                             htmlFor="dateRangeETA" 
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date Range ETA</label>
+                                            className="block mb-2 text-sm font-medium text-gray-900 text-start dark:text-white">Date Range ETA</label>
                                         <input 
                                             type="date" 
                                             id="dateRangeETA" 

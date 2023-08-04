@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import Toast from "@/app/component/Toast"
 import moment from "moment";
 
-export default function Update ({currentData}){
+export default function Update ({currentData, mutate, url}){
     const [namaPengirim, setNamaPengirim] = useState(currentData.Nama_Pengirim)
     const [noHpPengirim, setNoHpPengirim] = useState(currentData.No_Hp_Pengirim)
     const [noKtpPengirim, setNoKtpPengirim] = useState(currentData.No_Ktp_Pengirim)
@@ -92,6 +92,7 @@ export default function Update ({currentData}){
             setToastStatus(false)
         }, 4000)
 
+        mutate(url)
         setIsMutate(false)
         buttonRef.current.click();
         router.refresh()

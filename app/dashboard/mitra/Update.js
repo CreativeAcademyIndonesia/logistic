@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Toast from "@/app/component/Toast"
 
-export default function Update ({currentData}){
+export default function Update ({currentData, mutate, url}){
     const [namaMitra, setNamaMitra] = useState(currentData.Nama_Mitra)
     const [alamatMitra, setAlamatMitra] = useState(currentData.Alamat_Mitra)
     const [pemilikOwner, setPemilikOwner] = useState(currentData.Pemilik_Owner)
@@ -54,7 +54,7 @@ export default function Update ({currentData}){
             setToastStatus(false)
         }, 4000)
         setIsMutate(false)
-        
+        mutate(url)
         buttonRef.current.click();
         router.refresh()
     }

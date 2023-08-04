@@ -1,6 +1,7 @@
 'use client'
 import { useState } from "react"
 import useSWR, { useSWRConfig } from 'swr'
+import Loading from "../loading"
 import NoData from "@/app/component/NoData"
 import { Jumbotrons } from "@/app/component/Jumbotron"
 import Tambah from "./Tambah"
@@ -8,7 +9,7 @@ import Delete from "./Delete"
 import Update from "./Update"
 import Detail from "./Detail"
 import moment from "moment/moment"
-import Loading from "../loading"
+
 
 export default function Home() {
   const fetcher = (url) => fetch(url).then(res => res.json())

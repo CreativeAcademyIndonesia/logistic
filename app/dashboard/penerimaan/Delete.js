@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Toast from "@/app/component/Toast"
 
-export default function Delete ({sid}){
+export default function Delete ({sid, mutate, url}){
 
     const [toastStatus, setToastStatus] = useState(false)
     const [toastMassage, setToastMessage] = useState('')
@@ -25,6 +25,7 @@ export default function Delete ({sid}){
         setTimeout(()=>{
             setToastStatus(false)
         }, 4000)
+        mutate(url)
         buttonRef.current.click();
         router.refresh()
     }
