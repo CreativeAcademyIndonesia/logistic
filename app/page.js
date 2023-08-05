@@ -14,8 +14,9 @@ export default function Home() {
   const router = useRouter()
   const { status} = useSession()
   useEffect(()=>{
+      import('preline')
     if (status === "unauthenticated") {
-      
+
     } else if (status === "authenticated") {
       void router.push("/dashboard");
     }
