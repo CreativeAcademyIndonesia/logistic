@@ -9,6 +9,7 @@ import SimulasiHarga from './component/SimulasiHarga'
 import { useSession } from "next-auth/react";
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import MitraLogo from './component/MitraLogo'
 export default function Home() {
   const router = useRouter()
   const { status} = useSession()
@@ -24,6 +25,7 @@ export default function Home() {
       <Hero />
       <SimulasiHarga />
       <Service />
+      <MitraLogo />
       <Pembayaran />
       <Testimonial/>
       <Contact />
