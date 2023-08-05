@@ -7,9 +7,5 @@ export async function GET() {
     query : "SELECT * FROM jadwal ORDER BY Id DESC LIMIT 10",
     values : []
   })
-  if(data){
     return NextResponse.json(data)
-  }else{
-    return NextResponse.json({message : 'error'})
-  }
 }
