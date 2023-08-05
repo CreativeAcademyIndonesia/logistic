@@ -15,7 +15,7 @@ module.exports = {
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
         "hero-banner": "url('/banner.png')", 
         "line-bg" : "url('/line.svg')",
-        "customer-happy" : "url('/customer.png')",
+        "customer-happy" : "url('/customers.png')",
       },
       colors : {
         'blue-primary' : '#13418E',

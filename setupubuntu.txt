@@ -1,5 +1,5 @@
 # Create SSH 
-1. ssh-keygen 
+1. ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 2. type C:\Users\asugandi/.ssh/id_rsa.pub
 3. ssh root@82.180.131.55
 
@@ -12,21 +12,31 @@
 4. curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash -> untuk manage versi node yang dipake
 5. nvm install --lts
 3. sudo apt install nginx
-
 3. sudo service nginx status
 
-3. cd /var/www/html
-4. cek git 
-4. sudo chown -R username:group html 
+---3. cd /var/www/html
 
+4. cek git git --version
 
+---4. sudo chown -R username:group html 
 
 6. git clone 
 7. ls
 8. cd logistic
 9. npm install
-10. npm run build 
 11. npm install -g pm2 
+
+10. sudo apt install mysql-server
+11. sudo systemctl start mysql.service
+- mysql -u root -p 
+- flush privileges;
+- USE MYSQL 
+- ALTER USER  'root'@'localhost' IDENTIFIED BY 'the-new-password';
+-quit
+- sudo systemctl restart mysql.service
+- CREATE DATABASE db_logistic
+- set global sql_mode='';
+10. npm run build 
 12. pm2 start npm --name "logisticapp" --start
 13. Setup domain 
 14. cd /etc/nginx/conf.d
