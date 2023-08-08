@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2023 at 09:32 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.14
+-- Generation Time: Aug 08, 2023 at 07:45 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -39,7 +40,7 @@ CREATE TABLE `armada` (
   `Masa_Berlaku_STNK` date DEFAULT NULL,
   `Tanggal_PAS_Masuk` date DEFAULT NULL,
   `Tanggal_PAS_Akhir` date DEFAULT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -86,7 +87,7 @@ CREATE TABLE `jadwal` (
   `Rute_Panjang` varchar(255) DEFAULT NULL,
   `Date_RangeETD` date DEFAULT NULL,
   `Date_RangeETA` date DEFAULT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp()
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -102,8 +103,8 @@ CREATE TABLE `mitra` (
   `Pemilik_Owner` varchar(50) NOT NULL,
   `NPWP_Mitra` varchar(50) NOT NULL,
   `Contac_Person` varchar(50) NOT NULL,
-  `Jangka_Waktu_Kerja_Sama` varchar(50) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp()
+  `Jangka_Waktu_Kerja_Sama` date NOT NULL,
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -131,7 +132,7 @@ CREATE TABLE `penerimaan` (
   `Nama_Kapal` varchar(50) NOT NULL,
   `No_Container` varchar(50) NOT NULL,
   `No_Bl` varchar(50) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Image` varchar(255) NOT NULL,
   `Pdf` varchar(255) NOT NULL,
   `Petugas_Stripping` varchar(100) NOT NULL,
@@ -164,9 +165,12 @@ CREATE TABLE `pengiriman` (
   `Nama_Kapal` varchar(50) NOT NULL,
   `No_Container` varchar(50) NOT NULL,
   `No_Bl` varchar(50) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Image` varchar(255) NOT NULL,
-  `Pdf` varchar(255) NOT NULL
+  `Pdf` varchar(255) NOT NULL,
+  `Tgl_Stuffing` date NOT NULL,
+  `Petugas_Stuffing` varchar(100) NOT NULL,
+  `Keterangan` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -180,7 +184,7 @@ CREATE TABLE `simulasi` (
   `Kota_Asal` varchar(100) NOT NULL,
   `Kota_Tujuan` varchar(100) NOT NULL,
   `Harga` int(100) NOT NULL,
-  `tanggal` timestamp NOT NULL DEFAULT current_timestamp()
+  `tanggal` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -269,19 +273,19 @@ ALTER TABLE `jadwal`
 -- AUTO_INCREMENT for table `mitra`
 --
 ALTER TABLE `mitra`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `penerimaan`
 --
 ALTER TABLE `penerimaan`
-  MODIFY `ID_Penerimaan` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `ID_Penerimaan` int(50) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pengiriman`
 --
 ALTER TABLE `pengiriman`
-  MODIFY `ID_Pengiriman` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `ID_Pengiriman` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `simulasi`
