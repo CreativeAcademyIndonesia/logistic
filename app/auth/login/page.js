@@ -36,8 +36,7 @@ export default function Home() {
 
   
   return (
-    <div className='flex min-h-screen flex-col items-center justify-between p-24 bg-white'>
-      
+    <div className='flex min-h-screen flex-col items-center justify-between py-32 px-10 sm:px-10 sm:py-60 bg-white'>
       <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
           <form className="space-y-6" onSubmit={handleSubmit}>
               <h5 className="text-xl font-medium text-gray-900 dark:text-white">login Sebagai Admin</h5>
@@ -56,7 +55,7 @@ export default function Home() {
                     type="password" 
                     name="password" 
                     id="password" 
-                    placeholder="••••••••" 
+                    placeholder="Masukan Password" 
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required />
               </div>
               {

@@ -72,7 +72,7 @@ export default function Home() {
                             Contac Person
                           </th>
                           <th scope="col" className="px-6 py-3">
-                            Jangka Waktu Kerja Sama
+                            Tanggal
                           </th>
                           <th scope="col" className="px-6 py-3">
                             Action
@@ -105,7 +105,7 @@ export default function Home() {
                                 {d['Contac_Person']}
                             </td>
                             <td className="px-6 py-4">
-                                {d['Jangka_Waktu_Kerja_Sama']}
+                                {moment(d['Jangka_Waktu_Kerja_Sama']).format('YYYY-MM-DD')}
                             </td>
                             
                             <td className="px-6 py-4 text-right">

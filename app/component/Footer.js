@@ -30,7 +30,7 @@ export default function Footer(){
                                 </li>
             
                                 <li>
-                                    <Link href={"/#pembayaran"} className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Pembarayan</Link>
+                                    <Link href={"/#services"} className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Service</Link>
                                 </li>
             
                                 <li>
@@ -48,7 +48,7 @@ export default function Footer(){
                                 </li>
             
                                 <li>
-                                    <Link href={"/jadwalkapal"} className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Cek Pengiriman</Link>
+                                    <Link href={"/jadwalkapal"} className="flex text-base text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600">Cek Jadwal Kapal</Link>
                                 </li>
             
                                 <li>

@@ -80,7 +80,7 @@ const Contact = () => {
                 </div>
             </section>
             <div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3989.4319869911164!2d127.38121891475345!3d0.7973438994183254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMMKwNDcnNTAuNCJOIDEyN8KwMjMnMDAuMyJF!5e0!3m2!1sid!2sid!4v1690892171622!5m2!1sid!2sid" width="100%"className='h-[450px]' style={{border : '0'}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>    
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.4319168365423!2d127.38185115434263!3d0.7974162924501836!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x329cb1f22c4e6387%3A0x75d6d76b11b4cf6b!2sPT.%20Hasfi%20Prima%20Logistik!5e0!3m2!1sen!2sid!4v1691466303129!5m2!1sen!2sid" width="100%"className='h-[450px]' style={{border : '0'}} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade" ></iframe>  
             </div>
         
         </div>

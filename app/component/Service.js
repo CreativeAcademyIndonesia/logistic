@@ -34,7 +34,7 @@ export default function Service() {
                             className="text-slate-400 text-6xl"
                         />
                         <h3 className="mt-12 text-xl font-bold text-blue-primary/80 font-pj">Door To Port Service</h3>
-                        <p className="mt-5 text-base text-gray-600 font-pj">Melayani trucking dari Gudang customer ke Pelabuhan Laut atau Bandara Udara yang dituju</p>
+                        <p className="mt-5 text-base text-gray-600 font-pj">Melayani trucking dari gudang customer ke pelabuhan laut yang dituju</p>
                     </div>
         
                     <div className="md:p-8 lg:p-14 md:border-t md:border-gray-200">
@@ -43,7 +43,7 @@ export default function Service() {
                             className="text-slate-400 text-6xl"
                         />
                         <h3 className="mt-12 text-xl font-bold text-blue-primary/80 font-pj">Port To Port Service</h3>
-                        <p className="mt-5 text-base text-gray-600 font-pj">Melayani angkutan/pengiriman barang dari satu Pelabuhan ke Pelabuhan tujuan menggunakan kapal laut atau dari satu bandara ke bandara tujuan menggunakan cargo pesawat.</p>
+                        <p className="mt-5 text-base text-gray-600 font-pj">Melayani angkutan/pengiriman barang dari satu pelabuhan ke pelabuhan tujuan menggunakan kapal laut</p>
                     </div>
         
                     <div className="md:p-8 lg:p-14 md:border-l md:border-gray-200 md:border-t">
@@ -52,7 +52,7 @@ export default function Service() {
                             className="text-slate-400 text-6xl"
                         />
                         <h3 className="mt-12 text-xl font-bold text-blue-primary/80 font-pj">Port To Door Service</h3>
-                        <p className="mt-5 text-base text-gray-600 font-pj">Melayani trucking dari Pelabuhan laut atau bandar udara ke Gudang Customer untuk wilayah seluruh Provinsi Maluku Utara</p>
+                        <p className="mt-5 text-base text-gray-600 font-pj">Melayani trucking dari pelabuhan laut ke gudang customer untuk wilayah provinsi maluku utara</p>
                     </div>
         
                     <div className="md:p-8 lg:p-14 md:border-l md:border-gray-200 md:border-t">

@@ -5,7 +5,8 @@ import { faCircleNotch, faPen, faXmark } from "@fortawesome/free-solid-svg-icons
 import { useState } from "react"
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import Toast from "@/app/component/Toast"
+import Toast from "@/app/component/Toast";
+import moment from "moment/moment";
 
 export default function Update ({currentData, mutate, url}){
     const [namaPengirim, setNamaPengirim] = useState(currentData.Nama_Pengirim)
@@ -25,6 +26,9 @@ export default function Update ({currentData, mutate, url}){
     const [namaKapal, setNamaKapal] = useState(currentData.Nama_Kapal)
     const [noContainer, setNoContainer] = useState(currentData.No_Container)
     const [noBl, setNoBl] = useState(currentData.No_Bl)
+    const [tglStuffing, setTglStuffing] = useState(moment(currentData.Tgl_Stuffing).format('YYYY-MM-DD'))
+    const [petugasStuffing, setPetugasStuffing] = useState(currentData.Petugas_Stuffing)
+    const [keterangan, setKeterangan] = useState(currentData.Keterangan)
     const [file, setFile] = useState(null)
     const [filepdf, setFilepdf] = useState(null)
     const [oldfile, setOldFile] = useState(currentData.Image)
@@ -56,6 +60,9 @@ export default function Update ({currentData, mutate, url}){
             namaKapal,
             noContainer,
             noBl,
+            tglStuffing,
+            petugasStuffing,
+            keterangan,
             oldfilepdf, 
             oldfile
         }
@@ -174,7 +181,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="No NPWP Pengirim" 
                                             value={noNpwpPengirim}
                                             onChange={(e)=>setNoNpwpPengirim(e.target.value)}
-                                            required />
+                                             />
                                     </div>
                                 </div>
                                 <div className="grid gap-4 mb-4 md:grid-cols-3">
@@ -348,8 +355,51 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="No BL" 
                                             value={noBl}
                                             onChange={(e)=>setNoBl(e.target.value)}
+                                             />
+                                    </div>
+
+                                    <div>
+                                        <label 
+                                            htmlFor="tglStuffing" 
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Tanggal Stuffing</label>
+                                        <input 
+                                            type="date" 
+                                            id="tglStuffing" 
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                            placeholder="Tanggal Stripping" 
+                                            value={tglStuffing}
+                                            onChange={(e)=>setTglStuffing(e.target.value)}
                                             required />
                                     </div>
+
+                                    <div>
+                                        <label 
+                                            htmlFor="petugasStuffing" 
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Petugas Stuffing</label>
+                                        <input 
+                                            type="text" 
+                                            id="petugasStuffing" 
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                            placeholder="Petugas Stripping" 
+                                            value={petugasStuffing}
+                                            onChange={(e)=>setPetugasStuffing(e.target.value)}
+                                            required />
+                                    </div>
+
+                                    <div  className="col-span-2">
+                                        <label 
+                                            htmlFor="keterangan" 
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Keterangan</label>
+                                        <input 
+                                            type="text" 
+                                            id="keterangan" 
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                            placeholder="Keterangan" 
+                                            value={keterangan}
+                                            onChange={(e)=>setKeterangan(e.target.value)}
+                                             />
+                                    </div>
+
                                 </div>
                                 <div className="grid gap-4 md:grid-cols-2">
                                     <div>

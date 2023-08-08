@@ -6,6 +6,7 @@ import { useState } from "react"
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Toast from "@/app/component/Toast"
+import moment from "moment/moment";
 
 export default function Update ({currentData, mutate, url}){
     const [namaMitra, setNamaMitra] = useState(currentData.Nama_Mitra)
@@ -13,7 +14,7 @@ export default function Update ({currentData, mutate, url}){
     const [pemilikOwner, setPemilikOwner] = useState(currentData.Pemilik_Owner)
     const [nPWPMitra, setNPWPMitra] = useState(currentData.NPWP_Mitra)
     const [contacPerson, setContacPerson] = useState(currentData.Contac_Person)
-    const [jangkaWaktuKerjaSama, setJangkaWaktuKerjaSama] = useState(currentData.Jangka_Waktu_Kerja_Sama)
+    const [jangkaWaktuKerjaSama, setJangkaWaktuKerjaSama] = useState(moment(currentData.Jangka_Waktu_Kerja_Sama).format('YYYY-MM-DD'))
     const [isMutate, setIsMutate] = useState(false)
     const [toastStatus, setToastStatus] = useState(false)
     const [toastMassage, setToastMessage] = useState('')
@@ -158,9 +159,9 @@ export default function Update ({currentData, mutate, url}){
                                     <div>
                                         <label 
                                             htmlFor="jangkaWaktuKerjaSama" 
-                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Jangka Waktu Kerjasama</label>
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-start">Tanggal</label>
                                         <input 
-                                            type="text" 
+                                            type="date" 
                                             id="jangkaWaktuKerjaSama" 
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                                             placeholder="No Hp Pengirim" 

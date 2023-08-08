@@ -57,10 +57,10 @@ export default function Detail ({currentData}){
                                 </li>
                                 <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
                                     <span className="text-start font-normal text-slate-600">Jangka Waktu Kerja Sama</span>
-                                    <span className="text-end">{currentData.Jangka_Waktu_Kerja_Sama}</span>
+                                    <span className="text-end">{moment(currentData.Jangka_Waktu_Kerja_Sama).format('YYYY-MM-DD')} </span>
                                 </li>
                                 <li className=" flex justify-between items-center gap-x-2 py-3 px-4 text-sm font-medium bg-white border text-gray-800 -mt-px first:rounded-t-lg first:mt-0 last:rounded-b-lg dark:bg-gray-800 dark:border-gray-700 dark:text-white">
-                                    <span className="text-start font-normal text-slate-600">Tanggal</span>
+                                    <span className="text-start font-normal text-slate-600">Tanggal Dibuat</span>
                                     <span className="text-end">{moment(currentData.tanggal).format('l')}</span>
                                 </li>
                             </ul>

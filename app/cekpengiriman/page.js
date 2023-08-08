@@ -26,46 +26,22 @@ export default function Home() {
     }
     return (
     <main >
-        <div className="overflow-x-hidden bg-gray-50 min-h-screen pt-16">
-            <section className="relative py-12 sm:py-16 ">
-                <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-                    <div className="max-w-3xl mx-auto text-center">
-                        <h1 className="mt-5 text-4xl font-bold leading-tight text-blue-primary sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight font-pj">Cek Pengiriman</h1>
-                        <p className="max-w-md mx-auto mt-6 text-base leading-7 text-gray-600 font-inter">Silahkan Masukan No. Container</p>
-                        <div className="relative inline-flex mt-10 group">
+        <form onSubmit={handleSubmit} className="relative mt-4">
+            <div className="overflow-x-hidden bg-gray-50 min-h-screen pt-16">
+                <section className="relative py-12 sm:py-16 ">
+                    <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+                        <div className="max-w-3xl mx-auto text-center">
+                            <h1 className="mt-5 text-4xl font-bold leading-tight text-blue-primary sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight font-pj">Cek Pengiriman</h1>
+                            <p className="max-w-md mx-auto mt-6 text-base leading-7 text-gray-600 font-inter">Silahkan Masukan No. Container</p>
+                            <div className="relative inline-flex mt-10 group">
                                 <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
-                                <form onSubmit={handleSubmit} className="relative mt-4">
-                                    <div className="absolute transitiona-all duration-1000 opacity-30 inset-0 bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg filter group-hover:opacity-100 group-hover:duration-200"></div>
-                                    <div className="relative space-y-4 sm:flex sm:space-y-0 sm:items-end">
+                                    
+                                <div className="absolute transitiona-all duration-1000 opacity-30 inset-0 bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg filter group-hover:opacity-100 group-hover:duration-200"></div>
+                                <div className="relative space-y-4 sm:flex sm:space-y-0 sm:items-end">
                                     <div className="flex-1">
                                         <label htmlFor="" className="sr-only">pengiriman</label>
                                         <div>
                                             <input type="container" name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-lg sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nomor Container" onChange={(e)=>setNoContainer(e.target.value)} />
-                                        </div>
-                                        <div className="flex gap-x-6">
-                                            <div className="flex">
-                                                <input 
-                                                type="radio" 
-                                                name="hs-radio-group" 
-                                                className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
-                                                id="hs-radio-group-1"
-                                                value="pengiriman"
-                                                checked={ type == 'pengiriman' }
-                                                onChange={(e)=> setType(e.target.value)}  />
-                                                <label htmlFor="hs-radio-group-1" className="text-sm text-gray-500 ml-2 dark:text-gray-400">Pengiriman</label>
-                                            </div>
-
-                                            <div className="flex">
-                                                <input 
-                                                type="radio" 
-                                                name="hs-radio-group" 
-                                                className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
-                                                id="hs-radio-group-2"
-                                                value="penerimaan"
-                                                checked={ type == 'penerimaan' }
-                                                onChange={(e)=> setType(e.target.value)} />
-                                                <label htmlFor="hs-radio-group-2" className="text-sm text-gray-500 ml-2 dark:text-gray-400">Penerimaan</label>
-                                            </div>
                                         </div>
                                     </div>
                                     {
@@ -80,18 +56,46 @@ export default function Home() {
                                             <button className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3 sm:text-sm text-base sm:py-3.5 font-semibold text-white transition-all duration-200 bg-gray-900 border border-transparent rounded-lg sm:rounded-r-lg sm:rounded-l-none hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900">Cek Pengiriman</button>
                                         )
                                     }
-                                    </div>
-                                </form>
+                                </div>
+
+                            </div>
                         </div>
+                        <div className="max-w-3xl mx-auto text-center">
+                            <div className="flex gap-x-6 mx-auto py-4 text-center gap-4 justify-center">
+                                <div className="flex cursor-pointer items-center gap-2">
+                                    <input 
+                                    type="radio" 
+                                    name="hs-radio-group" 
+                                    className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
+                                    id="hs-radio-group-1"
+                                    value="pengiriman"
+                                    checked={ type == 'pengiriman' }
+                                    onChange={(e)=> setType(e.target.value)}  />
+                                    <label htmlFor="hs-radio-group-1" className="text-sm sm:text-xl text-gray-500 ml-2 dark:text-gray-400">Pengiriman</label>
+                                </div>
+
+                                <div className="flex cursor-pointer items-center gap-2">
+                                    <input 
+                                    type="radio" 
+                                    name="hs-radio-group" 
+                                    className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
+                                    id="hs-radio-group-2"
+                                    value="penerimaan"
+                                    checked={ type == 'penerimaan' }
+                                    onChange={(e)=> setType(e.target.value)} />
+                                    <label htmlFor="hs-radio-group-2" className="text-sm sm:text-xl text-gray-500 ml-2 dark:text-gray-400">Penerimaan</label>
+                                </div>
+                            </div>
+                        </div>
+                        {
+                            results.length > 0 ?
+                            <Track data={results} container={noContainer} /> :
+                            onError && <Error />
+                        }
                     </div>
-                    {
-                        results.length > 0 ?
-                         <Track data={results} container={noContainer} /> :
-                         onError && <Error />
-                    }
-                </div>
-            </section>
-        </div>
+                </section>  
+            </div>
+        </form>
     </main>
   )
 }

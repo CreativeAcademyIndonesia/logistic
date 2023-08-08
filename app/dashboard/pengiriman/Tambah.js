@@ -25,6 +25,9 @@ export default function TambahPengiriman ({mutate, url}){
     const [namaKapal, setNamaKapal] = useState('')
     const [noContainer, setNoContainer] = useState('')
     const [noBl, setNoBl] = useState('')
+    const [tglStuffing, setTglStuffing] = useState('')
+    const [petugasStuffing, setPetugasStuffing] = useState('')
+    const [keterangan, setKeterangan] = useState('')
     const [file, setFile] = useState('')
     const [filepdf, setFilepdf] = useState('')
     const [toastStatus, setToastStatus] = useState(false)
@@ -59,6 +62,9 @@ export default function TambahPengiriman ({mutate, url}){
             formData.append('namaKapal', namaKapal);
             formData.append('noContainer', noContainer);
             formData.append('noBl', noBl);
+            formData.append('tglStuffing', tglStuffing);
+            formData.append('petugasStuffing', petugasStuffing);
+            formData.append('keterangan', keterangan);
 
             const res = await fetch (`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/pengiriman`, {
                 method : "POST", 
@@ -96,6 +102,9 @@ export default function TambahPengiriman ({mutate, url}){
         setNamaKapal('')
         setNoContainer('')
         setNoBl('')
+        setTglStuffing('')
+        setPetugasStuffing('')
+        setKeterangan('')
         setFilepdf(null)
         setFile(null)
         fileInputRef.current.value = '';
@@ -189,7 +198,7 @@ export default function TambahPengiriman ({mutate, url}){
                                             placeholder="No NPWP Pengirim" 
                                             value={noNpwpPengirim}
                                             onChange={(e)=>setNoNpwpPengirim(e.target.value)}
-                                            required />
+                                             />
                                     </div>
                                 </div>
                                 <div className="grid gap-4 mb-4 md:grid-cols-3">
@@ -363,8 +372,51 @@ export default function TambahPengiriman ({mutate, url}){
                                             placeholder="No BL" 
                                             value={noBl}
                                             onChange={(e)=>setNoBl(e.target.value)}
+                                             />
+                                    </div>
+
+                                    <div>
+                                        <label 
+                                            htmlFor="tglStuffing" 
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Stuffing</label>
+                                        <input 
+                                            type="date" 
+                                            id="tglStuffing" 
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                            placeholder="Tanggal Stripping" 
+                                            value={tglStuffing}
+                                            onChange={(e)=>setTglStuffing(e.target.value)}
                                             required />
                                     </div>
+
+                                    <div>
+                                        <label 
+                                            htmlFor="petugasStuffing" 
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Petugas Stuffing</label>
+                                        <input 
+                                            type="text" 
+                                            id="petugasStuffing" 
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                            placeholder="Petugas Stripping" 
+                                            value={petugasStuffing}
+                                            onChange={(e)=>setPetugasStuffing(e.target.value)}
+                                            required />
+                                    </div>
+
+                                    <div  className="col-span-2">
+                                        <label 
+                                            htmlFor="keterangan" 
+                                            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
+                                        <input 
+                                            type="text" 
+                                            id="keterangan" 
+                                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+                                            placeholder="Keterangan" 
+                                            value={keterangan}
+                                            onChange={(e)=>setKeterangan(e.target.value)}
+                                             />
+                                    </div>
+
                                 </div>
                                 <div className="grid gap-4 md:grid-cols-2">
                                     <div>

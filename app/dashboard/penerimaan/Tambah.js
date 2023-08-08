@@ -198,7 +198,7 @@ export default function Tambah ({mutate, url}){
                                             placeholder="No NPWP Pengirim" 
                                             value={noNpwpPengirim}
                                             onChange={(e)=>setNoNpwpPengirim(e.target.value)}
-                                            required />
+                                             />
                                     </div>
                                 </div>
                                 <div className="grid gap-4 mb-4 md:grid-cols-3">
@@ -372,7 +372,7 @@ export default function Tambah ({mutate, url}){
                                             placeholder="No BL" 
                                             value={noBl}
                                             onChange={(e)=>setNoBl(e.target.value)}
-                                            required />
+                                             />
                                     </div>
 
                                     <div>
@@ -403,7 +403,7 @@ export default function Tambah ({mutate, url}){
                                             required />
                                     </div>
 
-                                    <div>
+                                    <div  className="col-span-2">
                                         <label 
                                             htmlFor="keterangan" 
                                             className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keterangan</label>
@@ -414,7 +414,7 @@ export default function Tambah ({mutate, url}){
                                             placeholder="Keterangan" 
                                             value={keterangan}
                                             onChange={(e)=>setKeterangan(e.target.value)}
-                                            required />
+                                             />
                                     </div>
                                 </div>
                                 <div className="grid gap-4 md:grid-cols-2">

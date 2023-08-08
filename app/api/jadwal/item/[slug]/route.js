@@ -10,6 +10,3 @@ export async function GET(request, {params}){
   return NextResponse.json(data)
 }
 
-export async function handler(req, res) {
-}
-

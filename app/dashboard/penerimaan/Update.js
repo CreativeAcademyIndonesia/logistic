@@ -140,7 +140,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="Nama Pengirim" 
                                             value={namaPengirim}
                                             onChange={(e)=>setNamaPengirim(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -153,7 +153,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="No Hp Pengirim" 
                                             value={noHpPengirim}
                                             onChange={(e)=>setNoHpPengirim(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -166,7 +166,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="No Ktp Pengirim" 
                                             value={noKtpPengirim}
                                             onChange={(e)=>setNoKtpPengirim(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -179,7 +179,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="No NPWP Pengirim" 
                                             value={noNpwpPengirim}
                                             onChange={(e)=>setNoNpwpPengirim(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                 </div>
                                 <div className="grid gap-4 mb-4 md:grid-cols-3">
@@ -194,7 +194,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="Jenis Barang" 
                                             value={jenisBarang}
                                             onChange={(e)=>setJenisBarang(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -207,7 +207,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="Layanan" 
                                             value={layanan}
                                             onChange={(e)=>setLayanan(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -220,7 +220,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="Alamat Pengirim" 
                                             value={alamatPengirim}
                                             onChange={(e)=>setalAmatPengirim(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -233,7 +233,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="From" 
                                             value={from}
                                             onChange={(e)=>setFrom(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -246,7 +246,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="To" 
                                             value={to}
                                             onChange={(e)=>setTo(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -259,7 +259,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="Alamat Tujuan  " 
                                             value={alamatTujuan}
                                             onChange={(e)=>setAlamatTujuan(e.target.value)}
-                                            required />
+                                            />
                                     </div>
 
                                     <div>
@@ -273,7 +273,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="Nama Penerima" 
                                             value={namaPenerima}
                                             onChange={(e)=>setNamaPenerima(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -286,7 +286,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="No Hp Penerima" 
                                             value={noHpPenerima}
                                             onChange={(e)=>setNoHpPenerima(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -299,7 +299,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="No KTP Penerima" 
                                             value={noKtpPenerima}
                                             onChange={(e)=>setNoKtpPenerima(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                 </div>
                                 <div className="grid gap-4 mb-4 md:grid-cols-4">
@@ -314,7 +314,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="Shipping Line" 
                                             value={shipingLine}
                                             onChange={(e)=>setShipingLine(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -327,7 +327,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="Nama Kapal" 
                                             value={namaKapal}
                                             onChange={(e)=>setNamaKapal(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -340,7 +340,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="No Container" 
                                             value={noContainer}
                                             onChange={(e)=>setNoContainer(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -353,7 +353,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="No BL" 
                                             value={noBl}
                                             onChange={(e)=>setNoBl(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -366,7 +366,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="Tanggal Stripping" 
                                             value={tglStripping}
                                             onChange={(e)=>setTglStripping(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -379,7 +379,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="Petugas Stripping" 
                                             value={petugasStripping}
                                             onChange={(e)=>setPetugasStripping(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                     <div>
                                         <label 
@@ -392,7 +392,7 @@ export default function Update ({currentData, mutate, url}){
                                             placeholder="Keterangan" 
                                             value={keterangan}
                                             onChange={(e)=>setKeterangan(e.target.value)}
-                                            required />
+                                            />
                                     </div>
                                 </div>
                                 <div className="grid gap-4 md:grid-cols-2">

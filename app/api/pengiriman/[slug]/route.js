@@ -25,7 +25,7 @@ export async function PATCH(request, {params}) {
   const idPengiriman = params.slug
   const data = await request.formData()
   const jsondata = data.get('data')
-  const {namaPengirim, noHpPengirim, noKtpPengirim, noNpwpPengirim, jenisBarang, layanan, alamatPengirim, from, to, alamatTujuan, namaPenerima, noHpPenerima, noKtpPenerima, shipingLine, namaKapal, noContainer, noBl, oldfile, oldfilepdf} = await JSON.parse(jsondata)
+  const {namaPengirim, noHpPengirim, noKtpPengirim, noNpwpPengirim, jenisBarang, layanan, alamatPengirim, from, to, alamatTujuan, namaPenerima, noHpPenerima, noKtpPenerima, shipingLine, namaKapal, noContainer, noBl, oldfile, oldfilepdf, tglStuffing, petugasStuffing, keterangan} = await JSON.parse(jsondata)
 
   const file = data.get('file')
   const filepdf = data.get('filepdf')
@@ -76,7 +76,10 @@ export async function PATCH(request, {params}) {
     No_Container = '${noContainer}',
     No_Bl = '${noBl}',
     Image = '${filename}',
-    Pdf = '${filenamepdf}'
+    Pdf = '${filenamepdf}',
+    Tgl_Stuffing = '${tglStuffing}',
+    Petugas_Stuffing = '${petugasStuffing}',
+    Keterangan = '${keterangan}'
     WHERE ID_Pengiriman = ${idPengiriman}`,
     values : []
   })
