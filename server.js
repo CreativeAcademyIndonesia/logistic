@@ -13,7 +13,7 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
   const server = express();
-  server.use("/storage", express.static(__dirname + "/public/storage"));
+  server.use('/upload', express.static(__dirname + "/upload"));
   server.all("*", (req, res) => {
     return handle(req, res);
   });
