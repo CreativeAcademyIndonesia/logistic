@@ -5,6 +5,7 @@
 /public/storage
 /.pnp
 .pnp.js
+.env.local
 
 # testing
 /coverage
