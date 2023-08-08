@@ -51,7 +51,7 @@ export async function POST(request){
     const fileExt = path.extname(file.name)
     filename = filename + fileExt
     // paths = `${process.env.ROUTE_PATH}/storage/${filename}`
-    paths = `${process.env.ROUTE_PATH}upload/${filename}`
+    paths = `${process.env.ROUTE_PATH}/upload/${filename}`
     await writeFile(paths, buffer)
   }else{
     filename = ''
