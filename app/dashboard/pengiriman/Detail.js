@@ -4,8 +4,23 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleInfo, faFilePdf, faInfo, faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
 import moment from 'moment/moment';
+import useSWR, { useSWRConfig } from 'swr'
+import { useState } from 'react';
 
 export default function Detail ({currentData}){
+    const fetcher = (url) => fetch(url).then(res => res.json())
+    let base64data = ''
+    if(currentData.Image != '' || !currentData.Image ) {
+        const { data, error, isLoading } = useSWR(`/api/storage?name=${currentData.Image}`, fetcher, {
+            revalidateIfStale: false,
+            revalidateOnFocus: false,
+            revalidateOnReconnect: false
+          })
+        if(data){
+            let buff = new Buffer(data);
+            base64data = buff.toString('base64');
+        }
+    }
 
     return (
         <>
@@ -150,11 +165,9 @@ export default function Detail ({currentData}){
                                         currentData.Image == '' ? (
                                             <p className='text-slate-400'>Tidak ada file gambar</p>
                                         ) : (
-                                            <Image
-                                            src={`/storage/${currentData.Image}`}
-                                            className='w-full'
-                                            alt="My Image" width={300} height={200}
-                                            />
+                                            <Image 
+                                            src={`data:image/jpg;base64,${base64data}`} className='w-full'
+                                            alt="My Image" width={300} height={200}/>
                                         )
                                     }
                                 </li>
