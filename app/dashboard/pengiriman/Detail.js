@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCircleInfo, faFilePdf, faInfo, faPen, faXmark } from "@fortawesome/free-solid-svg-icons"
 import moment from 'moment/moment';
 import useSWR, { useSWRConfig } from 'swr'
-import { useState } from 'react';
 
 export default function Detail ({currentData}){
+    
     const fetcher = (url) => fetch(url).then(res => res.json())
     let base64data = ''
     if(currentData.Image != '' || !currentData.Image ) {
@@ -145,7 +145,7 @@ export default function Detail ({currentData}){
                                             <p className='text-slate-400'>Tidak ada file Pdf</p>
                                         ) : (
                                             <a 
-                                            href={`/storage/${currentData.Pdf}`} 
+                                            href={`/api/storage/pdf?name=${currentData.Pdf}`} 
                                             className="inline-flex flex-shrink-0 justify-center items-center gap-2 h-[2.875rem]  rounded-md border border-transparent font-semibold bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-all text-sm  dark:focus:ring-offset-gray-800 w-full"
                                             alt="alt text"
                                             target="_blank"
