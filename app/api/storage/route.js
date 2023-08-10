@@ -6,10 +6,11 @@ export async function GET(request) {
     const params = new URL(request.url)
     let filename = params.searchParams.get('name')
     const dirRelativeToPublicFolder = 'storage'
-    const dir = path.resolve('./public', dirRelativeToPublicFolder);
-
-    const filenames = fs.readdirSync(dir);
-    const data = fs.readFileSync(`${dir}/${filename}`)
+    const dir = path.resolve('./public', dirRelativeToPublicFolder)
+    let data = {} 
+    if(data != '' || data){
+        data = fs.readFileSync(`${dir}/${filename}`)
+    }
+    console.log(`${dir}/${filename}`)
     return NextResponse.json(data)
-    
 }

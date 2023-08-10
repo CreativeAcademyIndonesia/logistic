@@ -59,8 +59,7 @@ export default function Footer(){
                     </div>
             
                     <hr className="mt-16 mb-10-gray-200" />
-            
-                    <p className="text-sm text-center text-gray-600">© Copyright 2022, All Rights Reserved by PT. Hasfi prima logistik</p>
+                    <p className="text-sm text-center text-gray-600 pt-4">© Copyright 2023, All Rights Reserved by PT. Hasfi prima logistik</p>
                 </div>
             </section>
         )

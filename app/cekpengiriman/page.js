@@ -26,7 +26,7 @@ export default function Home() {
     }
     return (
     <main >
-        <form onSubmit={handleSubmit} className="relative mt-4">
+        <form onSubmit={handleSubmit} className="relative ">
             <div className="overflow-x-hidden bg-gray-50 min-h-screen pt-16">
                 <section className="relative py-12 sm:py-16 ">
                     <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">

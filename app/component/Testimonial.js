@@ -1,6 +1,9 @@
 import { faStar } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from 'next/image'
+import profile1 from '../../public/profile/profile1.png'
+import profile2 from '../../public/profile/profile2.png'
+import profile3 from '../../public/profile/profile3.png'
 
 export default function Testimonial(){
     return(
@@ -52,10 +55,14 @@ export default function Testimonial(){
                                     </div>
     
                                     <div className="flex items-center mt-8">
-                                        {/* <img className="flex-shrink-0 object-cover rounded-full w-11 h-11" 
-                                        src="https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-male-1.png" alt="" /> */}
+                                        <Image 
+                                            src={profile1}
+                                            className="flex-shrink-0 object-cover rounded-full w-11 h-11"
+                                            alt="PT. Hasfi Prima Logistik"
+                                        />
                                         <div className="ml-4">
-                                            <p className="text-base font-bold text-gray-900 font-pj">- Nasabah Indonesia</p>
+                                            <p className="text-base font-bold text-gray-900 font-pj">Juni Patrio Utama</p>
+                                            <p className="text-sm font-light text-slate-500 font-pj">Pengusaha</p>
                                         </div>
                                     </div>
                                 </div>
@@ -93,9 +100,14 @@ export default function Testimonial(){
                                     </div>
     
                                     <div className="flex items-center mt-8">
-                                        {/* <img className="flex-shrink-0 object-cover rounded-full w-11 h-11" src="https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-male-2.png" alt="" /> */}
+                                        <Image 
+                                            src={profile2}
+                                            className="flex-shrink-0 object-cover rounded-full w-11 h-11"
+                                            alt="PT. Hasfi Prima Logistik"
+                                        />
                                         <div className="ml-4">
-                                            <p className="text-base font-bold text-gray-900 font-pj">- Nasabah Indonesia</p>
+                                            <p className="text-base font-bold text-gray-900 font-pj">Putu Eka Saputra</p>
+                                            <p className="text-sm font-light text-slate-500 font-pj">Pengusaha</p>
                                         </div>
                                     </div>
                                 </div>
@@ -133,9 +145,14 @@ export default function Testimonial(){
                                     </div>
     
                                     <div className="flex items-center mt-8">
-                                        {/* <img className="flex-shrink-0 object-cover rounded-full w-11 h-11" src="https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-female.png" alt="" /> */}
+                                        <Image 
+                                            src={profile3}
+                                            className="flex-shrink-0 object-cover rounded-full w-11 h-11"
+                                            alt="PT. Hasfi Prima Logistik"
+                                        />
                                         <div className="ml-4">
-                                            <p className="text-base font-bold text-gray-900 font-pj">- Nasabah Indonesia</p>
+                                            <p className="text-base font-bold text-gray-900 font-pj">Maulana Ibrahim</p>
+                                            <p className="text-sm font-light text-slate-500 font-pj">Pengusaha</p>
                                         </div>
                                     </div>
                                 </div>
