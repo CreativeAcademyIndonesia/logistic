@@ -4,9 +4,9 @@ const { parse } = require('url')
 const next = require('next')
 var express = require('express')
 var cors = require('cors')
-var app = express()
+var server = express()
 
-app.use(cors({
+server.use(cors({
   origin: '*',
 }))
 
