@@ -4,11 +4,7 @@ const { parse } = require('url')
 const next = require('next')
 var express = require('express')
 var cors = require('cors')
-var server = express()
 
-server.use(cors({
-  origin: '*',
-}))
 
 const dev = process.env.NODE_ENV !== 'production'
 const hostname = 'localhost'
@@ -23,6 +19,12 @@ app.prepare().then(() => {
   // server.all("*", (req, res) => {
   //   return handle(req, res);
   // });
+  var server = express()
+
+  server.use(cors({
+    origin: '*',
+  }))
+
   createServer(async (req, res) => {
     try {
       // Be sure to pass `true` as the second argument to `url.parse`.
