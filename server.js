@@ -13,18 +13,19 @@ const port = process.env.port || 3000
 const app = next({ dev, hostname, port })
 const handle = app.getRequestHandler()
 
+var server = express()
+
+server.use(cors({
+  origin: '*',
+}))
+
+
 app.prepare().then(() => {
   // const server = express();
   // server.use("/storage", express.static(__dirname + "/public/storage"));
   // server.all("*", (req, res) => {
   //   return handle(req, res);
   // });
-  var server = express()
-
-  server.use(cors({
-    origin: '*',
-  }))
-
   createServer(async (req, res) => {
     try {
       // Be sure to pass `true` as the second argument to `url.parse`.
