@@ -10,12 +10,12 @@ export default function Detail ({currentData}){
     
     const fetcher = (url) => fetch(url).then(res => res.json())
     let base64data = ''
-    if(currentData.Image != '' || !currentData.Image ) {
+    if(currentData.Image != '') {
         const { data, error, isLoading } = useSWR(`/api/storage?name=${currentData.Image}`, fetcher, {
             revalidateIfStale: false,
             revalidateOnFocus: false,
             revalidateOnReconnect: false
-          })
+        })
         if(data){
             let buff = new Buffer(data);
             base64data = buff.toString('base64');
