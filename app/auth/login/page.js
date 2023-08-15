@@ -27,6 +27,7 @@ export default function Home() {
 
   }
   useEffect(()=>{
+    console.log(status)
     if (status === "unauthenticated") {
       setIsMutate(false)
     } else if (status === "authenticated") {
