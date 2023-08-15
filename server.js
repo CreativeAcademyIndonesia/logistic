@@ -2,7 +2,9 @@
 const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
-const express = require('express');
+var express = require('express')
+var cors = require('cors')
+
 
 const dev = process.env.NODE_ENV !== 'production'
 const hostname = 'localhost'
@@ -11,12 +13,19 @@ const port = process.env.port || 3000
 const app = next({ dev, hostname, port })
 const handle = app.getRequestHandler()
 
+var server = express()
+
+server.use(cors({
+  origin: '*',
+}))
+
+
 app.prepare().then(() => {
-  const server = express();
-  server.use("/storage", express.static(__dirname + "/public/storage"));
-  server.all("*", (req, res) => {
-    return handle(req, res);
-  });
+  // const server = express();
+  // server.use("/storage", express.static(__dirname + "/public/storage"));
+  // server.all("*", (req, res) => {
+  //   return handle(req, res);
+  // });
   createServer(async (req, res) => {
     try {
       // Be sure to pass `true` as the second argument to `url.parse`.
