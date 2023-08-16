@@ -3,16 +3,16 @@ import Mitradonut from "./chart/mitradout";
 import { Yearlychart } from "./chart/yearlycart";
 // import { getData } from "./lib/getdata";
 
-export async function getData(url){
-  try{
-    const res = await fetch(url, { cache : "no-store" })
-    return res.json();
-  }catch(error){
-    console.log(error)
-    const res = [{}]
-    return res 
-  }
-}
+// export async function getData(url){
+//   try{
+//     const res = await fetch(url, { cache : "no-store" })
+//     return res.json();
+//   }catch(error){
+//     console.log(error)
+//     const res = [{}]
+//     return res 
+//   }
+// }
 
 async function getData(url) {
   console.log(window.location.origin)
