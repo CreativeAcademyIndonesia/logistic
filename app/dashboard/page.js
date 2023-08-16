@@ -1,21 +1,8 @@
 import { LineChart } from "./chart/linechart";
 import Mitradonut from "./chart/mitradout";
 import { Yearlychart } from "./chart/yearlycart";
-// import { getData } from "./lib/getdata";
-
-// export async function getData(url){
-//   try{
-//     const res = await fetch(url, { cache : "no-store" })
-//     return res.json();
-//   }catch(error){
-//     console.log(error)
-//     const res = [{}]
-//     return res 
-//   }
-// }
 
 async function getData(url) {
-  console.log(process.env.BASE_URL)
   try{
     const res = await fetch(`${process.env.BASE_URL}${url}`, { cache : "no-store" })
     return res.json();
