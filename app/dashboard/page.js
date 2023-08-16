@@ -1,7 +1,17 @@
 import { LineChart } from "./chart/linechart";
 import Mitradonut from "./chart/mitradout";
 import { Yearlychart } from "./chart/yearlycart";
-import { getData } from "./lib/getdata";
+// import { getData } from "./lib/getdata";
+
+export async function getData(url){
+  try{
+    const res = await fetch(url, { cache : "no-store" })
+    return res.json();
+  }catch{
+    const res = [{}]
+    return res 
+  }
+}
 
 export default async function Home() {
   // Yearly
