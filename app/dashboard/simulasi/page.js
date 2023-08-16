@@ -7,6 +7,7 @@ import { Jumbotrons } from "@/app/component/Jumbotron"
 
 export default async function Home() {
   const data = await getData('/api/simulasi')
+  console.log(data)
 
   return (
     <main className="min-h-screen bg-white relative">
