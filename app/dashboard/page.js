@@ -2,12 +2,11 @@ import { LineChart } from "./chart/linechart";
 import Mitradonut from "./chart/mitradout";
 import { Yearlychart } from "./chart/yearlycart";
 
-async function getData(url) {
+async function getData(url){
   try{
     const res = await fetch(`${process.env.BASE_URL}${url}`, { cache : "no-store" })
     return res.json();
-  }catch(error){
-    console.log(error)
+  }catch{
     const res = []
     return res 
   }
@@ -30,6 +29,15 @@ export default async function Home() {
   const kapalpenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Nama_Kapal`)
   const namapenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Nama_Penerima`)
 
+  console.log(pengiriman)
+  console.log(penerimaan)
+  console.log(armada)
+  console.log(mitrapengiriman)
+  console.log(kapalpengiriman)
+  console.log(namapengiriman)
+  console.log(mitrapenerimaan)
+  console.log(kapalpenerimaan)
+  console.log(namapenerimaan)
   return (
     <main className="min-h-screen bg-white text-black">
       <div className='grid md:grid-cols-6 gap-4'>

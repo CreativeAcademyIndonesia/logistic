@@ -1,9 +1,19 @@
-import { getData } from "../lib/getdata"
+// import { getData } from "../lib/getdata"
 import Tambah from "./Tambah"
 import Delete from "./Delete"
 import Update from "./Update"
 import NoData from "@/app/component/NoData"
 import { Jumbotrons } from "@/app/component/Jumbotron"
+
+async function getData(url){
+  try{
+    const res = await fetch(`${process.env.BASE_URL}${url}`, { cache : "no-store" })
+    return res.json();
+  }catch{
+    const res = []
+    return res 
+  }
+}
 
 export default async function Home() {
   const data = await getData('/api/simulasi')
