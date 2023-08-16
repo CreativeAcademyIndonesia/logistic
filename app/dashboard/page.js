@@ -15,7 +15,6 @@ import { Yearlychart } from "./chart/yearlycart";
 // }
 
 async function getData(url) {
-  console.log(window.location.origin)
   try{
     const res = await fetch(`${process.env.BASE_URL}${url}`, { cache : "no-store" })
     return res.json();
