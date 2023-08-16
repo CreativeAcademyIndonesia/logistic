@@ -14,6 +14,19 @@ export async function getData(url){
   }
 }
 
+async function getData(url) {
+  console.log(window.location.origin)
+  try{
+    const res = await fetch(`${process.env.BASE_URL}${url}`, { cache : "no-store" })
+    return res.json();
+  }catch(error){
+    console.log(error)
+    const res = [{}]
+    return res 
+  }
+}
+
+
 export default async function Home() {
   // Yearly
   const pengiriman = await getData(`/api/chart/recap?t=pengiriman`)
