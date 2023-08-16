@@ -7,7 +7,8 @@ export async function getData(url){
   try{
     const res = await fetch(url, { cache : "no-store" })
     return res.json();
-  }catch{
+  }catch(error){
+    console.log(error)
     const res = [{}]
     return res 
   }
