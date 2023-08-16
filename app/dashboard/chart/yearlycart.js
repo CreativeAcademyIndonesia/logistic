@@ -14,18 +14,18 @@ import { Bar } from 'react-chartjs-2';
 const rangkumData = (data)=>{
     const result = Array(12).fill(0);
     const monthMap = {
-    'Jan': 0,
-    'Feb': 1,
-    'Mar': 2,
-    'Apr': 3,
-    'May': 4,
-    'Jun': 5,
-    'Jul': 6,
-    'Aug': 7,
-    'Sep': 8,
-    'Oct': 9,
-    'Nov': 10,
-    'Dec': 11
+    '01': 0,
+    '02': 1,
+    '03': 2,
+    '04': 3,
+    '05': 4,
+    '06': 5,
+    '07': 6,
+    '08': 7,
+    '09': 8,
+    '10': 9,
+    '11': 10,
+    '12': 11
     };
 
     data.forEach(item => {

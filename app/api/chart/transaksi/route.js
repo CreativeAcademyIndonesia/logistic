@@ -15,6 +15,5 @@ export async function GET(request){
     `,
     values : []
   })
-  console.log(data)
   return NextResponse.json(data)
 }

@@ -29,15 +29,6 @@ export default async function Home() {
   const kapalpenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Nama_Kapal`)
   const namapenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Nama_Penerima`)
 
-  console.log(pengiriman)
-  console.log(penerimaan)
-  console.log(armada)
-  console.log(mitrapengiriman)
-  console.log(kapalpengiriman)
-  console.log(namapengiriman)
-  console.log(mitrapenerimaan)
-  console.log(kapalpenerimaan)
-  console.log(namapenerimaan)
   return (
     <main className="min-h-screen bg-white text-black">
       <div className='grid md:grid-cols-6 gap-4'>
