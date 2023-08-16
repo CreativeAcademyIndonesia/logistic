@@ -21,7 +21,6 @@ export default async function Home() {
   const data = await getData('/api/jadwal')
 
   return (
-    // <h1>Ok</h1>
     <main className="min-h-screen bg-white relative">
       <Jumbotrons title="Jadwal Kapal"/>
       <div className="flex justify-between items-center p-4">
@@ -29,7 +28,7 @@ export default async function Home() {
         <Tambah />
       </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        { data ? (
+        { data.length < 1 ? (
           <NoData />
         ) :(
           <div className="max-w-screen max-h-[70vh] overflow-auto">
