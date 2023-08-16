@@ -1,6 +1,6 @@
 export async function getData(url){
   try{
-    const res = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}${url}`, { cache : "no-store" })
+    const res = await fetch(`${process.env.BASE_URL}${url}`, { cache : "no-store" })
     return res.json();
   }catch{
     const res = [{}]
