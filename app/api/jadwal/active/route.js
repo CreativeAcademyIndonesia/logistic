@@ -4,7 +4,7 @@ import moment from "moment";
 
 export async function GET() {
   const data = await query({
-    query : "SELECT * FROM jadwal ORDER BY Id DESC LIMIT 10",
+    query : "SELECT * FROM jadwal ORDER BY Id DESC LIMIT 5",
     values : []
   })
   return NextResponse.json(data)

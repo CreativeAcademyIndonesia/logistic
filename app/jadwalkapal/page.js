@@ -1,9 +1,12 @@
 'use client'
 
-import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
+import { faCircleNotch, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
 import moment from "moment/moment";
+import Link from "next/link";
+import whatsapp from '../../public/whatsapp.svg'
+import Image from "next/image";
 
 export default function Home() {
 
@@ -38,6 +41,19 @@ export default function Home() {
             console.error('Error fetching data:', error)
         }
     };
+
+    const handleShareClick = () => {
+        const textToShare = encodeURIComponent('The text to share!');
+        let textShare = `*Jadwal Kapal PT. Hasfi Prima Logistik*  %0a %0a`
+        jadwalKapal.map((jadwal)=>{
+            textShare += `*${jadwal.Nama_Kapal}*%0a NO Voyage: ${jadwal.No_Voyage}%0a Rute Tujuan: ${jadwal.Rute_dan_Tujuan}%0a Rute Panjang: ${jadwal.Rute_Panjang}%0a Closing: ${moment(jadwal.Tanggal_Clossing).format('l')}%0a ETD: ${moment(jadwal.Date_RangeETD).format('l')}%0a ETA: ${moment(jadwal.Date_RangeETA).format('l')}%0a%0a`
+    })
+        textShare += `PT. Hasfi Prima Logistik%0a https://hasfiprimalogistik.com %0a`
+        encodeURIComponent(textShare)
+        const whatsappUrl = `https://api.whatsapp.com/send?text=${textShare}`;
+        window.location.href = whatsappUrl; 
+    };
+
     useEffect(() => {
         fetchData()
         fetchitem('Rute_dan_Tujuan')
@@ -160,30 +176,30 @@ export default function Home() {
                             <tbody>
                                 {jadwalKapal.map((jadwal, index)=>(
                                     <tr key={jadwal.Id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {index +1 }
-                                            </th>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {jadwal.Nama_Kapal}
-                                            </th>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {jadwal.No_Voyage}
-                                            </th>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {moment(jadwal['Tanggal_Clossing']).format('l')}
-                                            </th>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {jadwal.Rute_dan_Tujuan}
-                                            </th>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {jadwal.Rute_Panjang}
-                                            </th>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {moment(jadwal['Date_RangeETD']).format('l')}
-                                            </th>
-                                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {moment(jadwal['Date_RangeETA']).format('l')}
-                                            </th>
+                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {index +1 }
+                                        </th>
+                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {jadwal.Nama_Kapal}
+                                        </th>
+                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {jadwal.No_Voyage}
+                                        </th>
+                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {moment(jadwal['Tanggal_Clossing']).format('l')}
+                                        </th>
+                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {jadwal.Rute_dan_Tujuan}
+                                        </th>
+                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {jadwal.Rute_Panjang}
+                                        </th>
+                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {moment(jadwal['Date_RangeETD']).format('l')}
+                                        </th>
+                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {moment(jadwal['Date_RangeETA']).format('l')}
+                                        </th>
                                     </tr>
                                 ))}
                             </tbody>
@@ -194,7 +210,19 @@ export default function Home() {
                             ) 
                         }
                     </div>
-
+                    <div className="p-4 ms-auto flex justify-end gap-2 items-center">
+                        <span className="text-slate-400 text-xl font-medium">Share </span>
+                        <div>
+                            <button type="button" className="rounded-full flex justify-center items-center w-10 h-10 text-xl p-2 text-green-400 bg-green-100" onClick={handleShareClick}>
+                                <Image
+                                    src={whatsapp}
+                                    width='20'
+                                    height='20'
+                                    alt="hasfiprimalogistik"
+                                />
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
