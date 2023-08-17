@@ -101,7 +101,7 @@ export default function Tambah ({mutate, url}){
                                             type="text" 
                                             id="namaMitra" 
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                            placeholder="Nama Pengirim" 
+                                            placeholder="Nama Mitra" 
                                             value={namaMitra}
                                             onChange={(e)=>setNamaMitra(e.target.value)}
                                             required />
@@ -114,7 +114,7 @@ export default function Tambah ({mutate, url}){
                                             type="text" 
                                             id="alamatMitra" 
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                            placeholder="No Hp Pengirim" 
+                                            placeholder="Alamat Mitra" 
                                             value={alamatMitra}
                                             onChange={(e)=>setAlamatMitra(e.target.value)}
                                             required />
@@ -127,7 +127,7 @@ export default function Tambah ({mutate, url}){
                                             type="text" 
                                             id="pemilikOwner" 
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                            placeholder="Nama Pengirim" 
+                                            placeholder="Pemilik / Owner" 
                                             value={pemilikOwner}
                                             onChange={(e)=>setPemilikOwner(e.target.value)}
                                             required />
@@ -140,7 +140,7 @@ export default function Tambah ({mutate, url}){
                                             type="text" 
                                             id="nPWPMitra" 
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                            placeholder="No Hp Pengirim" 
+                                            placeholder="NPWP Mitra" 
                                             value={nPWPMitra}
                                             onChange={(e)=>setNPWPMitra(e.target.value)}
                                             required />
@@ -153,7 +153,7 @@ export default function Tambah ({mutate, url}){
                                             type="text" 
                                             id="contacPerson" 
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                            placeholder="Nama Pengirim" 
+                                            placeholder="Contact Person" 
                                             value={contacPerson}
                                             onChange={(e)=>setContacPerson(e.target.value)}
                                             required />
@@ -166,7 +166,7 @@ export default function Tambah ({mutate, url}){
                                             type="date" 
                                             id="jangkaWaktuKerjaSama" 
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                                            placeholder="No Hp Pengirim" 
+                                            placeholder="Tanggal" 
                                             value={jangkaWaktuKerjaSama}
                                             onChange={(e)=>setJangkaWaktuKerjaSama(e.target.value)}
                                             required />
