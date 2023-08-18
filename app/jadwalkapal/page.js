@@ -43,7 +43,6 @@ export default function Home() {
     };
 
     const handleShareClick = () => {
-        const textToShare = encodeURIComponent('The text to share!');
         let textShare = `*Jadwal Kapal PT. Hasfi Prima Logistik*  %0a %0a`
         jadwalKapal.map((jadwal)=>{
             textShare += `*${jadwal.Nama_Kapal}*%0a NO Voyage: ${jadwal.No_Voyage}%0a Rute Tujuan: ${jadwal.Rute_dan_Tujuan}%0a Rute Panjang: ${jadwal.Rute_Panjang}%0a Closing: ${moment(jadwal.Tanggal_Clossing).format('l')}%0a ETD: ${moment(jadwal.Date_RangeETD).format('l')}%0a ETA: ${moment(jadwal.Date_RangeETA).format('l')}%0a%0a`
@@ -53,6 +52,16 @@ export default function Home() {
         const whatsappUrl = `https://api.whatsapp.com/send?text=${textShare}`;
         window.location.href = whatsappUrl; 
     };
+
+    const handleShareClickSingle = (jadwal) => {
+        let textShare = `*Jadwal Kapal PT. Hasfi Prima Logistik*  %0a %0a`
+        textShare += `*${jadwal.Nama_Kapal}*%0a NO Voyage: ${jadwal.No_Voyage}%0a Rute Tujuan: ${jadwal.Rute_dan_Tujuan}%0a Rute Panjang: ${jadwal.Rute_Panjang}%0a Closing: ${moment(jadwal.Tanggal_Clossing).format('l')}%0a ETD: ${moment(jadwal.Date_RangeETD).format('l')}%0a ETA: ${moment(jadwal.Date_RangeETA).format('l')}%0a%0a`
+        textShare += `PT. Hasfi Prima Logistik%0a https://hasfiprimalogistik.com %0a`
+        encodeURIComponent(textShare)
+        const whatsappUrl = `https://api.whatsapp.com/send?text=${textShare}`;
+        window.location.href = whatsappUrl; 
+    };
+
 
     useEffect(() => {
         fetchData()
@@ -171,6 +180,9 @@ export default function Home() {
                                     <th scope="col" className="px-6 py-3">
                                         ETA
                                     </th>
+                                    <th scope="col" className="px-6 py-3">
+                                        Share
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -199,6 +211,16 @@ export default function Home() {
                                         </th>
                                         <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {moment(jadwal['Date_RangeETA']).format('l')}
+                                        </th>
+                                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <button type="button" className="rounded-full flex justify-center items-center w-8 h-8 text-xl p-2 text-green-400 bg-green-100" onClick={()=>handleShareClickSingle(jadwal)}>
+                                                <Image
+                                                    src={whatsapp}
+                                                    width='16'
+                                                    height='16'
+                                                    alt="hasfiprimalogistik"
+                                                />
+                                            </button>
                                         </th>
                                     </tr>
                                 ))}

@@ -36,9 +36,9 @@ export default async function Home() {
                         <th scope="col" className="px-6 py-3">
                             No
                         </th>
-                        <th scope="col" className="px-6 py-3">
+                        {/* <th scope="col" className="px-6 py-3">
                             ID
-                        </th>
+                        </th> */}
                         <th scope="col" className="px-6 py-3">
                           Kota Asal
                         </th>
@@ -60,9 +60,9 @@ export default async function Home() {
                           <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             {index +1}
                           </th>
-                          <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                          {/* <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                               {d['id']}
-                          </th>
+                          </th> */}
                           <td className="px-6 py-4">
                             {d['Kota_Asal']}
                           </td>

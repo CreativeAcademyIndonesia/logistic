@@ -51,9 +51,9 @@ export default function Home() {
                           <th scope="col" className="px-6 py-3">
                               No
                           </th>
-                          <th scope="col" className="px-6 py-3">
+                          {/* <th scope="col" className="px-6 py-3">
                               ID
-                          </th>
+                          </th> */}
                           <th scope="col" className="px-6 py-3">
                             Nama Pemilik Truck
                           </th>
@@ -87,9 +87,9 @@ export default function Home() {
                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {index +1}
                             </th>
-                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            {/* <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {d['Id']}
-                            </th>
+                            </th> */}
                             <td className="px-6 py-4">
                               {d['Nama_Pemilik_Truck']}
                             </td>

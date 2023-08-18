@@ -12,7 +12,7 @@ export default function Testimonial(){
             <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 relative z-20">
                 <div className="flex flex-col items-center">
                     <div className="text-center">
-                        <p className="text-lg font-medium text-white/80 font-pj">2.157 Orang Telah Menyatakan Kepuasan layanan PT. Hasfi Prima Logistik</p>
+                        <p className="text-lg font-medium text-white/80 font-pj">101 Orang Telah Menyatakan Kepuasan layanan PT. Hasfi Prima Logistik</p>
                         <h2 className="mt-4 text-3xl font-bold text-white sm:text-4xl xl:text-5xl font-pj">"Suara Klien yang Bahagia, Menginspirasi Layanan Kami"</h2>
                     </div>
     
