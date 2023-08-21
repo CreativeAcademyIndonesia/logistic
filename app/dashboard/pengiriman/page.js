@@ -17,6 +17,7 @@ export default function Home() {
   const [url, setUrl] = useState(`/api/pengiriman?date=${dateActive}`)
   const { data, error, isLoading } = useSWR(url, fetcher)
   const { mutate } = useSWRConfig()
+  console.log(data)
 
   return (
     <main className="min-h-screen bg-white relative ">
@@ -80,6 +81,15 @@ export default function Home() {
                               Kapal
                           </th>
                           <th scope="col" className="px-6 py-3">
+                              Petugas Stuffing
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                              Tgl Stuffing
+                          </th>
+                          <th scope="col" className="px-6 py-3">
+                              Keterangan
+                          </th>
+                          <th scope="col" className="px-6 py-3">
                             Action
                           </th>
                       </tr>
@@ -117,6 +127,15 @@ export default function Home() {
                             </td>
                             <td className="px-6 py-4">
                                 {d['Nama_Kapal']}
+                            </td>
+                            <td className="px-6 py-4">
+                                {d['Petugas_Stuffing']}
+                            </td>
+                            <td className="px-6 py-4">
+                              {moment(d['Tgl_Stuffing']).format('l')}
+                            </td>
+                            <td className="px-6 py-4">
+                                {d['Keterangan']}
                             </td>
                             <td className="px-6 py-4 text-right">
                               <div className="flex gap-2">
