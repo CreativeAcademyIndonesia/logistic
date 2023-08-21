@@ -1,6 +1,6 @@
-import service from '../../public/illustration/service.svg'
-import shipping from '../../public/illustration/shipping.svg'
-import trucking from '../../public/illustration/trucking.svg'
+import service from '../../public/illustration/service.png'
+import shipping from '../../public/illustration/shipping.png'
+import trucking from '../../public/illustration/trucking.png'
 import Image from 'next/image';
 export default function Pembayaran() {
     return (
@@ -17,7 +17,7 @@ export default function Pembayaran() {
                             <div>
                                 <Image
                                     src={service}
-                                    width='10'
+                                    width='100%'
                                     height='auto'
                                     alt='PT. Hasfi Prima Logistik'
                                     className='w-full'
@@ -48,7 +48,7 @@ export default function Pembayaran() {
                             <div>
                                 <Image
                                     src={trucking}
-                                    width='10'
+                                    width='100%'
                                     height='auto'
                                     alt='PT. Hasfi Prima Logistik'
                                     className='w-full'
@@ -62,7 +62,7 @@ export default function Pembayaran() {
                             <div>
                                 <Image
                                     src={shipping}
-                                    width='10'
+                                    width='100%'
                                     height='auto'
                                     alt='PT. Hasfi Prima Logistik'
                                     className='w-full'
