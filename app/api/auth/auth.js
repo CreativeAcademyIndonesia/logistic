@@ -18,12 +18,12 @@ export const authOptions = {
           },
           async authorize(credentials, req) {
             const {username, password} = credentials
-            if(username != 'agus@gmail.com' || password != '1234'){
+            if(username != 'Hasfi' || password != '1234'){
               throw new Error('Username tidak terdaftar')
             }
 
             return { 
-                username : 'agus',
+                username : 'Hasfi',
                 password : '1234'
             }
           }

@@ -43,7 +43,7 @@ export default function Home() {
     };
 
     const handleShareClick = () => {
-        let textShare = `*Jadwal Kapal PT. Hasfi Prima Logistik*  %0a %0a`
+        let textShare = `*Jadwal Kapal*  %0a %0a`
         jadwalKapal.map((jadwal)=>{
             textShare += `*${jadwal.Nama_Kapal}*%0a NO Voyage: ${jadwal.No_Voyage}%0a Rute Tujuan: ${jadwal.Rute_dan_Tujuan}%0a Rute Panjang: ${jadwal.Rute_Panjang}%0a Closing: ${moment(jadwal.Tanggal_Clossing).format('l')}%0a ETD: ${moment(jadwal.Date_RangeETD).format('l')}%0a ETA: ${moment(jadwal.Date_RangeETA).format('l')}%0a%0a`
     })
@@ -54,7 +54,7 @@ export default function Home() {
     };
 
     const handleShareClickSingle = (jadwal) => {
-        let textShare = `*Jadwal Kapal PT. Hasfi Prima Logistik*  %0a %0a`
+        let textShare = `*Jadwal Kapal*  %0a %0a`
         textShare += `*${jadwal.Nama_Kapal}*%0a NO Voyage: ${jadwal.No_Voyage}%0a Rute Tujuan: ${jadwal.Rute_dan_Tujuan}%0a Rute Panjang: ${jadwal.Rute_Panjang}%0a Closing: ${moment(jadwal.Tanggal_Clossing).format('l')}%0a ETD: ${moment(jadwal.Date_RangeETD).format('l')}%0a ETA: ${moment(jadwal.Date_RangeETA).format('l')}%0a%0a`
         textShare += `PT. Hasfi Prima Logistik%0a https://hasfiprimalogistik.com %0a`
         encodeURIComponent(textShare)
