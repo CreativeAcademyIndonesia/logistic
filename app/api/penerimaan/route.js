@@ -24,12 +24,9 @@ export async function GET(request) {
       nextMonth = 1;
       nextYear = parseInt(year) + 1;
   }
-
   const startDate = `${year}-${month}-01`;
   const endDate = `${nextYear}-${String(nextMonth).padStart(2, '0')}-01`;
-
   console.log(startDate, endDate);
-
   const data = await query({
       query: `SELECT * FROM penerimaan WHERE Tgl_Stripping >= '${startDate}' AND Tgl_Stripping < '${endDate}' ORDER BY ID_Penerimaan DESC;`,
       values: []
