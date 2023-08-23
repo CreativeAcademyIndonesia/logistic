@@ -15,19 +15,19 @@ async function getData(url){
 
 export default async function Home() {
   // Yearly
-  const pengiriman = await getData(`/api/chart/recap?t=pengiriman`)
-  const penerimaan = await getData(`/api/chart/recap?t=penerimaan`)
-  const armada = await getData(`/api/chart/recap?t=armada`)
+  const pengiriman = await getData(`/api/chart/recap?t=pengiriman&c=Tgl_Stuffing`)
+  const penerimaan = await getData(`/api/chart/recap?t=penerimaan&c=Tgl_Stripping`)
+  const armada = await getData(`/api/chart/recap?t=armada&c=tanggal`)
   
   // Recap Pengiriman
-  const mitrapengiriman = await getData(`/api/chart/transaksi?t=pengiriman&count=Shipping_Line`)
-  const kapalpengiriman = await getData(`/api/chart/transaksi?t=pengiriman&count=Nama_Kapal`)
-  const namapengiriman = await getData(`/api/chart/transaksi?t=pengiriman&count=Nama_Pengirim`)
+  const mitrapengiriman = await getData(`/api/chart/transaksi?t=pengiriman&count=Shipping_Line&c=Tgl_Stuffing`)
+  const kapalpengiriman = await getData(`/api/chart/transaksi?t=pengiriman&count=Nama_Kapal&c=Tgl_Stuffing`)
+  const namapengiriman = await getData(`/api/chart/transaksi?t=pengiriman&count=Nama_Pengirim&c=Tgl_Stuffing`)
 
   // Recap Penerimaan 
-  const mitrapenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Shipping_Line`)
-  const kapalpenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Nama_Kapal`)
-  const namapenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Nama_Penerima`)
+  const mitrapenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Shipping_Line&c=Tgl_Stripping`)
+  const kapalpenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Nama_Kapal&c=Tgl_Stripping`)
+  const namapenerimaan = await getData(`/api/chart/transaksi?t=penerimaan&count=Nama_Penerima&c=Tgl_Stripping`)
 
   return (
     <main className="min-h-screen bg-white text-black">

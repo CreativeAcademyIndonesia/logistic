@@ -5,12 +5,13 @@ export async function GET(request){
   const params = new URL(request.url)
   const t = params.searchParams.get('t')
   const count = params.searchParams.get('count')
+  const c = params.searchParams.get('c')
   const data = await query({
     query : `
-      SELECT EXTRACT(YEAR FROM tanggal) as tahun, EXTRACT(MONTH FROM tanggal) as bulan, ${count}, COUNT(${count}) as transaksi
+      SELECT EXTRACT(YEAR FROM ${c}) as tahun, EXTRACT(MONTH FROM ${c}) as bulan, ${count}, COUNT(${count}) as transaksi
       FROM ${t}
-      WHERE EXTRACT(YEAR FROM tanggal) = EXTRACT(YEAR FROM CURRENT_DATE)
-      GROUP BY EXTRACT(YEAR FROM tanggal), EXTRACT(MONTH FROM tanggal), ${count}
+      WHERE EXTRACT(YEAR FROM ${c}) = EXTRACT(YEAR FROM CURRENT_DATE)
+      GROUP BY EXTRACT(YEAR FROM ${c}), EXTRACT(MONTH FROM ${c}), ${count}
       ORDER BY tahun, bulan, transaksi DESC;
     `,
     values : []
