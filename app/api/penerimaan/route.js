@@ -11,7 +11,12 @@ export async function GET(request) {
     let date = params.searchParams.get('date')
     if(date == '' || !date) date = moment(new Date()).format('YYYY-MM')
   const data = await query({
-    query : `SELECT * FROM penerimaan WHERE tanggal >= '${date}-01' AND tanggal < '${date}-31' ORDER BY ID_Penerimaan DESC;`,
+    // query : `SELECT * FROM penerimaan WHERE tanggal >= '${date}-01' AND tanggal < '${date}-31' ORDER BY ID_Penerimaan DESC;`,
+    query : `SELECT * FROM penerimaan 
+    WHERE tanggal >= '${date}-01' 
+      AND (MONTH('${date}-01') = 2 AND tanggal < '${date}-30')
+      OR (MONTH('${date}-01') != 2 AND tanggal < '${date}-31')
+    ORDER BY ID_Penerimaan DESC;`,
     values : []
   })
   return NextResponse.json(data)
