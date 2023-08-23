@@ -7,19 +7,35 @@ import fs from 'fs/promises';
 import moment from "moment";
 
 export async function GET(request) {
-    const params = new URL(request.url)
-    let date = params.searchParams.get('date')
-    if(date == '' || !date) date = moment(new Date()).format('YYYY-MM')
+  const params = new URL(request.url);
+  let date = params.searchParams.get('date');
+
+  if (!date || date === '') {
+      date = moment(new Date()).format('YYYY-MM');
+  }
+
+  const year = date.split('-')[0];
+  const month = date.split('-')[1];
+  
+  let nextMonth = parseInt(month) + 1;
+  let nextYear = year;
+
+  if (nextMonth > 12) {
+      nextMonth = 1;
+      nextYear = parseInt(year) + 1;
+  }
+
+  const startDate = `${year}-${month}-01`;
+  const endDate = `${nextYear}-${String(nextMonth).padStart(2, '0')}-01`;
+
+  console.log(startDate, endDate);
+
   const data = await query({
-    // query : `SELECT * FROM penerimaan WHERE tanggal >= '${date}-01' AND tanggal < '${date}-31' ORDER BY ID_Penerimaan DESC;`,
-    query : `SELECT * FROM penerimaan 
-    WHERE tanggal >= '${date}-01' 
-      AND (MONTH('${date}-01') = 2 AND tanggal < '${date}-30')
-      OR (MONTH('${date}-01') != 2 AND tanggal < '${date}-31')
-    ORDER BY ID_Penerimaan DESC;`,
-    values : []
-  })
-  return NextResponse.json(data)
+      query: `SELECT * FROM penerimaan WHERE Tgl_Stripping >= '${startDate}' AND Tgl_Stripping < '${endDate}' ORDER BY ID_Penerimaan DESC;`,
+      values: []
+  });
+
+  return NextResponse.json(data);
 }
 
 export async function POST(request){
