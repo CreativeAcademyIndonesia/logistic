@@ -11,6 +11,10 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
+import { useState } from "react"
+import useSWR, { useSWRConfig } from 'swr'
+import LoadingData from '@/app/component/LoadingData';
+
 const rangkumData = (data)=>{
     const result = Array(12).fill(0);
     const monthMap = {
@@ -36,7 +40,18 @@ const rangkumData = (data)=>{
     return result;
 }
 
-export function Yearlychart({datapengiriman, datapenerimaan, armada}) {
+export function Yearlychart({years}) {
+
+    const fetcher = (url) => fetch(url).then(res => res.json())
+    const { data: datapengiriman, error : errdatapengiriman, isLoading : loadingdatapengiriman } = useSWR(`/api/chart/recap?t=pengiriman&c=Tgl_Stuffing&y=${years}`, fetcher);
+    const { data: datapenerimaan, error : errdatapenerimaan, isLoading : loadingdatapenerimaan } = useSWR(`/api/chart/recap?t=penerimaan&c=Tgl_Stripping&y=${years}`, fetcher);
+    const { data: armada, error : errarmada, isLoading : loadingarmada } = useSWR(`/api/chart/recap?t=armada&c=tanggal&y=${years}`, fetcher);
+
+    if (loadingdatapengiriman || loadingdatapenerimaan || loadingarmada ) {
+        return <LoadingData />
+    }
+
+
     ChartJS.register(
         CategoryScale,
         LinearScale,
@@ -46,7 +61,7 @@ export function Yearlychart({datapengiriman, datapenerimaan, armada}) {
         Legend
     );
 
-    const year = new Date().getFullYear();
+    // const year = new Date().getFullYear();
     const options = {
         responsive: true,
         plugins: {
@@ -55,7 +70,7 @@ export function Yearlychart({datapengiriman, datapenerimaan, armada}) {
         },
         title: {
             display: true,
-            text: `Jumlah Pengiriman dan Penerimaan Tahun ${year}`,
+            text: `Jumlah Pengiriman dan Penerimaan Tahun ${years}`,
         },
         },
     };

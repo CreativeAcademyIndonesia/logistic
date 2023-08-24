@@ -11,10 +11,22 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-export function LineChart({rawdata, countby, headername}) {
-    let monthly = []
-    rawdata.forEach(data => data.bulan == new Date().getMonth() + 1 && monthly.push(data))
+import { useState } from "react"
+import useSWR, { useSWRConfig } from 'swr'
+import LoadingData from '@/app/component/LoadingData';
 
+export function LineChart({countby, headername, monthNumber, table, collumn, years}) {
+
+    const fetcher = (url) => fetch(url).then(res => res.json())
+    const { data: collections, error, isLoading : loadingCollections } = useSWR(`/api/chart/transaksi?t=${table}&count=${countby}&c=${collumn}&y=${years}`, fetcher);
+
+    if (loadingCollections) {
+        // return <p>loading</p>
+        return <LoadingData />
+    }
+
+    let monthly = []
+    collections.forEach(data => data.bulan == monthNumber && monthly.push(data))
     const lbl = monthly.map((data)=> data[countby])
     const trk = monthly.map((data)=> data.transaksi)
 
@@ -28,12 +40,14 @@ export function LineChart({rawdata, countby, headername}) {
     );
 
     const month = new Date().getMonth();
+    
     const monthNames = [
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'
     ];
 
-    const monthText = monthNames[month];
+    // const monthText = monthNames[month];
+    const monthText = monthNames[monthNumber-1];
     const options = {
         responsive: true,
         plugins: {
@@ -42,7 +56,7 @@ export function LineChart({rawdata, countby, headername}) {
         },
         title: {
             display: true,
-            text: `${headername} Bulan ${monthText}`,
+            text: `${headername} Bulan ${monthText} Tahun ${years}`,
         },
         },
     };
@@ -53,9 +67,9 @@ export function LineChart({rawdata, countby, headername}) {
         labels,
         datasets: [
         {
-            label: 'Pengiriman',
+            label: `${table}`,
             data: trk,
-            backgroundColor: 'rgba(0, 102, 159, .8)',
+            backgroundColor: table == 'pengiriman' ? 'rgba(0, 102, 159, .8)' : 'rgba(0, 163, 255, .8)'   ,
         }
         ],
     };

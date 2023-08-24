@@ -17,7 +17,6 @@ export default function Home() {
   const [url, setUrl] = useState(`/api/pengiriman?date=${dateActive}`)
   const { data, error, isLoading } = useSWR(url, fetcher)
   const { mutate } = useSWRConfig()
-  console.log(data)
 
   return (
     <main className="min-h-screen bg-white relative ">

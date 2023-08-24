@@ -3,9 +3,21 @@ import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
+import { useState } from "react"
+import useSWR, { useSWRConfig } from 'swr'
+import LoadingData from '@/app/component/LoadingData';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function Mitradonut({mitrapengiriman}) {
+export default function Mitradonut({years}) {
+
+    const fetcher = (url) => fetch(url).then(res => res.json())
+    const { data: mitrapengiriman, error : errdatapengiriman, isLoading : loadingdatapengiriman } = useSWR(`/api/chart/transaksi?t=pengiriman&count=Shipping_Line&c=Tgl_Stuffing&y=${years}`, fetcher);
+    if (loadingdatapengiriman ) {
+        return <LoadingData />
+    }
+
+
     function sumTransactionsByShippingLine(data) {
         const result = [];
         const shippingLineMap = {};
@@ -36,7 +48,7 @@ export default function Mitradonut({mitrapengiriman}) {
         plugins: {
             title: {
                 display: true,
-                text: `Mitra Analytics Tahun ${year}`,
+                text: `Mitra Analytics Tahun ${years}`,
             },
             legend: {
                 display: false
