@@ -69,17 +69,17 @@ export default function Home() {
           </div>
         </div>
       
-        <div className='col-span-12 '>
+        <div className='col-span-12 lg:col-span-6'>
           <div className="border rounded-2xl overflow-hidden p-4">
             <Yearlychart years={isDate.getFullYear()}/>
           </div>
         </div>
-        <div className='col-span-12 md:col-span-6'>
+        <div className='col-span-12 md:col-span-6 lg:col-span-3'>
           <div className="border rounded-2xl overflow-hidden p-4">
             <Mitradonut judul="Pengiriman" t="pengiriman" c="Tgl_Stuffing" count="Shipping_Line" years={isDate.getFullYear()} />
           </div>
         </div>
-        <div className='col-span-12 md:col-span-6'>
+        <div className='col-span-12 md:col-span-6 lg:col-span-3'>
           <div className="border rounded-2xl overflow-hidden p-4">
             <Mitradonut judul="Penerimaan" t="penerimaan" c="Tgl_Stripping" count="Shipping_Line" years={isDate.getFullYear()} />
           </div>
