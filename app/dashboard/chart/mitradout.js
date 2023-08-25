@@ -9,10 +9,10 @@ import LoadingData from '@/app/component/LoadingData';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function Mitradonut({years}) {
+export default function Mitradonut({judul, t,c,count,years}) {
 
     const fetcher = (url) => fetch(url).then(res => res.json())
-    const { data: mitrapengiriman, error : errdatapengiriman, isLoading : loadingdatapengiriman } = useSWR(`/api/chart/transaksi?t=pengiriman&count=Shipping_Line&c=Tgl_Stuffing&y=${years}`, fetcher);
+    const { data: mitrapengiriman, error : errdatapengiriman, isLoading : loadingdatapengiriman } = useSWR(`/api/chart/transaksi?t=${t}&count=${count}&c=${c}&y=${years}`, fetcher);
     if (loadingdatapengiriman ) {
         return <LoadingData />
     }
@@ -48,7 +48,7 @@ export default function Mitradonut({years}) {
         plugins: {
             title: {
                 display: true,
-                text: `Mitra Analytics Tahun ${years}`,
+                text: `Mitra Analytics ${judul} Tahun ${years}`,
             },
             legend: {
                 display: false
