@@ -72,7 +72,7 @@ const Contact = () => {
                                     Whatsapp
                                 </h4>
                                 <p className="text-base text-body-color">
-                                    +6282293663314
+                                    +6285255222024
                                 </p>
                             </div>
                         </div>

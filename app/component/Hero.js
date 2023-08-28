@@ -14,7 +14,7 @@ return (
                     <p className="max-w-xl mx-auto mt-6 text-base leading-7 text-white/80 font-inter">PT. Hasfi prima logistik adalah sebuah perusahaan yang bergerak dibidang jasa pengurusan transportasi. Kami menyediakan solusi pengiriman dan penerimaan barang melalui transportasi darat, laut dan udara yang efisien dan andal bagi pelanggan kami.</p>
                     <div className="relative inline-flex mt-10 group">
                         <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
-                        <Link href="https://api.whatsapp.com/send?phone=6282293663314" title="" className="relative inline-flex items-center justify-center gap-4 px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-800  rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-grabg-gray-800" role="button">
+                        <Link href="https://api.whatsapp.com/send?phone=6285255222024" title="" className="relative inline-flex items-center justify-center gap-4 px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-800  rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-grabg-gray-800" role="button">
                         Hubungi Kami
                             <FontAwesomeIcon 
                                 icon={faPhone}
