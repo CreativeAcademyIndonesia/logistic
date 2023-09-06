@@ -5,9 +5,25 @@ import moment from "moment";
 export async function GET(request) {
     const params = new URL(request.url)
     let date = params.searchParams.get('date')
-    if(date == '' || !date) date = moment(new Date()).format('YYYY-MM')
-  const data = await query({
-    query : `SELECT * FROM jadwal WHERE tanggal >= '${date}-01' AND tanggal < '${date}-31' ORDER BY Id DESC;`,
+    // if(date == '' || !date) date = moment(new Date()).format('YYYY-MM')
+    if (!date || date === '') {
+      date = moment(new Date()).format('YYYY-MM');
+    }
+
+    const year = date.split('-')[0];
+    const month = date.split('-')[1];
+    
+    let nextMonth = parseInt(month) + 1;
+    let nextYear = year;
+
+    if (nextMonth > 12) {
+        nextMonth = 1;
+        nextYear = parseInt(year) + 1;
+    }
+    const startDate = `${year}-${month}-01`;
+    const endDate = `${nextYear}-${String(nextMonth).padStart(2, '0')}-01`;
+    const data = await query({
+    query : `SELECT * FROM jadwal WHERE tanggal >= '${startDate}' AND tanggal < '${endDate}' ORDER BY Id DESC;`,
     // query : "SELECT * FROM jadwal ORDER BY Id DESC LIMIT 10",
     values : []
   })
