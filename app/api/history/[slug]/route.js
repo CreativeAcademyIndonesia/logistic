@@ -5,6 +5,7 @@ export async function GET(request, {params}){
   const idHistory = params.slug
   const req = new URL(request.url)
   let type = req.searchParams.get('type')
+  let noBl = req.searchParams.get('noBl')
   let data = []
   if(type == 'pengiriman'){
     data = await query({
@@ -13,7 +14,7 @@ export async function GET(request, {params}){
       FROM pengiriman
       LEFT JOIN history
       ON pengiriman.ID_Pengiriman=history.ID_Pengiriman
-      WHERE pengiriman.No_Container = "${idHistory}"
+      WHERE pengiriman.No_Container = "${idHistory}" AND pengiriman.No_Bl = "${noBl}"
       ORDER BY pengiriman.No_Container;
       `,
       values : []
@@ -25,7 +26,7 @@ export async function GET(request, {params}){
       FROM penerimaan
       LEFT JOIN historypenerimaan
       ON penerimaan.ID_Penerimaan=historypenerimaan.ID_Penerimaan
-      WHERE penerimaan.No_Container = "${idHistory}"
+      WHERE penerimaan.No_Container = "${idHistory}" AND penerimaan.No_Bl = "${noBl}"
       ORDER BY penerimaan.No_Container;
       `,
       values : []

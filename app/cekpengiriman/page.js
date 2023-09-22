@@ -6,7 +6,8 @@ import { useState } from "react"
 import moment from "moment/moment"
 
 export default function Home() {
-    const [noContainer, setNoContainer] = useState()
+    const [noContainer, setNoContainer] = useState('')
+    const [noBl, setNoBl] = useState('')
     const [results, setResults] = useState([])
     const [onError, setOnError] = useState(false)
     const [isMutate, setIsMutate] = useState(false)
@@ -15,7 +16,7 @@ export default function Home() {
         setIsMutate(true)
         e.preventDefault()
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history/${noContainer}?type=${type}`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history/${noContainer}?type=${type}&noBl=${noBl}`)
             const jsonData = await response.json()
             jsonData.length < 1 ? setOnError(true) : setOnError(false)
             setResults(jsonData)
@@ -41,7 +42,13 @@ export default function Home() {
                                     <div className="flex-1">
                                         <label htmlFor="" className="sr-only">pengiriman</label>
                                         <div>
-                                            <input type="container" name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-lg sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nomor Container" onChange={(e)=>setNoContainer(e.target.value)} />
+                                            <input type="text" name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-lg sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nomor Container" onChange={(e)=>setNoContainer(e.target.value)} />
+                                        </div>
+                                    </div>
+                                    <div className="flex-1">
+                                        <label htmlFor="" className="sr-only">BL</label>
+                                        <div>
+                                            <input type="text"  name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-lg sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nomor BL" onChange={(e)=>setNoBl(e.target.value)} />
                                         </div>
                                     </div>
                                     {
@@ -107,7 +114,7 @@ const Error = ()=>{
             <div id="alert-2" className="flex items-center p-4 mb-4 w-full md:w-1/2 mx-auto mt-8 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                 <span className="sr-only">Info</span>
                 <div className="ml-3 text-sm font-medium">
-                Tidak diketahui : Silahkan Masukan Nomor Container dengan Benar
+                Tidak diketahui : Pastikan kamu Memasukan Nomor Container & No BL dengan Benar
                 </div>
             </div>
         </div>
