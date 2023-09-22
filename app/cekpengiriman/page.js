@@ -10,11 +10,21 @@ export default function Home() {
     const [noBl, setNoBl] = useState('')
     const [results, setResults] = useState([])
     const [onError, setOnError] = useState(false)
+    const [onTidakLengkap, setOnTidakLengkap] = useState(false)
     const [isMutate, setIsMutate] = useState(false)
     const [type , setType] = useState('pengiriman')
     async function handleSubmit(e){
         setIsMutate(true)
+        // setOnTidakLengkap(false)
         e.preventDefault()
+        if(noContainer == '' || noBl == ''){
+            // setOnTidakLengkap(true)
+            setIsMutate(false)
+            setOnError(true)    
+            setResults([])
+            return
+        }
+
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history/${noContainer}?type=${type}&noBl=${noBl}`)
             const jsonData = await response.json()
@@ -48,7 +58,7 @@ export default function Home() {
                                     <div className="flex-1">
                                         <label htmlFor="" className="sr-only">BL</label>
                                         <div>
-                                            <input type="text"  name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-lg sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nomor BL" onChange={(e)=>setNoBl(e.target.value)} />
+                                            <input type="text"  name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-none sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nomor BL" onChange={(e)=>setNoBl(e.target.value)} />
                                         </div>
                                     </div>
                                     {
@@ -95,11 +105,15 @@ export default function Home() {
                             </div>
                         </div>
                         {
-                            results.length > 0 ?
-                            <Track data={results} container={noContainer} /> :
+
+                            results.length > 0 ? <Track data={results} container={noContainer} /> :
                             onError && <Error />
                         }
+
                     </div>
+                    {
+                        onTidakLengkap && <Lengkapi />
+                    }
                 </section>  
             </div>
         </form>
@@ -121,6 +135,18 @@ const Error = ()=>{
     )
 }
 
+const Lengkapi = ()=>{
+    return(
+        <div>
+            <div id="alert-2" className="flex items-center p-4 mb-4 w-full md:w-1/2 mx-auto mt-8 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <span className="sr-only">Info</span>
+                <div className="ml-3 text-sm font-medium">
+                    Pastikan kamu Memasukan Nomor Container & No BL dengan Benar
+                </div>
+            </div>
+        </div>
+    )
+}
 
 const Track = ({data, container})=> {
     return(
