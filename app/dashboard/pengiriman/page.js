@@ -10,6 +10,9 @@ import NoData from "@/app/component/NoData"
 import { Jumbotrons } from "@/app/component/Jumbotron"
 import Tracking from "./Tracking"
 import moment from "moment/moment"
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faListCheck } from "@fortawesome/free-solid-svg-icons"
 
 export default function Home() {
   const fetcher = (url) => fetch(url).then(res => res.json())
@@ -91,6 +94,9 @@ export default function Home() {
                           <th scope="col" className="px-6 py-3">
                             Action
                           </th>
+                          <th scope="col" className="px-6 py-3">
+                            Track Status
+                          </th>
                       </tr>
                   </thead>
                   <tbody>
@@ -141,7 +147,17 @@ export default function Home() {
                                 <Delete mutate={mutate}  url={url} sid={d['ID_Pengiriman']} />
                                 <Update mutate={mutate}  url={url} currentData={d} />
                                 <Detail currentData={d} />
+                              </div>
+                            </td>
+                            <td className="px-6 py-4 text-right">
+                              <div className="flex gap-2">
                                 <Tracking sid={d['ID_Pengiriman']} />
+                                <Link href={`/dashboard/pengiriman/track/${d['ID_Pengiriman']}`} className="py-3 px-4 inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-yellow-400 text-white hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+                                    <FontAwesomeIcon 
+                                        icon={faListCheck}
+                                        className="text-white text-xl"
+                                    />
+                                </Link>
                               </div>
                             </td>
                         </tr>
