@@ -7,7 +7,9 @@ import moment from "moment/moment"
 
 export default function Home() {
     const [noContainer, setNoContainer] = useState('')
-    const [noBl, setNoBl] = useState('')
+    // const [noBl, setNoBl] = useState('')
+    const [namaKapal, setNamaKapal] = useState('')
+
     const [results, setResults] = useState([])
     const [onError, setOnError] = useState(false)
     const [onTidakLengkap, setOnTidakLengkap] = useState(false)
@@ -17,7 +19,7 @@ export default function Home() {
         setIsMutate(true)
         // setOnTidakLengkap(false)
         e.preventDefault()
-        if(noContainer == '' || noBl == ''){
+        if(noContainer == '' || namaKapal == ''){
             // setOnTidakLengkap(true)
             setIsMutate(false)
             setOnError(true)    
@@ -26,7 +28,7 @@ export default function Home() {
         }
 
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history/${noContainer}?type=${type}&noBl=${noBl}`)
+            const response = await fetch(`${process.env.NEXT_PUBLIC_MYSQL_HOST}/api/history/${noContainer}?type=${type}&namaKapal=${namaKapal}`)
             const jsonData = await response.json()
             jsonData.length < 1 ? setOnError(true) : setOnError(false)
             setResults(jsonData)
@@ -42,8 +44,35 @@ export default function Home() {
                 <section className="relative py-12 sm:py-16 ">
                     <div className="relative px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                         <div className="max-w-3xl mx-auto text-center">
-                            <h1 className="mt-5 text-4xl font-bold leading-tight text-blue-primary sm:text-5xl sm:leading-tight lg:text-6xl lg:leading-tight font-pj">Cek Pengiriman</h1>
-                            <p className="max-w-md mx-auto mt-6 text-base leading-7 text-gray-600 font-inter">Silahkan Masukan No. Container</p>
+                            <h1 className="mt-5 text-2xl font-bold leading-tight text-blue-primary sm:text-3xl sm:leading-tight lg:text-4xl lg:leading-tight font-pj">Cek Pengiriman & Penerimaan</h1>
+                            <p className="max-w-md mx-auto mt-2 text-base leading-7 text-gray-600 font-inter">Silahkan Masukan No. Container & Nama Kapal </p>
+                            <div className="max-w-3xl mx-auto text-center">
+                                <div className="flex gap-x-6 mx-auto pt-2 text-center gap-4 justify-center">
+                                    <div className="flex cursor-pointer items-center gap-2">
+                                        <input 
+                                        type="radio" 
+                                        name="hs-radio-group" 
+                                        className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
+                                        id="hs-radio-group-1"
+                                        value="pengiriman"
+                                        checked={ type == 'pengiriman' }
+                                        onChange={(e)=> setType(e.target.value)}  />
+                                        <label htmlFor="hs-radio-group-1" className="text-sm sm:text-xl text-gray-500 ml-2 dark:text-gray-400">Pengiriman</label>
+                                    </div>
+
+                                    <div className="flex cursor-pointer items-center gap-2">
+                                        <input 
+                                        type="radio" 
+                                        name="hs-radio-group" 
+                                        className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
+                                        id="hs-radio-group-2"
+                                        value="penerimaan"
+                                        checked={ type == 'penerimaan' }
+                                        onChange={(e)=> setType(e.target.value)} />
+                                        <label htmlFor="hs-radio-group-2" className="text-sm sm:text-xl text-gray-500 ml-2 dark:text-gray-400">Penerimaan</label>
+                                    </div>
+                                </div>
+                            </div>
                             <div className="relative inline-flex mt-10 group">
                                 <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
                                     
@@ -55,10 +84,16 @@ export default function Home() {
                                             <input type="text" name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-lg sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nomor Container" onChange={(e)=>setNoContainer(e.target.value)} />
                                         </div>
                                     </div>
-                                    <div className="flex-1">
+                                    {/* <div className="flex-1">
                                         <label htmlFor="" className="sr-only">BL</label>
                                         <div>
                                             <input type="text"  name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-none sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nomor BL" onChange={(e)=>setNoBl(e.target.value)} />
+                                        </div>
+                                    </div> */}
+                                    <div className="flex-1">
+                                        <label htmlFor="" className="sr-only">Nama Kapal</label>
+                                        <div>
+                                            <input type="text"  name="" id="" className="block w-full px-4 py-3 sm:py-3.5 text-base font-medium text-gray-900 placeholder-gray-500 border border-gray-300 rounded-lg sm:rounded-l-none sm:rounded-r-none sm:text-sm focus:ring-gray-900 focus:border-gray-900" placeholder="Nama Kapal" onChange={(e)=>setNamaKapal(e.target.value)} />
                                         </div>
                                     </div>
                                     {
@@ -77,33 +112,7 @@ export default function Home() {
 
                             </div>
                         </div>
-                        <div className="max-w-3xl mx-auto text-center">
-                            <div className="flex gap-x-6 mx-auto py-4 text-center gap-4 justify-center">
-                                <div className="flex cursor-pointer items-center gap-2">
-                                    <input 
-                                    type="radio" 
-                                    name="hs-radio-group" 
-                                    className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
-                                    id="hs-radio-group-1"
-                                    value="pengiriman"
-                                    checked={ type == 'pengiriman' }
-                                    onChange={(e)=> setType(e.target.value)}  />
-                                    <label htmlFor="hs-radio-group-1" className="text-sm sm:text-xl text-gray-500 ml-2 dark:text-gray-400">Pengiriman</label>
-                                </div>
 
-                                <div className="flex cursor-pointer items-center gap-2">
-                                    <input 
-                                    type="radio" 
-                                    name="hs-radio-group" 
-                                    className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" 
-                                    id="hs-radio-group-2"
-                                    value="penerimaan"
-                                    checked={ type == 'penerimaan' }
-                                    onChange={(e)=> setType(e.target.value)} />
-                                    <label htmlFor="hs-radio-group-2" className="text-sm sm:text-xl text-gray-500 ml-2 dark:text-gray-400">Penerimaan</label>
-                                </div>
-                            </div>
-                        </div>
                         {
 
                             results.length > 0 ? <Track data={results} container={noContainer} /> :
@@ -128,7 +137,7 @@ const Error = ()=>{
             <div id="alert-2" className="flex items-center p-4 mb-4 w-full md:w-1/2 mx-auto mt-8 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                 <span className="sr-only">Info</span>
                 <div className="ml-3 text-sm font-medium">
-                Tidak diketahui : Pastikan kamu Memasukan Nomor Container & No BL dengan Benar
+                Tidak diketahui : Pastikan kamu Memasukan Nomor Container & Nama Kapal dengan Benar
                 </div>
             </div>
         </div>
@@ -141,7 +150,7 @@ const Lengkapi = ()=>{
             <div id="alert-2" className="flex items-center p-4 mb-4 w-full md:w-1/2 mx-auto mt-8 text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
                 <span className="sr-only">Info</span>
                 <div className="ml-3 text-sm font-medium">
-                    Pastikan kamu Memasukan Nomor Container & No BL dengan Benar
+                    Pastikan kamu Memasukan Nomor Container & Nama Kapal dengan Benar
                 </div>
             </div>
         </div>

@@ -95,6 +95,9 @@ export default function Home() {
                           <th scope="col" className="px-6 py-3">
                             Action
                           </th>
+                          <th scope="col" className="px-6 py-3">
+                            Track Status
+                          </th>
                       </tr>
                   </thead>
                   <tbody>
